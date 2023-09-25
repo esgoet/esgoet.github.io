@@ -174,11 +174,21 @@ const Works = () => {
         {/* </motion.p> */}
       </div>
       <div className="mt-4 mr-4 mb-0 flex flex-wrap gap-2 bg-black-200/50 p-8 rounded-2xl">
-        {tags.map((tag) => (
-          <ProjectTag key={tag.name} {...tag} size={16} onClick={checkTag} />
-        ))}
-      </div>
+        <form id="filterForm">
+          <fieldset>
+            <legend>Filtering Options</legend>
 
+            {tags.map((tag) => (
+              <ProjectTag
+                key={tag.name}
+                {...tag}
+                size={16}
+                onClick={checkTag}
+              />
+            ))}
+          </fieldset>
+        </form>
+      </div>
       <div className="mt-20 flex flex-wrap gap-7" id="projectGallery">
         {currentProjects.map((project) => (
           <ProjectCard key={project.name} {...project} />

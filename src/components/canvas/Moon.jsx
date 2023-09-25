@@ -6,7 +6,7 @@ import { useScroll, animated, useSpring, config } from "@react-spring/three";
 import CanvasLoader from "../Loader";
 
 
-const Moon = (props) =>  {
+const Moon = ({ isMobile }) =>  {
   const group = useRef();
   const astronaut = useRef();
   const moon = useRef();
@@ -100,18 +100,18 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
   return (
     <animated.group
       ref={group}
-      {...props}
+      // {...props}
       dispose={null}
       rotation={[0, rotationY, 0]}
       scale={scale}
       position={[1, positionY, 0]}
     >
-      <group 
-        name="Scene" 
-        scale={0.3} 
-        position={[-0.5, -0.7, 0]}
+      <group
+        name="Scene"
+        scale={0.3}
+        // position={[-0.5, -0.7, 0]}
+        position={isMobile ? [-1, -0.7, 0] : [-0.5, -0.7, 0]}
       >
-
         <group
           name="Armature"
           position={[0, 0.249, 0]}
@@ -195,6 +195,32 @@ useGLTF.preload("/moon/space_assets.glb");
 
 
 const MoonCanvas = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+
+    // Set the initial value of the `isMobile` state variable
+    setIsMobile(mediaQuery.matches);
+
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      console.log("isMobile: " + isMobile);
+      console.log(event);
+      setIsMobile(event.matches);
+      
+    };
+
+    // Add the callback function as a listener for changes to the media query
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    // Remove the listener when the component is unmounted
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
+
 
    
   return (
@@ -222,7 +248,7 @@ const MoonCanvas = () => {
           shadow-mapSize={[1024, 1024]}
         />
         <Suspense fallback={<CanvasLoader />}>
-          <Moon />
+          <Moon isMobile={isMobile} />
         </Suspense>
         {/* <Stats showPanel={0} /> */}
       </Canvas>
