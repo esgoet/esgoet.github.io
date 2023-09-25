@@ -14,13 +14,12 @@ const Hero = () => {
   return (
     <>
       {/* <section className="relative w-full h-screen mx-auto">*/}
-      <section className="relative w-full h-screen mx-auto xl:flex-row flex-col-reverse flex gap-10 overflow-hidden" 
-      >
+      <section className="relative xl:h-screen mx-auto flex xl:flex-row flex-col-reverse justify-center overflow-x-hidden">
         {/* <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
           className="flex-[0.75] flex gap-10 xl:flex-row flex-row flex-nowrap items-center justify-center"
         > */}
-        <div className="flex-[0.75] flex gap-10 xl:flex-row flex-row flex-nowrap items-center justify-center">
+        <div className="flex-initial xl:max-w-[50vw] px-5 flex gap-10 flex-row flex-nowrap items-center justify-center">
           <div className="flex flex-col justify-center items-center mt-5">
             <div className="w-5 h-5 rounded-full bg-primary z-10" />
             <div className="w-1 sm:h-80 h-40 violet-gradient z-10" />
@@ -45,14 +44,11 @@ const Hero = () => {
           </div>
         </div>
         {/* </motion.div> */}
-     
-        <div
-          className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
-        >
-          <MoonCanvas/>
-          
+
+        <div className="flex-1 xl:max-w-[50vw] xl:h-auto md:h-[550px] h-[350px]">
+          <MoonCanvas />
         </div>
-   
+
         <div className="invisible xl:visible absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center drop-shadow-md z-20">
           <a href="#about">
             <div className="w-[34px] h-[58px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
