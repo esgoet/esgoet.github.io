@@ -3,7 +3,7 @@ import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
 import web from "./web.png";
-import github from "./github.png";
+// import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
 
@@ -28,6 +28,9 @@ import tesla from "./company/tesla.png";
 
 import codesymbol from "./code.svg"
 
+import linkedin from "./socialmedia/linkedin-white.svg"
+import github from "./socialmedia/github-mark-white.svg"
+
 import webvr from "./InteractiveWebVR.png";
 import vrautism from "./VRautism.png";
 import portfolio from "./3Dportfolio.png";
@@ -40,7 +43,6 @@ export {
   creator,
   mobile,
   web,
-  github,
   menu,
   close,
   css,
@@ -65,5 +67,7 @@ export {
   portfolio,
   bearopedia,
   turtlefractalgenerator,
-  codesymbol
+  codesymbol,
+  linkedin,
+  github
 };

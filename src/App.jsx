@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { useEffect } from "react";
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Works, MoonCanvas, StarsCanvas } from './components';
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Works, MoonCanvas, StarsCanvas, Footer } from './components';
 
 const App = () => {
 
@@ -17,7 +17,8 @@ const App = () => {
         {/* <MoonCanvas /> */}
         {/* <Experience/> */}
         <Works />
-        <Contact />
+        <Contact /> 
+        <Footer />
 
         {/* <div className="relative z-0"></div> */}
       </div>
