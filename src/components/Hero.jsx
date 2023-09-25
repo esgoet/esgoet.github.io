@@ -47,7 +47,7 @@ const Hero = () => {
         </div>
         {/* </motion.div> */}
 
-        <div className="flex-1 lg:max-w-[50vw] min-w-[50wh] 2xl:h-auto xl:h-[820px] md:h-[550px] h-[350px]">
+        <div className="flex-1 lg:max-w-[50vw] min-w-[50wh] 2xl:h-min-[820px] xl:h-[820px] md:h-[550px] h-[350px]">
           <MoonCanvas />
         </div>
 
