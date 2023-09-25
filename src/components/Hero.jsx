@@ -4,8 +4,8 @@ import { styles } from '../styles';
 import { Canvas } from '@react-three/fiber';
 import { useScroll, animated } from "@react-spring/web";
 
-import { MoonCanvas, StarsCanvas } from './canvas';
-import { SectionWrapper } from '../hoc';
+import { MoonCanvas } from './canvas';
+
 
 const Hero = () => {
   const { scrollYProgress } = useScroll(); 
@@ -14,13 +14,15 @@ const Hero = () => {
   return (
     <>
       {/* <section className="relative w-full h-screen mx-auto">*/}
-      <section className="relative xl:h-screen mx-auto flex xl:flex-row flex-col-reverse justify-center overflow-x-hidden">
+      <section
+        className={`relative lg:h-screen mx-auto flex lg:flex-row flex-col-reverse justify-center items-center overflow-hidden`}
+      >
         {/* <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
           className="flex-[0.75] flex gap-10 xl:flex-row flex-row flex-nowrap items-center justify-center"
         > */}
-        <div className="flex-initial xl:max-w-[50vw] px-5 flex gap-10 flex-row flex-nowrap items-center justify-center">
-          <div className="flex flex-col justify-center items-center mt-5">
+        <div className="flex-initial lg:max-w-[50vw] min-w-[50wh] flex flex-row flex-nowrap items-center justify-start">
+          <div className={`flex flex-col justify-center items-center mt-5 ${styles.paddingX}`}>
             <div className="w-5 h-5 rounded-full bg-primary z-10" />
             <div className="w-1 sm:h-80 h-40 violet-gradient z-10" />
           </div>
@@ -34,22 +36,22 @@ const Hero = () => {
             <p className="font-light text-[18px] text-tertiary">
               MSc Interactive Media | MSc Clinical Psychology
             </p>
-            <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+            <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-sm`}>
               I love creating interactive digital tools{" "}
-              <br className="sm:block hidden" />
+              {/* <br className="sm:block hidden" /> */}
               that are beautiful, accessible and{" "}
-              <br className="sm:block hidden" />
+              {/* <br className="sm:block hidden" /> */}
               improve our daily life.
             </p>
           </div>
         </div>
         {/* </motion.div> */}
 
-        <div className="flex-1 xl:max-w-[50vw] xl:h-auto md:h-[550px] h-[350px]">
+        <div className="flex-1 lg:max-w-[50vw] min-w-[50wh] 2xl:h-auto xl:h-[820px] md:h-[550px] h-[350px]">
           <MoonCanvas />
         </div>
 
-        <div className="invisible xl:visible absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center drop-shadow-md z-20">
+        <div className="invisible lg:visible absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center drop-shadow-md z-20">
           <a href="#about">
             <div className="w-[34px] h-[58px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
               <motion.div

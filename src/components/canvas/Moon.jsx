@@ -108,8 +108,7 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
     >
       <group
         name="Scene"
-        scale={0.3}
-        // position={[-0.5, -0.7, 0]}
+        scale={isMobile ? 0.27 : 0.3}
         position={isMobile ? [-1, -0.7, 0] : [-0.5, -0.7, 0]}
       >
         <group
