@@ -7,6 +7,44 @@ import { SatelliteCanvas } from './canvas';
 import { SectionWrapper } from '../hoc';
 import { slideIn, textVariant } from '../utils/motion';
 
+ const Input = (props) => (
+   <input
+     type={props.type}
+     name={props.name}
+     onChange={props.handleChange}
+     placeholder={props.placeholder}
+     className={props.className}
+   />
+ );
+
+ const Textarea = (props) => (
+   <textarea
+     rows="5"
+     name={props.name}
+     onChange={props.handleChange}
+     placeholder={props.placeholder}
+     className={props.className}
+   />
+ );
+
+const ContactFormElement = (
+ props
+) => {
+  const elementClasses =
+    "bg-primary py-3 sm:py-4 px-3 sm:px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium z-30";
+
+  return (
+    <label className="flex flex-col">
+      <span className="text-tertiary font-medium mb-1 sm:mb-2">{props.label}</span>
+      {props.type === "textarea" ? (
+        <Textarea {...props} className={elementClasses} />
+      ) : (
+        <Input {...props} className={elementClasses} />
+      )}
+    </label>
+  );
+};
+
 
 const Contact = () => {
   const formRef = useRef();
@@ -18,12 +56,12 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const {name, value} = e;
+    const {name, value} = e.target;
     setForm({
       ...form, 
       [name]: value
     });
-
+    console.log('name: ' + name + ', value: ' + value)
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,8 +103,8 @@ const Contact = () => {
   }
 
   return (
-    <div className="xl:flex-row flex-col-reverse flex gap-10 overflow-hidden pb-10">
-      <div className="flex-[0.75]">
+    <div className="xl:flex-row lg:h-screen flex-col-reverse flex gap-10 overflow-hidden pb-10">
+      <div className="flex-[0.75] min-w-[35vw]">
         <div>
           {/* <motion.div variants={textVariant()}> */}
           <p className={styles.sectionSubText}>Get in touch</p>
@@ -81,44 +119,30 @@ const Contact = () => {
             onSubmit={handleSubmit}
             className="flex flex-col gap-4 bg-black-200/50 p-8 rounded-2xl border-none"
           >
-            <label className="flex flex-col">
-              <span className="text-tertiary font-medium mb-2">Your Name</span>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="What's your name?"
-                className="bg-primary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium z-30"
-              />
-            </label>
-            <label className="flex flex-col">
-              <span className="text-tertiary font-medium mb-2">Your Email</span>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="What's your email?"
-                className="bg-primary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium invalid:border-red-500"
-              />
-            </label>
-            <label className="flex flex-col">
-              <span className="text-tertiary font-medium mb-2">
-                Your Message
-              </span>
-              <textarea
-                rows="5"
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="What do you want to say?"
-                className="bg-primary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium"
-              />
-            </label>
+            <ContactFormElement
+              label={"Your Name"}
+              placeholder={"What's your name?"}
+              handleChange={handleChange}
+              name={"name"}
+              type={"text"}
+            />
+            <ContactFormElement
+              label={"Your Email"}
+              placeholder={"What's your email?"}
+              handleChange={handleChange}
+              name={"email"}
+              type={"email"}
+            />
+            <ContactFormElement
+              label={"Your Message"}
+              placeholder={"What's your message?"}
+              handleChange={handleChange}
+              name={"message"}
+              type={"textarea"}
+            />
             <button
               type="submit"
-              className="bg-tertiary hover:text-primary hover:bg-black-200 py-3 px-10 outline-none w-fit text-black-100 font-bold
+              className="bg-tertiary hover:text-primary hover:bg-black-200 py-2 px-6 sm:py-3 sm:px-10 outline-none w-fit text-black-100 font-bold
             shadow-mg shadow-primary rounded-xl self-end"
             >
               {loading ? "Sending..." : "Send"}
