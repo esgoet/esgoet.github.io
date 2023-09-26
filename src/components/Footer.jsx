@@ -12,12 +12,12 @@ const Footer = () => {
     <footer
       className={`w-full bg-black-200/50 flex flex-col gap-5 items-center justify-center sm:px-16 px-6 py-10 -mt-10`}
     >
-      <div className="flex flex-row gap-7">
+      <div className="flex flex-row gap-7 items-center justify-center">
         <div
           onClick={() =>
             window.open("https://linkedin.com/in/eva-goetzke", "_blank")
           }
-          className="w-7 h-7 flex justify-center items-center cursor-pointer drop-shadow-md"
+          className="w-6 h-6 flex justify-center items-center cursor-pointer drop-shadow-md"
         >
           <img
             src={linkedin}
