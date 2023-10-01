@@ -7,6 +7,7 @@ import { styles } from '../styles';
 import { fadeIn, textVariant } from '../utils/motion';
 
 import { SectionWrapper } from '../hoc';
+import { portrait } from '../assets';
 
 const ServiceCard = ({index, title, icon}) => {
   return (
@@ -33,21 +34,23 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>About Me.</h2>
         {/* </motion.div> */}
       </div>
-      <div className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl">
-        {/* <motion.div
+      <div className='flex flex-col-reverse sm:flex-row'>
+        <div className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl sm:pr-40">
+          {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl"
         > */}
           <p className="py-2">
             While (literal) moonwalking exceeds both my physical and
-            professional capacities, being able to develop a virtual experience like it is almost as good. 
-            I want to develop technology that goes beyond what is possible in the physical world, for example how students can learn in a virtual classroom.
-            I'm an interdisciplinary software developer with a passion
-            for developing digital tools to improve everyday life, for example
-            through education or mental health interventions. I have experience
-            in JavaScript, with expertise in frameworks like React, Node.js and
-            Three.js, as well as C# in the context of game design and VR
-            applications.
+            professional capacities, being able to develop a virtual experience
+            like it is almost as good. I want to develop technology that goes
+            beyond what is possible in the physical world, for example how
+            students can learn in a virtual classroom. I'm an interdisciplinary
+            software developer with a passion for developing digital tools to
+            improve everyday life, for example through education or mental
+            health interventions. I have experience in JavaScript, with
+            expertise in frameworks like React, Node.js and Three.js, as well as
+            C# in the context of game design and VR applications.
           </p>
           <p className="py-2">
             With my background in Psychology, I not only bring expertise in
@@ -57,7 +60,15 @@ const About = () => {
           <p className="font-semibold text-white py-2">
             Let's explore how we can make people's life better together!
           </p>
-        {/* </motion.div> */}
+          {/* </motion.div> */}
+        </div>
+        <div className="sm:relative -left-32 top-5 sm:max-w-[30vw]">
+          <img
+            src={portrait}
+            alt="Portrait of Eva Goetzke"
+            className="rounded-full border-3 drop-shadow-md border-primary border-solid"
+          />
+        </div>
       </div>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">

@@ -10,10 +10,11 @@ import { fadeIn, textVariant } from '../utils/motion';
 
 // get all tags from all projects and sort them alphabetically
 const tags = [];
+const tagTypes = [];
 
 projects.map((project) =>
   project.tags.map((tag) => {
-    if (!tags.find((e) => e.name === tag.name)) {
+    if (!tags.find((el) => el.name === tag.name)) {
       tags.push(tag);
     }
   })
@@ -21,16 +22,22 @@ projects.map((project) =>
 
 tags.sort((a,b)=>(a.name > b.name));
 
+tags.map((tag)=> {
+  if (!tagTypes.find((el) => el === tag.type)) {
+    tagTypes.push(tag.type);
+  }
+})
 
 
-const ProjectTag = ({name, color, size, onClick}) => {
+const ProjectTag = ({name, type, size, onClick, filterType}) => {
   const fontSize = `text-[${size}px]`;
   const smallerFont = `text-[${size-4}px]`;
-  return (
+  if (type === filterType) {
+     return (
     <>
       <label
         htmlFor={name}
-        className={`${fontSize} bg-black-100 px-2 text-white rounded-full `}
+        className={`${fontSize} bg-black-100 px-2 text-white rounded-full`}
       >
         <input
           type={"checkbox"}
@@ -43,6 +50,10 @@ const ProjectTag = ({name, color, size, onClick}) => {
       </label>
     </>
   );
+
+  }
+  return
+ 
 }
 
 
@@ -103,6 +114,7 @@ const ProjectCard = (
 
 const Works = () => {
   const [currentProjects, setCurrentProjects] = useState(projects);
+ 
 
 
   const checkTag = (e) => {
@@ -116,6 +128,21 @@ const Works = () => {
     filterProjects();
   };
 
+  const resetFilter = () => {
+      // get a list of all checked tags
+    const checkedTags = [];
+    document
+      .querySelectorAll("input[type='checkbox']:checked")
+      .forEach((tag) => checkedTags.push(tag.id));
+
+    // if none of input type checkbox are checked, reset filter
+    if (!checkedTags.length === 0) {
+
+
+    setCurrentProjects(projects);
+    }
+  }
+
   const filterProjects = () => {
     const filteredProjects = [];
 
@@ -127,7 +154,7 @@ const Works = () => {
 
     // if none of input type checkbox are checked, reset filter
     if (checkedTags.length === 0) {
-      setCurrentProjects(projects)
+      resetFilter();
     } else {
       // copy a project from projects into new list
       // clear filtered project list
@@ -173,23 +200,45 @@ const Works = () => {
 
         {/* </motion.p> */}
       </div>
-      <div className="mt-4 mr-4 mb-0 flex flex-wrap gap-2 bg-black-200/50 p-8 rounded-2xl">
-        <form id="filterForm">
-          <fieldset>
-            <legend>Filtering Options</legend>
+      <form
+        id="filterTagsForm"
+        className="my-4 mr-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
+      >
+        <div className='flex justify-center gap-5'>
+          <h3 className='text-center'>Filter Projects</h3>
 
-            {tags.map((tag) => (
-              <ProjectTag
-                key={tag.name}
-                {...tag}
-                size={16}
-                onClick={checkTag}
-              />
-            ))}
-          </fieldset>
-        </form>
-      </div>
-      <div className="mt-20 flex flex-wrap gap-7" id="projectGallery">
+          <button
+            className="bg-black-200/30 px-3 text-white rounded-full"
+            onClick={resetFilter}
+          >
+            RESET
+          </button>
+        </div>
+
+        <div className="flex flex-row gap-2">
+          {tagTypes.map((type) => (
+            <fieldset
+              className="flex flex-wrap gap-1 rounded-2xl bg-black-200/30 p-2"
+              id={type}
+              key={type}
+            >
+              <legend className="text-center text-tertiary text-[14px]">
+                {type.toUpperCase()}
+              </legend>
+              {tags.map((tag) => (
+                <ProjectTag
+                  key={tag.name}
+                  {...tag}
+                  size={14}
+                  onClick={checkTag}
+                  filterType={type}
+                />
+              ))}
+            </fieldset>
+          ))}
+        </div>
+      </form>
+      <div className="flex flex-wrap gap-7" id="projectGallery">
         {currentProjects.map((project) => (
           <ProjectCard key={project.name} {...project} />
         ))}

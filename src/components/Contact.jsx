@@ -11,6 +11,7 @@ import { slideIn, textVariant } from '../utils/motion';
    <input
      type={props.type}
      name={props.name}
+     id={props.name}
      onChange={props.handleChange}
      placeholder={props.placeholder}
      className={props.className}
@@ -21,6 +22,7 @@ import { slideIn, textVariant } from '../utils/motion';
    <textarea
      rows="5"
      name={props.name}
+     id={props.name}
      onChange={props.handleChange}
      placeholder={props.placeholder}
      className={props.className}
@@ -34,7 +36,7 @@ const ContactFormElement = (
     "bg-primary py-3 sm:py-4 px-3 sm:px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium z-30";
 
   return (
-    <label className="flex flex-col">
+    <label htmlFor={props.name} className="flex flex-col">
       <span className="text-tertiary font-medium mb-1 sm:mb-2">{props.label}</span>
       {props.type === "textarea" ? (
         <Textarea {...props} className={elementClasses} />

@@ -134,19 +134,23 @@ const projects = [
     tags: [
       {
         name: "VR",
-        color: "blue-text-gradient",
+        type: "device",
       },
       {
         name: "C#",
-        color: "green-text-gradient",
+        type: "language",
       },
       {
-        name: "Unity",
-        color: "pink-text-gradient",
+        name: "OpenXR",
+        type: "platform",
       },
       {
         name: "Blender",
-        color: "pink-text-gradient",
+        type: "software",
+      },
+      {
+        name: "Unity",
+        type: "software",
       },
     ],
     image: vrautism,
@@ -160,23 +164,47 @@ const projects = [
     tags: [
       {
         name: "react",
-        color: "blue-text-gradient",
+        type: "library",
       },
       {
         name: "threejs",
-        color: "green-text-gradient",
+        type: "library",
       },
       {
         name: "tailwind",
-        color: "pink-text-gradient",
+        type: "library",
       },
       {
         name: "Blender",
-        color: "pink-text-gradient",
+        type: "software",
+      },
+      {
+        name: "git",
+        type: "language",
+      },
+      {
+        name: "JavaScript",
+        type: "language",
+      },
+      {
+        name: "CSS",
+        type: "language",
+      },
+      {
+        name: "HTML5",
+        type: "language",
       },
       {
         name: "Web",
-        color: "pink-text-gradient",
+        type: "platform",
+      },
+      {
+        name: "Mobile",
+        type: "device",
+      },
+      {
+        name: "Desktop",
+        type: "device",
       },
     ],
     image: portfolio,
@@ -190,19 +218,19 @@ const projects = [
     tags: [
       {
         name: "VR",
-        color: "blue-text-gradient",
+        type: "device",
       },
       {
         name: "threejs",
-        color: "green-text-gradient",
+        type: "library",
       },
       {
         name: "Web",
-        color: "pink-text-gradient",
+        type: "platform",
       },
       {
         name: "Blender",
-        color: "pink-text-gradient",
+        type: "software",
       },
     ],
     image: webvr,
@@ -216,19 +244,27 @@ const projects = [
     tags: [
       {
         name: "iOS",
-        color: "blue-text-gradient",
+        type: "platform",
+      },
+      {
+        name: "XCode",
+        type: "software"
       },
       {
         name: "Swift",
-        color: "green-text-gradient",
+        type: "language",
       },
       {
         name: "CoreData",
-        color: "pink-text-gradient",
+        type: "library",
       },
       {
         name: "Mobile",
-        color: "pink-text-gradient",
+        type: "device",
+      },
+      {
+        name: "xml",
+        type: "language",
       },
     ],
     image: bearopedia,
@@ -242,15 +278,15 @@ const projects = [
     tags: [
       {
         name: "Python",
-        color: "blue-text-gradient",
+        type: "language",
       },
       {
         name: "Tkinter",
-        color: "pink-text-gradient",
+        type: "library",
       },
       {
         name: "Desktop",
-        color: "pink-text-gradient",
+        type: "device",
       },
     ],
     image: turtlefractalgenerator,

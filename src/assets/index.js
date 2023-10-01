@@ -37,6 +37,8 @@ import portfolio from "./3Dportfolio.png";
 import bearopedia from "./bearopedia.png";
 import turtlefractalgenerator from "./turtlefractalgenerator.png";
 
+import portrait from "./portrait.jpg";
+
 export {
   logo,
   backend,
@@ -69,5 +71,6 @@ export {
   turtlefractalgenerator,
   codesymbol,
   linkedin,
-  github
+  github,
+  portrait
 };
