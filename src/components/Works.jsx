@@ -129,18 +129,25 @@ const Works = () => {
   };
 
   const resetFilter = () => {
-      // get a list of all checked tags
-    const checkedTags = [];
-    document
-      .querySelectorAll("input[type='checkbox']:checked")
-      .forEach((tag) => checkedTags.push(tag.id));
-
-    // if none of input type checkbox are checked, reset filter
-    if (!checkedTags.length === 0) {
-
-
     setCurrentProjects(projects);
-    }
+    document.querySelectorAll("input[type='checkbox']:checked")
+      .forEach((tag) => {
+        tag.checked = false
+        tag.parentNode.style.backgroundColor = "#7E57C2";
+        tag.nextSibling.innerHTML = "#";
+      }
+        );
+    //   // get a list of all checked tags
+    // const checkedTags = [];
+    // document
+    //   .querySelectorAll("input[type='checkbox']:checked")
+    //   .forEach((tag) => checkedTags.push(tag.id));
+
+    // // if none of input type checkbox are checked, reset filter
+    // if (!checkedTags.length === 0) {
+
+    // setCurrentProjects(projects);
+    // }
   }
 
   const filterProjects = () => {
@@ -204,11 +211,12 @@ const Works = () => {
         id="filterTagsForm"
         className="my-4 mr-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
       >
-        <div className='flex justify-center gap-5'>
-          <h3 className='text-center'>Filter Projects</h3>
+        <div className="flex justify-center gap-5">
+          <h3 className="text-center">Filter Projects</h3>
 
           <button
             className="bg-black-200/30 px-3 text-white rounded-full"
+            type="button"
             onClick={resetFilter}
           >
             RESET
