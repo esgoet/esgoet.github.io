@@ -161,7 +161,7 @@ const Works = () => {
 
     // if none of input type checkbox are checked, reset filter
     if (checkedTags.length === 0) {
-      resetFilter();
+      setCurrentProjects(projects);
     } else {
       // copy a project from projects into new list
       // clear filtered project list
