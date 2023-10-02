@@ -34,31 +34,34 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>About Me.</h2>
         {/* </motion.div> */}
       </div>
-      <div className='flex flex-col-reverse sm:flex-row'>
+      <div className="flex flex-col-reverse sm:flex-row">
         <div className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl sm:pr-40">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl"
         > */}
           <p className="py-2">
-            While (literal) moonwalking exceeds both my physical and
-            professional capacities, being able to develop a virtual experience
-            like it is almost as good. I want to develop technology that goes
-            beyond what is possible in the physical world, for example how
-            students can learn in a virtual classroom. I'm an interdisciplinary
-            software developer with a passion for developing digital tools to
-            improve everyday life, for example through education or mental
-            health interventions. I have experience in JavaScript, with
-            expertise in frameworks like React, Node.js and Three.js, as well as
-            C# in the context of game design and VR applications.
+            While I can't (literally) moonwalk in real life, I can certainly
+            pull it off virtually! Enhancing accessibility to otherwise
+            restricted experiences through digital technology is a key passion of
+            mine. With a background in clinical psychology and a love for art
+            and design, I'm driven to create beautiful and user-centric digital
+            solutions that enhance everyday life.
           </p>
           <p className="py-2">
+            I bring a versatile skill set to the table, ranging from web
+            development to game design and VR applications. 
+            Explore my portfolio <a href="#work">below</a> to see my work in action.
+          </p>
+          {/* <p className="py-2">
             With my background in Psychology, I not only bring expertise in
             usability and accessibility, but can also bridge the gap between
             research and development of digital psychological interventions.
-          </p>
+          </p> */}
           <p className="font-semibold text-white py-2">
-            Let's explore how we can make people's life better together!
+            Feel free to <a href="#contact">reach out</a> with inquiries or join
+            me on a mission to enhance lives – together, we'll boldly go where
+            no code has gone before!
           </p>
           {/* </motion.div> */}
         </div>
