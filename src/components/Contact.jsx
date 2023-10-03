@@ -71,7 +71,7 @@ const Contact = () => {
 
     //template id from email js: template_hn5qowi
     //service id from email.js: service_28abtbq
-    //api key from email.js: qbyhQVnAB6vPZ1ifL
+    //api key from email.js: qbyhQVnAB6vPZ1ifL qbyhQVnAB6vPZ1ifL
 
     emailjs
       .send(
@@ -84,7 +84,7 @@ const Contact = () => {
           to_email: "eva.goetzke@gmail.com",
           message: form.message,
         },
-        "api_key_qbyhQVnAB6vPZ1ifL"
+        "qbyhQVnAB6vPZ1ifL"
       )
       .then(
         () => {
