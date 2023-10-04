@@ -232,6 +232,18 @@ const projects = [
         name: "Blender",
         type: "software",
       },
+      {
+        name: "JavaScript",
+        type: "language",
+      },
+      {
+        name: "CSS",
+        type: "language",
+      },
+      {
+        name: "HTML5",
+        type: "language",
+      },
     ],
     image: webvr,
     source_code_link: "https://github.com/esgoet/threejs-vr-app",
@@ -248,7 +260,7 @@ const projects = [
       },
       {
         name: "XCode",
-        type: "software"
+        type: "software",
       },
       {
         name: "Swift",

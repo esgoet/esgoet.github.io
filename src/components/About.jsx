@@ -24,6 +24,32 @@ const ServiceCard = ({index, title, icon}) => {
   )
 }
 
+const Profile = () => {
+  const dob = new Date(1997,6,16)
+  const age = Math.abs(new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970);
+  
+  return (
+    <div className='m-3 p-6 bg-black-200/50 rounded-full'>
+      <h3>Quick Facts</h3>
+      <div className='flex flex-row gap-3'>
+        <p>Name: Eva Goetzke</p>
+        <p>Age: {age}</p>
+        <div className="flex flex-col drop-shadow-md w-[30px] h-[20px] items-stretch justify-center">
+          <div className="h-1/3 bg-black m-0" />
+          <div className="h-1/3  bg-red-700 m-0" />
+          <div className="h-1/3 bg-amber-500 m-0" />
+        </div>
+      </div>
+      <div className='flex flex-row gap-3'>
+        <p>Passions: Coding, 3D Modelling, Painting, Volleyball </p>
+        <p>Close to heart: Mental Health Advocacy</p>
+        <p>Skills: </p>
+        <p>Education: </p>
+      </div>
+    </div>
+  );
+}
+
 
 const About = () => {
   return (
@@ -73,6 +99,7 @@ const About = () => {
           />
         </div>
       </div>
+      {/* <Profile/> */}
 
       {/* <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (

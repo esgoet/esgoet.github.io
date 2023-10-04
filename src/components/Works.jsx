@@ -7,6 +7,7 @@ import { codesymbol } from '../assets';
 import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
+import { e } from 'maath/dist/index-43782085.esm';
 
 // get all tags from all projects and sort them alphabetically
 const tags = [];
@@ -15,41 +16,63 @@ const tagTypes = [];
 projects.map((project) =>
   project.tags.map((tag) => {
     if (!tags.find((el) => el.name === tag.name)) {
-      tags.push(tag);
+      tags.push({...tag, weight: 1} );
+    } else {
+      tags.find((el) => el.name === tag.name).weight +=1;
+
     }
   })
 );
 
+console.log(tags);
+
 tags.sort((a,b)=>(a.name > b.name));
-
-tags.map((tag)=> {
-  if (!tagTypes.find((el) => el === tag.type)) {
-    tagTypes.push(tag.type);
-  }
-})
+tags.sort((a, b) => a.weight - b.weight);
+tags.reverse();
+console.log(tags);
 
 
-const ProjectTag = ({name, type, size, onClick, filterType}) => {
+// tags.map((tag)=> {
+//   if (!tagTypes.find((el) => el === tag.type)) {
+//     tagTypes.push(tag.type);
+//   }
+// })
+
+// tagTypes.sort((a, b) => a.name > b.name);
+
+tagTypes.push("device", "platform", "language", "library", "software")
+
+
+const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
   const fontSize = `text-[${size}px]`;
-  const smallerFont = `text-[${size-4}px]`;
+  const smallerFont = `text-[${size-2}px]`;
+
+  const Weight = () => (
+    <span
+      className={`ml-1 -mr-1 py-0.5 px-1.5 rounded-full bg-black-200/50 ${smallerFont}`}
+    >
+      {weight}
+    </span>
+  );
   if (type === filterType) {
      return (
-    <>
-      <label
-        htmlFor={name}
-        className={`${fontSize} bg-black-100 px-2 text-white rounded-full`}
-      >
-        <input
-          type={"checkbox"}
-          className="hidden"
-          id={name}
-          onClick={onClick}
-        />
-        <span className="hover:text-white">#</span>
-        <span className="hover:text-secondary">{name}</span>
-      </label>
-    </>
-  );
+       <>
+         <label
+           htmlFor={name}
+           className={`${fontSize} bg-black-100 px-2 text-white rounded-full`}
+         >
+           <input
+             type={"checkbox"}
+             className="hidden"
+             id={name}
+             onClick={onClick}
+           />
+           <span className="hover:text-white">#</span>
+           <span className="hover:text-secondary">{name}</span>
+           {weight > 1 ? <Weight/> : null}
+         </label>
+       </>
+     );
 
   }
   return
@@ -66,7 +89,7 @@ const ProjectCard = (
       {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
       <Tilt
         options={{ max: 5, scale: 1, speed: 450 }}
-        className="bg-primary p-5 rounded-2xl sm:w-[360px] w-full"
+        className="bg-primary p-5 rounded-2xl sm:w-[360px] w-full flex flex-col"
       >
         <div className="relative w-full h-[230px]">
           <img
@@ -93,7 +116,7 @@ const ProjectCard = (
           <h3 className="text-white font-bold text-[24px]">{name}</h3>
           <p className="text-black-100 text-[14px]">{description}</p>
         </div>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2 self-end justify-self-end justify-end contend-end">
           {tags.map((tag) => (
             <p
               key={tag.name}
@@ -191,7 +214,7 @@ const Works = () => {
       {/* <motion.div variants={textVariant()}>
         {" "} */}
       <div>
-        <p className={styles.sectionSubText}>My work</p>
+        <p className={styles.sectionSubText}>My portfolio</p>
         <h2 className={styles.sectionHeadText}>Projects.</h2>
       </div>
       {/* </motion.div> */}
@@ -226,7 +249,7 @@ const Works = () => {
         <div className="flex flex-row gap-2">
           {tagTypes.map((type) => (
             <fieldset
-              className="flex flex-wrap gap-1 rounded-2xl bg-black-200/30 p-2"
+              className="flex flex-wrap items-start justify-start gap-1 rounded-2xl bg-black-200/30 p-2"
               id={type}
               key={type}
             >
@@ -240,6 +263,7 @@ const Works = () => {
                   size={14}
                   onClick={checkTag}
                   filterType={type}
+                  weight={tag.weight}
                 />
               ))}
             </fieldset>
