@@ -24,12 +24,10 @@ projects.map((project) =>
   })
 );
 
-console.log(tags);
 
 tags.sort((a,b)=>(a.name > b.name));
 tags.sort((a, b) => a.weight - b.weight);
 tags.reverse();
-console.log(tags);
 
 
 // tags.map((tag)=> {
