@@ -3,7 +3,7 @@ import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
-import { codesymbol } from '../assets';
+import { codesymbol, filtersymbol } from '../assets';
 import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
@@ -230,10 +230,17 @@ const Works = () => {
       </div>
       <form
         id="filterTagsForm"
-        className="my-4 mr-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
+        className="my-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
       >
-        <div className="flex justify-center gap-5">
-          <h3 className="text-center">Filter Projects</h3>
+        <div className="flex justify-between items-center">
+          <div className="flex flex-row items-center px-2">
+            <img
+              src={filtersymbol}
+              alt={"filter"}
+              className="w-[26px] h-[26px] object-contain cursor-pointer z-20"
+            ></img>
+            <h3 className="px-2 text-[18px]">Filter Projects</h3>
+          </div>
 
           <button
             className="bg-black-200/30 px-3 text-white rounded-full"
@@ -244,7 +251,7 @@ const Works = () => {
           </button>
         </div>
 
-        <div className="flex flex-row gap-2">
+        <div className="flex sm:flex-row flex-col gap-2">
           {tagTypes.map((type) => (
             <fieldset
               className="flex flex-wrap items-start justify-start gap-1 rounded-2xl bg-black-200/30 p-2"

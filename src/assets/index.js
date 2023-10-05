@@ -27,9 +27,11 @@ import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
 import codesymbol from "./code.svg"
+import filtersymbol from "./filtersymbol.svg"
 
 import linkedin from "./socialmedia/linkedin-white.svg"
 import github from "./socialmedia/github-mark-white.svg"
+
 
 import webvr from "./InteractiveWebVR.png";
 import vrautism from "./VRautism.png";
@@ -72,5 +74,6 @@ export {
   codesymbol,
   linkedin,
   github,
-  portrait
+  portrait,
+  filtersymbol
 };
