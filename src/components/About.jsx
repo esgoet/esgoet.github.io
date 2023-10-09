@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
 import { education } from '../constants';
-import { fadeIn, textVariant } from '../utils/motion';
+import { fadeIn, textVariant, slideIn } from '../utils/motion';
 
 import { SectionWrapper } from '../hoc';
 import { portrait, interests, hobbies } from '../assets';
@@ -41,7 +41,7 @@ const Profile = () => {
   return (
     <Tilt options={{ max: 5, scale: 1, speed: 450 }}>
       <div
-        className={`sm:relative -left-32  w-[300px] h-[600px] rounded-full bg-primary flex ${
+        className={`sm:relative -left-32 -top-24  w-[300px] h-[600px] rounded-full bg-primary flex ${
           !toggle ? "flex-col" : "flex-col-reverse"
         } justify-start items-center p-0.5 shadow-[inset_0_0_3px_3px_rgba(70,3,100,0.15)] border-solid border-[10px] border-secondary`}
       >
@@ -133,12 +133,12 @@ const Profile = () => {
 const About = () => {
   return (
     <>
-      <div>
-        {/* <motion.div variants={textVariant()}> */}
+      {/* <div> */}
+        <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Who I Am</p>
         <h2 className={styles.sectionHeadText}>About Me.</h2>
-        {/* </motion.div> */}
-      </div>
+        </motion.div>
+      {/* </div> */}
       <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start">
         <div className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl sm:pr-40">
           {/* <motion.div
@@ -170,8 +170,11 @@ const About = () => {
           </p> */}
           {/* </motion.div> */}
         </div>
-        <Profile/>
-    
+        <motion.div
+          variants={slideIn("right", "tween", 0.2, 1)}
+        >
+          <Profile />
+        </motion.div>
       </div>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">

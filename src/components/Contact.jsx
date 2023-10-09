@@ -107,12 +107,12 @@ const Contact = () => {
   return (
     <div className="xl:flex-row lg:h-screen flex-col-reverse flex gap-10 overflow-hidden pb-10">
       <div className="flex-[0.75] min-w-[35vw]">
-        <div>
-          {/* <motion.div variants={textVariant()}> */}
+        {/* <div> */}
+          <motion.div variants={textVariant()}>
           <p className={styles.sectionSubText}>Get in touch</p>
           <h2 className={styles.sectionHeadText}>Contact.</h2>
-          {/* </motion.div> */}
-        </div>
+          </motion.div>
+        {/* </div> */}
 
         <div>
           {/* <motion.div variants={slideIn("left", "tween", 0.2, 1)}> */}

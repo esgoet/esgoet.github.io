@@ -209,13 +209,12 @@ const Works = () => {
 
   return (
     <>
-      {/* <motion.div variants={textVariant()}>
-        {" "} */}
-      <div>
+      <motion.div variants={textVariant()}>
+      {/* <div> */}
         <p className={styles.sectionSubText}>My portfolio</p>
         <h2 className={styles.sectionHeadText}>Projects.</h2>
-      </div>
-      {/* </motion.div> */}
+      {/* </div> */}
+      </motion.div>
       <div className="w-full flex">
         {/* <motion.p
           variants={fadeIn("", "", 0.1, 0.1)}
