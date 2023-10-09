@@ -275,7 +275,7 @@ const Works = () => {
           ))}
         </div>
       </form>
-      <div className="flex flex-wrap gap-7" id="projectGallery">
+      <div className="flex flex-wrap justify-start gap-7" id="projectGallery">
         {currentProjects.map((project) => (
           <ProjectCard key={project.name} {...project} />
         ))}

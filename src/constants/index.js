@@ -42,6 +42,30 @@ export const navLinks = [
   },
 ];
 
+const education = [
+  {
+    degree: "MSc Interactive Media",
+    university: "University College Cork",
+    country: "Ireland",
+    year: "2023",
+    grade: "First Class Honours",
+  },
+  {
+    degree: "MSc Clinical Psychology",
+    university: "Rijksuniversiteit Leiden",
+    country: "The Netherlands",
+    year: "2023",
+    grade: "8.6",
+  },
+  {
+    degree: "BSc (Hons) Psychology",
+    university: "University of Dundee",
+    country: "United Kingdom",
+    year: "2020",
+    grade: "First Class Honours",
+  },
+];
+
 const technologies = [
   {
     name: "HTML 5",
@@ -307,4 +331,4 @@ const projects = [
   },
 ];
 
-export { technologies, experiences, projects };
+export { technologies, experiences, projects, education };

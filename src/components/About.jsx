@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
-// import { services } from '../constants';
+import { education } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 
 import { SectionWrapper } from '../hoc';
-import { portrait } from '../assets';
+import { portrait, interests, hobbies } from '../assets';
 
 const ServiceCard = ({index, title, icon}) => {
   return (
@@ -25,28 +25,107 @@ const ServiceCard = ({index, title, icon}) => {
 }
 
 const Profile = () => {
-  const dob = new Date(1997,6,16)
+  const [toggle, setToggle] = useState(false);
+  const dob = new Date(1997,6,16);
   const age = Math.abs(new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970);
+
+  const EducationEntry = (props) => {
+    return (
+      <>
+        <p className='text-start'>{props.degree}</p>
+        <p className="italic text-[12px] text-end text-secondary">{props.university}</p>
+      </>
+    );
+  }
   
   return (
-    <div className='m-3 p-6 bg-black-200/50 rounded-full'>
-      <h3>Quick Facts</h3>
-      <div className='flex flex-row gap-3'>
-        <p>Name: Eva Goetzke</p>
-        <p>Age: {age}</p>
-        <div className="flex flex-col drop-shadow-md w-[30px] h-[20px] items-stretch justify-center">
-          <div className="h-1/3 bg-black m-0" />
-          <div className="h-1/3  bg-red-700 m-0" />
-          <div className="h-1/3 bg-amber-500 m-0" />
+    <Tilt options={{ max: 5, scale: 1, speed: 450 }}>
+      <div
+        className={`sm:relative -left-32  w-[300px] h-[600px] rounded-full bg-primary flex ${
+          !toggle ? "flex-col" : "flex-col-reverse"
+        } justify-start items-center p-0.5 shadow-[inset_0_0_3px_3px_rgba(70,3,100,0.15)] border-solid border-[10px] border-secondary`}
+      >
+        <img
+          src={portrait}
+          alt="Portrait of Eva Goetzke"
+          className="w-[280px] h-[280px] rounded-full drop-shadow-md cursor-pointer"
+          onClick={() => setToggle(!toggle)}
+        />
+        <div
+          className={` ${
+            toggle ? "hidden" : "flex"
+          } m-3 flex-col gap-2 justify-start items-center w-full`}
+        >
+          <div className="flex flex-row gap-3 items-center">
+            <p className="pb-1">
+              <span className="font-bold">Eva Goetzke</span> ({age})
+            </p>
+          </div>
+          <div className="flex flex-col gap-1 px-2 w-full text-[14px] ">
+            <div className="py-1 flex flex-row gap-2 items-center justify-stretch bg-black-100/50 p-1 rounded-2xl">
+              <p className="ml-1 font-bold bg-black-100/50 p-2 rounded-2xl">
+                2023
+              </p>
+              <div className="p-1 w-full">
+                {education.map((entry) =>
+                  entry.year === "2023" ? <EducationEntry {...entry} /> : null
+                )}
+              </div>
+            </div>
+            <div className="py-1 flex flex-row gap-2 items-center bg-black-100/50 p-1 rounded-2xl">
+              <p className="ml-1 font-bold bg-black-100/50 p-2 rounded-2xl">
+                2020
+              </p>
+              <div className="p-1 pr-2 w-full">
+                {education.map((entry) =>
+                  entry.year === "2020" ? <EducationEntry {...entry} /> : null
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 flex flex-col drop-shadow-sm w-[30px] h-[20px] items-stretch justify-center">
+            <div className="h-1/3 bg-black m-0" />
+            <div className="h-1/3  bg-red-700 m-0" />
+            <div className="h-1/3 bg-amber-500 m-0" />
+          </div>
+        </div>
+        <div
+          className={` ${
+            toggle ? "flex" : "hidden"
+          } m-3 mt-8 flex-col justify-around items-center h-full`}
+        >
+          <p className="font-bold">Eva Goetzke</p>
+          <div className="flex flex-col items-center  gap-4 text-[14px]">
+            <div className="flex flex-row gap-1 justify-center items-center bg-black-100/50 p-1 rounded-2xl">
+              <img
+                src={interests}
+                alt={interests}
+                className="w-[50px] h-[50px] bg-black-100/50 rounded-full p-1.5 ml-1"
+              />
+              <ul className="flex flex-wrap gap-1 p-2  rounded-2xl">
+                <li>Accessibility</li>
+                <li>Digital Education</li>
+                <li>Mental Health Awareness</li>
+              </ul>
+            </div>
+            <div className="flex flex-row gap-2 items-center bg-black-100/50 p-1 rounded-2xl">
+              <img
+                src={hobbies}
+                alt={hobbies}
+                className="w-[50px] h-[50px] bg-black-100/50 rounded-full p-1.5 ml-1"
+              />
+              <ul className="flex flex-wrap gap-1 justify-between p-2 rounded-2xl">
+                <li>Coding</li>
+                <li>3D Modelling</li>
+                <li>Painting</li>
+                <li>Reading</li>
+                <li>Volleyball</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      <div className='flex flex-row gap-3'>
-        <p>Passions: Coding, 3D Modelling, Painting, Volleyball </p>
-        <p>Close to heart: Mental Health Advocacy</p>
-        <p>Skills: </p>
-        <p>Education: </p>
-      </div>
-    </div>
+    </Tilt>
   );
 }
 
@@ -60,7 +139,7 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>About Me.</h2>
         {/* </motion.div> */}
       </div>
-      <div className="flex flex-col-reverse sm:flex-row">
+      <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start">
         <div className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl sm:pr-40">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
@@ -69,37 +148,31 @@ const About = () => {
           <p className="py-2">
             While I can't (literally) moonwalk in real life, I can certainly
             pull it off virtually! Enhancing accessibility to otherwise
-            restricted experiences through digital technology is a key passion of
-            mine. With a background in clinical psychology and a love for art
+            restricted experiences through digital technology is a key passion
+            of mine. With a background in clinical psychology and a love for art
             and design, I'm driven to create beautiful and user-centric digital
             solutions that enhance everyday life.
           </p>
           <p className="py-2">
             I bring a versatile skill set to the table, ranging from web
-            development to game design and VR applications. 
-            Explore my portfolio <a href="#work">below</a> to see my work in action.
+            development to game design and VR applications. Explore my portfolio{" "}
+            <a href="#work">below</a> to see my work in action.
           </p>
           {/* <p className="py-2">
             With my background in Psychology, I not only bring expertise in
             usability and accessibility, but can also bridge the gap between
             research and development of digital psychological interventions.
           </p> */}
-          <p className="font-semibold text-white py-2">
+          {/* <p className="font-semibold text-white py-2">
             Feel free to <a href="#contact">reach out</a> with inquiries or join
             me on a mission to enhance lives – together, we'll boldly go where
             no code has gone before!
-          </p>
+          </p> */}
           {/* </motion.div> */}
         </div>
-        <div className="sm:relative -left-32 top-5 sm:max-w-[30vw]">
-          <img
-            src={portrait}
-            alt="Portrait of Eva Goetzke"
-            className="rounded-full border-3 drop-shadow-md border-primary border-solid"
-          />
-        </div>
+        <Profile/>
+    
       </div>
-      {/* <Profile/> */}
 
       {/* <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (

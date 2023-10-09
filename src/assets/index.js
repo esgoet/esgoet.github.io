@@ -26,8 +26,10 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
-import codesymbol from "./code.svg"
-import filtersymbol from "./filtersymbol.svg"
+import codesymbol from "./code.svg";
+import filtersymbol from "./filtersymbol.svg";
+import interests from "./head-w-heart.svg";
+import hobbies from "./hand-w-heart.svg";
 
 import linkedin from "./socialmedia/linkedin-white.svg"
 import github from "./socialmedia/github-mark-white.svg"
@@ -75,5 +77,7 @@ export {
   linkedin,
   github,
   portrait,
-  filtersymbol
+  filtersymbol,
+  interests,
+  hobbies
 };
