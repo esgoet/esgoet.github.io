@@ -15,7 +15,7 @@ const Hero = () => {
     <>
       {/* <section className="relative w-full h-screen mx-auto">*/}
       <section
-        className={`relative lg:h-screen mx-auto flex lg:flex-row flex-col-reverse justify-center items-center`}
+        className={`relative lg:h-screen h-[95vh] mx-auto flex lg:flex-row flex-col-reverse justify-center items-center`}
       >
         {/* <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}

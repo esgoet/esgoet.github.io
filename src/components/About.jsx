@@ -188,7 +188,7 @@ const About = () => {
       </motion.div>
       {/* </div> */}
       <div className="mt-4 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-4">
-        <div className="text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl sm:pr-40">
+        <div className="text-white text-[17px] max-w-3xl leading-[30px] p-6 sm:p-2 rounded-2xl sm:pr-40">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl"
@@ -218,14 +218,18 @@ const About = () => {
           </p> */}
           {/* </motion.div> */}
         </div>
-        <motion.div
-          variants={slideIn("right", "tween", 0.2, 1)}
-          initial={isMobile ? "isMobile" : "hidden"}
-          whileInView={isMobile ? "isMobile" : "show"}
-          className="sm:relative -left-36 -top-24 "
-        >
-          <Profile />
-        </motion.div>
+        {!isMobile ? (
+          <motion.div
+            variants={slideIn("right", "tween", 0.2, 1)}
+            className="sm:relative -left-36 -top-24 "
+          >
+            <Profile />
+          </motion.div>
+        ) : (
+          <div>
+            <Profile />
+          </div>
+        )}
       </div>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">
