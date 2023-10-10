@@ -19,9 +19,9 @@ const Satellite = () => {
     <>
       <primitive
         object={satellite.scene.children[0]}
-        scale={0.35}
+        scale={0.25}
         position-y={0}
-        rotation-y={0}
+        rotation-y={0.2}
         rotation-z={0.3}
         rotation-x={0.1}
         ref={satelliteRef}
@@ -44,7 +44,7 @@ const SatelliteCanvas = () => {
         fov: 45,
         near: 0.1,
         far: 200,
-        position: [-4, 3, 6],
+        // position: [-4, 3, 6],
       }}
     >
       {/* <ambientLight intensity={2} />

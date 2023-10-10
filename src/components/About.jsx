@@ -37,20 +37,38 @@ const Profile = () => {
       </>
     );
   }
+
+  const spring = {
+    type: "spring",
+    stiffness: 700,
+    damping: 30,
+    duration: 0.5,
+  }
   
   return (
     <Tilt options={{ max: 5, scale: 1, speed: 450 }}>
       <div
-        className={`sm:relative -left-32 -top-24  w-[300px] h-[600px] rounded-full bg-primary flex ${
+        className={` w-[300px] h-[600px] rounded-full bg-primary flex ${
           !toggle ? "flex-col" : "flex-col-reverse"
         } justify-start items-center p-0.5 shadow-[inset_0_0_3px_3px_rgba(70,3,100,0.15)] border-solid border-[10px] border-secondary`}
       >
-        <img
-          src={portrait}
-          alt="Portrait of Eva Goetzke"
+        <motion.div
+          whileHover={{
+            marginTop: !toggle ? 5 : -5,
+            marginBottom: !toggle ? -5 : 5,
+          }}
           className="w-[280px] h-[280px] rounded-full drop-shadow-md cursor-pointer"
           onClick={() => setToggle(!toggle)}
-        />
+          layout
+          transition={spring}
+        >
+          <img
+            src={portrait}
+            alt="Portrait of Eva Goetzke"
+            className="rounded-full object-contain"
+          />
+        </motion.div>
+
         <div
           className={` ${
             toggle ? "hidden" : "flex"
@@ -68,7 +86,9 @@ const Profile = () => {
               </p>
               <div className="p-1 w-full">
                 {education.map((entry) =>
-                  entry.year === "2023" ? <EducationEntry {...entry} /> : null
+                  entry.year === "2023" ? (
+                    <EducationEntry key={entry.degree} {...entry} />
+                  ) : null
                 )}
               </div>
             </div>
@@ -78,7 +98,9 @@ const Profile = () => {
               </p>
               <div className="p-1 pr-2 w-full">
                 {education.map((entry) =>
-                  entry.year === "2020" ? <EducationEntry {...entry} /> : null
+                  entry.year === "2020" ? (
+                    <EducationEntry key={entry.degree} {...entry} />
+                  ) : null
                 )}
               </div>
             </div>
@@ -134,13 +156,13 @@ const About = () => {
   return (
     <>
       {/* <div> */}
-        <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Who I Am</p>
         <h2 className={styles.sectionHeadText}>About Me.</h2>
-        </motion.div>
+      </motion.div>
       {/* </div> */}
-      <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start">
-        <div className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl sm:pr-40">
+      <div className="mt-4 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-4">
+        <div className="text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl sm:pr-40">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl"
@@ -172,6 +194,7 @@ const About = () => {
         </div>
         <motion.div
           variants={slideIn("right", "tween", 0.2, 1)}
+          className="sm:relative -left-36 -top-24 "
         >
           <Profile />
         </motion.div>
