@@ -72,6 +72,10 @@ export const slideIn = (direction, type, delay, duration) => {
         ease: "easeOut",
       },
     },
+    isMobile: {
+      x: 0,
+      y: 0,
+    }
   };
 };
 
