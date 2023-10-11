@@ -188,12 +188,12 @@ const About = () => {
       </motion.div>
       {/* </div> */}
       <div className="mt-4 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-4">
-        <div className="text-white text-[17px] max-w-3xl leading-[30px] p-6 sm:p-2 rounded-2xl sm:pr-40">
+        <div className="text-white text-[17px] max-w-prose leading-[30px] p-6 sm:p-2 rounded-2xl">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl"
         > */}
-          <p className="py-2">
+          <p>
             While I can't (literally) moonwalk in real life, I can certainly
             pull it off virtually! Enhancing accessibility to otherwise
             restricted experiences through digital technology is a key passion
@@ -201,10 +201,10 @@ const About = () => {
             and design, I'm driven to create beautiful and user-centric digital
             solutions that enhance everyday life.
           </p>
-          <p className="py-2">
+          <p className="pt-4">
             I bring a versatile skill set to the table, ranging from web
             development to game design and VR applications. Explore my portfolio{" "}
-            <a href="#work">below</a> to see my work in action.
+            <a href="#work" className='underline pointer-cursor'>below</a> to see my work in action.
           </p>
           {/* <p className="py-2">
             With my background in Psychology, I not only bring expertise in
@@ -221,7 +221,7 @@ const About = () => {
         {!isMobile ? (
           <motion.div
             variants={slideIn("right", "tween", 0.2, 1)}
-            className="sm:relative -left-36 -top-24 "
+            className="-mt-24"
           >
             <Profile />
           </motion.div>
@@ -230,6 +230,7 @@ const About = () => {
             <Profile />
           </div>
         )}
+        
       </div>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">

@@ -15,25 +15,25 @@ const Hero = () => {
     <>
       {/* <section className="relative w-full h-screen mx-auto">*/}
       <section
-        className={`relative lg:h-screen h-[95vh] mx-auto flex lg:flex-row flex-col-reverse justify-center items-center`}
+        className={`relative lg:h-screen h-[98vh] mx-auto flex lg:flex-row flex-col-reverse justify-center items-center`}
       >
         {/* <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
           className="flex-[0.75] flex gap-10 xl:flex-row flex-row flex-nowrap items-center justify-center"
         > */}
-        <div className="flex-initial lg:max-w-[50vw] min-w-[50wh] flex flex-row flex-nowrap items-center justify-start">
+        <div className="flex-initial lg:max-w-[50vw] lg:min-w-[50vw] max-w-[90vw] flex flex-row flex-nowrap sm:items-center pb-6 sm:pb-0 -ml-5 sm:ml-0 items-start justify-start">
           <div className={`flex flex-col justify-center items-center mt-5 ${styles.paddingX}`}>
-            <div className="w-5 h-5 rounded-full bg-primary z-10" />
-            <div className="w-1 sm:h-80 h-40 violet-gradient z-10" />
+            <div className="w-5 h-5 rounded-full bg-primary" />
+            <div className="w-1 sm:h-80 h-40 violet-gradient" />
           </div>
-          <div className="flex flex-col gap-3 items-start z-10">
+          <div className="flex flex-col gap-3 items-start">
             <h1 className={`${styles.heroHeadText} text-white-100`}>
               Hi, I'm{" "}
               <span className="text-primary font-['Lobster']  drop-shadow-lg">
                 Eva
               </span>
             </h1>
-            <p className="font-light text-[18px] text-tertiary -mt-4">
+            <p className="font-light sm:text-[18px] text-[14px] text-tertiary -mt-4">
               MSc Interactive Media | MSc Clinical Psychology
             </p>
             <p className={`${styles.heroSubText} text-white-100 max-w-sm`}>
@@ -43,7 +43,7 @@ const Hero = () => {
               {/* <br className="sm:block hidden" /> */}
               improve our daily life.
             </p>
-            <a href='#contact' className='p-4 rounded-full bg-black-200/50 font-bold mt-3'>GET IN TOUCH</a>
+            <a href='#contact' className='p-4 rounded-full bg-black-200/50 font-bold mt-3 mb-6'>GET IN TOUCH</a>
           </div>
         </div>
         {/* </motion.div> */}

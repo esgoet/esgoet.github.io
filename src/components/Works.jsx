@@ -87,7 +87,7 @@ const ProjectCard = (
       {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
       <Tilt
         options={{ max: 5, scale: 1, speed: 450 }}
-        className="bg-primary p-5 rounded-2xl sm:w-[360px] w-full flex flex-col"
+        className="bg-primary p-5 rounded-2xl sm:w-[360px] flex flex-col"
       >
         <div className="relative w-full h-[230px]">
           <img
@@ -209,7 +209,7 @@ const Works = () => {
 
   return (
     <>
-      <motion.div variants={textVariant()} inView="show">
+      <motion.div variants={textVariant()}>
         {/* <div> */}
         <p className={styles.sectionSubText}>My portfolio</p>
         <h2 className={styles.sectionHeadText}>Projects.</h2>
@@ -274,7 +274,10 @@ const Works = () => {
           ))}
         </div>
       </form>
-      <div className="flex flex-wrap justify-start gap-7" id="projectGallery">
+      <div
+        className="flex flex-wrap gap-7 justify-start"
+        id="projectGallery"
+      >
         {currentProjects.map((project) => (
           <ProjectCard key={project.name} {...project} />
         ))}
