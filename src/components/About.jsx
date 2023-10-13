@@ -140,7 +140,7 @@ const Profile = () => {
                 <li>Coding</li>
                 <li>3D Modelling</li>
                 <li>Painting</li>
-                <li>Reading</li>
+                {/* <li>Reading</li> */}
                 <li>Volleyball</li>
               </ul>
             </div>
