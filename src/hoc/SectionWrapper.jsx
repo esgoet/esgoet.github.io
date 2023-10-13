@@ -1,11 +1,21 @@
-import {useState, useEffect} from "react";
-import { motion } from "framer-motion";
+import {useState, useEffect, useRef, useContext} from "react";
+import { motion, useInView } from "framer-motion";
 
 import { styles } from "../styles";
 import { staggerContainer } from "../utils/motion";
 
+
 const SectionWrapper = (Component, idName) => function HOC() {
   const [isMobile, setIsMobile] = useState(false);
+  // const ref = useRef(null)
+  // const isInView = useInView(ref)
+
+  // useEffect(()=> {
+  //   console.log(idName + ' section in view: ' + isInView)
+
+  // }, [isInView])
+  
+
 
   useEffect(() => {
     // Add a listener for changes to the screen size
@@ -30,17 +40,18 @@ const SectionWrapper = (Component, idName) => function HOC() {
     };
   }, []);
 
+  
+
     return (
       <motion.section
+        // ref={ref}
         variants={staggerContainer()}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: !isMobile ? 0.25 : 0.1}}
-        className={`${styles.paddingX} relative max-w-7xl mx-auto lg:min-h-screen 2xl:min-h-0 mb-8`}
+        viewport={{ once: true, amount: !isMobile ? 0.25 : 0.1 }}
+        className={`${styles.paddingX} max-w-7xl mx-auto lg:min-h-screen 2xl:min-h-0 my-8 snap-start snap-always`}
       >
-        <span className="hash-span" id={idName}>
-
-        </span>
+        <span className="hash-span" id={idName}></span>
         <Component />
       </motion.section>
     );

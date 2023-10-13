@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Tilt } from 'react-tilt';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 import { styles } from '../styles';
 import { education } from '../constants';
@@ -46,7 +46,7 @@ const Profile = () => {
   }
   
   return (
-    <Tilt options={{ max: 5, scale: 1, speed: 450 }}>
+    <Tilt options={{ max: 10, perspective: 700, axis: "x", scale: 1, speed: 450 }}>
       <div
         className={` w-[300px] h-[600px] rounded-full bg-primary flex ${
           !toggle ? "flex-col" : "flex-col-reverse"
@@ -152,37 +152,44 @@ const Profile = () => {
 }
 
 
-const About = () => {
-    const [isMobile, setIsMobile] = useState(false);
+const About = ({onView}) => {
+  const [isMobile, setIsMobile] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  // const shareId = (id) => onView(id);
 
-    useEffect(() => {
-      // Add a listener for changes to the screen size
-      const mediaQuery = window.matchMedia("(max-width: 500px)");
+  // useEffect(() => {
+  //   props.onView('about')
+  //   console.log("about is in view: ", isInView);
+  // }, [isInView]);
 
-      // Set the initial value of the `isMobile` state variable
-      setIsMobile(mediaQuery.matches);
+  useEffect(() => {
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
 
-      // Define a callback function to handle changes to the media query
-      const handleMediaQueryChange = (event) => {
-        console.log("isMobile: " + isMobile);
-        console.log(event);
-        setIsMobile(event.matches);
-      };
+    // Set the initial value of the `isMobile` state variable
+    setIsMobile(mediaQuery.matches);
 
-      // Add the callback function as a listener for changes to the media query
-      mediaQuery.addEventListener("change", handleMediaQueryChange);
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      console.log("isMobile: " + isMobile);
+      console.log(event);
+      setIsMobile(event.matches);
+    };
 
-      // Remove the listener when the component is unmounted
-      return () => {
-        mediaQuery.removeEventListener("change", handleMediaQueryChange);
-      };
-    }, []);
+    // Add the callback function as a listener for changes to the media query
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
 
+    // Remove the listener when the component is unmounted
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
 
   return (
     <>
       {/* <div> */}
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant()} ref={ref} onClick={() => onView('about')}>
         <p className={styles.sectionSubText}>Who I Am</p>
         <h2 className={styles.sectionHeadText}>About Me.</h2>
       </motion.div>
@@ -204,7 +211,10 @@ const About = () => {
           <p className="pt-4">
             I bring a versatile skill set to the table, ranging from web
             development to game design and VR applications. Explore my portfolio{" "}
-            <a href="#work" className='underline pointer-cursor'>below</a> to see my work in action.
+            <a href="#work" className="underline pointer-cursor">
+              below
+            </a>{" "}
+            to see my work in action.
           </p>
           {/* <p className="py-2">
             With my background in Psychology, I not only bring expertise in
@@ -220,7 +230,7 @@ const About = () => {
         </div>
         {!isMobile ? (
           <motion.div
-            variants={slideIn("right", "tween", 0.2, 1)}
+            variants={slideIn("right", "tween", 0.1, 1)}
             className="-mt-24"
           >
             <Profile />
@@ -230,7 +240,6 @@ const About = () => {
             <Profile />
           </div>
         )}
-        
       </div>
 
       {/* <div className="mt-20 flex flex-wrap gap-10">
@@ -240,6 +249,6 @@ const About = () => {
       </div> */}
     </>
   );
-}
+};
 
 export default SectionWrapper(About, 'about')

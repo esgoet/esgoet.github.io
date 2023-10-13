@@ -107,17 +107,16 @@ const Contact = () => {
   return (
     <>
       {/* <div> */}
-      <motion.div variants={textVariant()} inView="show">
+      <motion.div variants={textVariant()} className="mt-8">
         <p className={styles.sectionSubText}>Get in touch</p>
         <h2 className={styles.sectionHeadText}>Contact.</h2>
       </motion.div>
       {/* </div> */}
-      <div className="flex lg:flex-row lg:h-screen flex-col-reverse justify-between items-stretch gap-10">
-        <div className="min-w-[35vw]">
-          {/* <div> */}
+      <div className="flex lg:flex-row flex-col-reverse justify-between items-start gap-10">
+
           <motion.div
             variants={slideIn("left", "tween", 0.2, 1)}
-            className="lg:max-w-[70vw]"
+            className="lg:max-w-[70vw] min-w-[35vw] lg:w-1/2"
           >
             <form
               ref={formRef}
@@ -154,16 +153,15 @@ const Contact = () => {
               </button>
             </form>
           </motion.div>
-          {/* </div> */}
-        </div>
-        <div className="md:h-[550px] h-[350px]">
-          {/* <motion.div
-            variants={slideIn("right", "tween", 0.2, 1)}
-            className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
-          > */}
+
+        {/* <div className="md:h-[550px] h-[350px] w-full"> */}
+        <motion.div
+          variants={slideIn("right", "tween", 0.2, 1)}
+          className="md:h-[550px] h-[350px] lg:w-1/2 overflow-x-hidden"
+        >
           <SatelliteCanvas />
-          {/* </motion.div> */}
-        </div>
+        </motion.div>
+        {/* </div> */}
       </div>
     </>
   );

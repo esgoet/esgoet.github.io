@@ -1,21 +1,65 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, useScroll, useSpring, useMotionValueEvent } from 'framer-motion';
 
 import {styles} from '../styles';
 import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
-import { useSpring, animated } from '@react-spring/web';
+// import { useSpring, animated } from '@react-spring/web';
+
+import { SectionContext } from '../hoc';
 
 
 const Navbar = () => {
   const [active, setActive] = useState('')
   const [toggle, setToggle] = useState(false)
+  const { scrollY, scrollYProgress } = useScroll();
 
+  const [activeSection, setActiveSection] = useState(null);
+  const observer = useRef(null);
 
-   const { y } = useSpring({
-     from: { y: 60 },
-     y: toggle ? 75 : 60,
-     config: { duration: 300 },
+  useEffect(() => {
+    console.log(active);
+    //create new instance and pass a callback function
+    observer.current = new IntersectionObserver((entries) => {
+
+      const visibleSection = entries.find(
+        (entry) => entry.isIntersecting
+      )?.target;
+
+      //Update state with the visible section ID
+      if (visibleSection) {
+        setActiveSection(visibleSection.id);
+        setActive(visibleSection.id)
+        
+      }
+    });
+
+    //Get custom attribute data-section from all sections
+    const sections = document.querySelectorAll(".hash-span");
+
+    sections.forEach((section) => {
+      observer.current.observe(section);
+    });
+
+    //Cleanup function to remove observer
+    return () => {
+      sections.forEach((section) => {
+        observer.current.unobserve(section);
+      });
+    };
+  }, []);
+
+  //  const { y } = useSpring({
+  //    from: { y: 60 },
+  //    y: toggle ? 75 : 60,
+  //    config: { duration: 300 },
+  //  });
+
+   const scaleX = useSpring(scrollYProgress, {
+     stiffness: 100,
+     damping: 30,
+     restDelta: 0.001,
    });
 
   return (
@@ -45,10 +89,10 @@ const Navbar = () => {
               <li
                 key={link.id}
                 className={`${
-                  active === link.title ? "text-white" : "text-secondary"
+                  active === link.id ? "text-white" : "text-secondary"
                 }
               hover:text-white text-[18px] font-medium cursor-pointer`}
-                onClick={() => setActive(link.title)}
+                onClick={() => setActive(link.id)}
               >
                 <a href={`#${link.id}`}>{link.title}</a>
               </li>
@@ -63,7 +107,7 @@ const Navbar = () => {
             />
           </div>
         </div>
-        <animated.div
+        {/* <animated.div
           style={{ top: y }}
           className={`${
             !toggle ? "hidden" : "flex "
@@ -85,8 +129,12 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-        </animated.div>
+        </animated.div> */}
       </nav>
+      <motion.div
+        style={{ scaleX }}
+        className={`fixed h-[5px] w-full top-[75px] bg-white z-20 origin-[0%]`}
+      />
     </>
   );
 }

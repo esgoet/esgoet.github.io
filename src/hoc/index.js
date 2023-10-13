@@ -1,3 +1,4 @@
 import SectionWrapper from "./SectionWrapper";
+import { SectionContext } from "./SectionContext";
 
-export {SectionWrapper}
+export {SectionWrapper, SectionContext};
