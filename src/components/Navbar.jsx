@@ -7,7 +7,7 @@ import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
 // import { useSpring, animated } from '@react-spring/web';
 
-import { SectionContext } from '../hoc';
+// import { SectionContext } from '../hoc';
 
 
 const Navbar = () => {
@@ -15,11 +15,10 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false)
   const { scrollY, scrollYProgress } = useScroll();
 
-  const [activeSection, setActiveSection] = useState(null);
+  // const [activeSection, setActiveSection] = useState(null);
   const observer = useRef(null);
 
   useEffect(() => {
-    console.log(active);
     //create new instance and pass a callback function
     observer.current = new IntersectionObserver((entries) => {
 
@@ -29,7 +28,7 @@ const Navbar = () => {
 
       //Update state with the visible section ID
       if (visibleSection) {
-        setActiveSection(visibleSection.id);
+        // setActiveSection(visibleSection.id);
         setActive(visibleSection.id)
         
       }
@@ -49,6 +48,8 @@ const Navbar = () => {
       });
     };
   }, []);
+
+  //use framer-motion instead
 
   //  const { y } = useSpring({
   //    from: { y: 60 },

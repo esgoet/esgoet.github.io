@@ -205,8 +205,7 @@ const MoonCanvas = () => {
 
     // Define a callback function to handle changes to the media query
     const handleMediaQueryChange = (event) => {
-      console.log("isMobile: " + isMobile);
-      console.log(event);
+ 
       setIsMobile(event.matches);
       
     };

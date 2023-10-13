@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Tilt } from 'react-tilt';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
 import { education } from '../constants';
@@ -152,16 +152,8 @@ const Profile = () => {
 }
 
 
-const About = ({onView}) => {
+const About = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const ref = useRef(null);
-  const isInView = useInView(ref);
-  // const shareId = (id) => onView(id);
-
-  // useEffect(() => {
-  //   props.onView('about')
-  //   console.log("about is in view: ", isInView);
-  // }, [isInView]);
 
   useEffect(() => {
     // Add a listener for changes to the screen size
@@ -172,8 +164,6 @@ const About = ({onView}) => {
 
     // Define a callback function to handle changes to the media query
     const handleMediaQueryChange = (event) => {
-      console.log("isMobile: " + isMobile);
-      console.log(event);
       setIsMobile(event.matches);
     };
 
@@ -189,7 +179,7 @@ const About = ({onView}) => {
   return (
     <>
       {/* <div> */}
-      <motion.div variants={textVariant()} ref={ref} onClick={() => onView('about')}>
+      <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Who I Am</p>
         <h2 className={styles.sectionHeadText}>About Me.</h2>
       </motion.div>

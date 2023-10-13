@@ -4,12 +4,6 @@ import { About, Contact, Experience, Feedbacks, Hero, Navbar, Works, MoonCanvas,
 import { MotionConfig } from "framer-motion";
 
 const App = () => {
-  const [sectionInView, setSectionInView] = useState('');
-
-  const componentToApp = (section) => {
-    console.log(section)
-    setSectionInView(section)
-  }
 
 
   return (
@@ -21,7 +15,7 @@ const App = () => {
 
           <Hero />
           <div className="snap-y snap-mandatory">
-            <About onView={() => componentToApp()} />
+            <About />
             {/* <MoonCanvas /> */}
             {/* <Experience/> */}
             <Works />

@@ -1,8 +1,5 @@
 import {
-  mobile,
-  backend,
-  creator,
-  web,
+  logo,
   javascript,
   typescript,
   html,
@@ -15,10 +12,6 @@ import {
   git,
   figma,
   docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
   webvr,
   vrautism,
   portfolio,
@@ -125,7 +118,7 @@ const experiences = [
   {
     title: "Demonstrator in Computer Science",
     company_name: "UCC",
-    icon: starbucks,
+    icon: logo,
     iconBg: "#383E56",
     date: "June 2022 - April 2023",
     points: [
@@ -138,7 +131,7 @@ const experiences = [
   {
     title: "Research Internship",
     company_name: "Universiteit Leiden",
-    icon: tesla,
+    icon: logo,
     iconBg: "#E6DEDD",
     date: "Jan 2021 - Feb 2022",
     points: [
@@ -178,7 +171,8 @@ const projects = [
       },
     ],
     image: vrautism,
-    source_code_link: "https://github.com/",
+    source_code_link:
+      "https://github.com/esgoet/VR-autism-pov-in-psychiatry_openXR",
     filtered: false,
   },
   {

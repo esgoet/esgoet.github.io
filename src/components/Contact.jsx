@@ -63,7 +63,6 @@ const Contact = () => {
       ...form, 
       [name]: value
     });
-    console.log('name: ' + name + ', value: ' + value)
   }
   const handleSubmit = (e) => {
     e.preventDefault();

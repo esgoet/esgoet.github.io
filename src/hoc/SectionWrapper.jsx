@@ -1,5 +1,5 @@
 import {useState, useEffect, useRef, useContext} from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { staggerContainer } from "../utils/motion";
@@ -7,14 +7,7 @@ import { staggerContainer } from "../utils/motion";
 
 const SectionWrapper = (Component, idName) => function HOC() {
   const [isMobile, setIsMobile] = useState(false);
-  // const ref = useRef(null)
-  // const isInView = useInView(ref)
 
-  // useEffect(()=> {
-  //   console.log(idName + ' section in view: ' + isInView)
-
-  // }, [isInView])
-  
 
 
   useEffect(() => {
@@ -26,8 +19,6 @@ const SectionWrapper = (Component, idName) => function HOC() {
 
     // Define a callback function to handle changes to the media query
     const handleMediaQueryChange = (event) => {
-      console.log("isMobile: " + isMobile);
-      console.log(event);
       setIsMobile(event.matches);
     };
 
@@ -44,7 +35,6 @@ const SectionWrapper = (Component, idName) => function HOC() {
 
     return (
       <motion.section
-        // ref={ref}
         variants={staggerContainer()}
         initial="hidden"
         whileInView="show"
