@@ -112,51 +112,50 @@ const Contact = () => {
       </motion.div>
       {/* </div> */}
       <div className="flex lg:flex-row flex-col-reverse justify-between items-start gap-10">
-
-          <motion.div
-            variants={slideIn("left", "tween", 0.2, 1)}
-            className="lg:max-w-[70vw] min-w-[35vw] lg:w-1/2"
+        <motion.div
+          variants={slideIn("left", "tween", 0.2, 1)}
+          className="lg:max-w-[70vw] min-w-[35vw] lg:w-1/2"
+        >
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 bg-black-200/50 p-8 rounded-2xl border-none"
           >
-            <form
-              ref={formRef}
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-4 bg-black-200/50 p-8 rounded-2xl border-none"
-            >
-              <ContactFormElement
-                label={"Your Name"}
-                placeholder={"What's your name?"}
-                handleChange={handleChange}
-                name={"name"}
-                type={"text"}
-              />
-              <ContactFormElement
-                label={"Your Email"}
-                placeholder={"What's your email?"}
-                handleChange={handleChange}
-                name={"email"}
-                type={"email"}
-              />
-              <ContactFormElement
-                label={"Your Message"}
-                placeholder={"What's your message?"}
-                handleChange={handleChange}
-                name={"message"}
-                type={"textarea"}
-              />
-              <button
-                type="submit"
-                className="bg-tertiary hover:text-primary hover:bg-black-200 py-2 px-6 sm:py-3 sm:px-10 outline-none w-fit text-black-100 font-bold
+            <ContactFormElement
+              label={"Your Name"}
+              placeholder={"What's your name?"}
+              handleChange={handleChange}
+              name={"name"}
+              type={"text"}
+            />
+            <ContactFormElement
+              label={"Your Email"}
+              placeholder={"What's your email?"}
+              handleChange={handleChange}
+              name={"email"}
+              type={"email"}
+            />
+            <ContactFormElement
+              label={"Your Message"}
+              placeholder={"What's your message?"}
+              handleChange={handleChange}
+              name={"message"}
+              type={"textarea"}
+            />
+            <button
+              type="submit"
+              className="bg-tertiary hover:text-primary hover:bg-black-200 py-2 px-6 sm:py-3 sm:px-10 outline-none w-fit text-black-100 font-bold
             shadow-mg shadow-primary rounded-xl self-end"
-              >
-                {loading ? "Sending..." : "Send"}
-              </button>
-            </form>
-          </motion.div>
+            >
+              {loading ? "Sending..." : "Send"}
+            </button>
+          </form>
+        </motion.div>
 
         {/* <div className="md:h-[550px] h-[350px] w-full"> */}
         <motion.div
           variants={slideIn("right", "tween", 0.2, 1)}
-          className="md:h-[550px] h-[350px] lg:w-1/2 overflow-x-hidden"
+          className="md:h-[550px] h-[350px] lg:w-1/2"
         >
           <SatelliteCanvas />
         </motion.div>
