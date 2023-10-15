@@ -114,7 +114,7 @@ const Contact = () => {
       <div className="flex lg:flex-row flex-col-reverse justify-between items-start gap-10">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
-          className="lg:max-w-[70vw] min-w-[35vw] lg:w-1/2"
+          className="lg:max-w-[70vw] w-full min-w-[35vw] lg:w-1/2"
         >
           <form
             ref={formRef}

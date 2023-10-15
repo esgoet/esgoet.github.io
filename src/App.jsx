@@ -14,13 +14,13 @@ const App = () => {
           <StarsCanvas />
 
           <Hero />
-          <div className="snap-y snap-mandatory">
+          {/* <div className="relative snap-y snap-mandatory"> */}
             <About />
             {/* <MoonCanvas /> */}
             {/* <Experience/> */}
             <Works />
             <Contact />
-          </div>
+          {/* </div> */}
 
           <Footer />
 

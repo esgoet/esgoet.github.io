@@ -35,6 +35,7 @@ const SectionWrapper = (Component, idName) => function HOC() {
 
     return (
       <motion.section
+        data-section
         variants={staggerContainer()}
         initial="hidden"
         whileInView="show"

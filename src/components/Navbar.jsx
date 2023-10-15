@@ -16,6 +16,45 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false)
   const { scrollY, scrollYProgress } = useScroll();
 
+  // // get and set current active section when scrolling
+  // const sections = useRef([]);
+
+  // const handleScroll = () => {
+  //   const pageYOffset = scrollY.current;
+  //   let newActiveSection = null;
+
+  //   console.log(pageYOffset)
+
+  //   sections.current.forEach((section) => {
+  //     const sectionOffsetTop = section.offsetTop;
+  //     const sectionHeight = section.offsetHeight;
+
+  //     console.log(
+  //       section.children[0].id +
+  //         ": top-" +
+  //         sectionOffsetTop +
+  //         ", height-" +
+  //         sectionHeight
+  //     );
+
+  //     if (pageYOffset >= sectionOffsetTop && pageYOffset < sectionOffsetTop + sectionHeight) {
+  //       //get id from .hash-span element
+  //       newActiveSection = section.children[0].id;
+  //     }
+  //   });
+
+  //   setActive(newActiveSection);
+  // };
+
+  // useEffect(() => {
+  //   sections.current = document.querySelectorAll('[data-section]');
+  //   window.addEventListener('scroll', handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+
   //establish InteractionObserver for signaling when each section is in view
   const observer = useRef(null);
 
@@ -30,13 +69,13 @@ const Navbar = () => {
       //Update state with the visible section ID
       if (visibleSection) {
         // setActiveSection(visibleSection.id);
-        setActive(visibleSection.id)
+        setActive(visibleSection.children[0].id)
         
       }
     });
 
     //Get custom attribute data-section from all sections
-    const sections = document.querySelectorAll(".hash-span");
+    const sections = document.querySelectorAll("[data-section]");
 
     sections.forEach((section) => {
       observer.current.observe(section);
@@ -102,19 +141,22 @@ const Navbar = () => {
             />
           </div>
           <motion.div
-            animate={{ right: toggle ? 0 : -500, display: toggle ? 'hidden' : 'flex' }}
-            transition={{duration: 0.5, ease: easeIn}}
-            className={` py-3 px-6 mt-1 bg-black-100 absolute top-[78px] z-10 border-primary border-2 border-r-0 rounded-l-full overflow-x-hidden`}
+            animate={{
+              right: toggle ? 0 : -500,
+              display: toggle ? "hidden" : "flex",
+            }}
+            transition={{ duration: 0.5, ease: easeIn }}
+            className={`hidden py-3 px-6 mt-1 bg-black-100 absolute top-[78px] z-10 border-primary border-2 border-r-0 rounded-l-full overflow-x-hidden`}
           >
             <ul className="list-none flex flex-row items-end justify-end w-full gap-8">
               {navLinks.map((link) => (
                 <li
                   key={link.id}
                   className={`${
-                    active === link.title ? "text-white" : "text-secondary"
+                    active === link.id ? "text-white" : "text-secondary"
                   } font-roboto font-medium cursor-pointer text-[18px]`}
                   onClick={() => {
-                    setActive(link.title);
+                    setActive(link.id);
                     setToggle(!toggle);
                   }}
                 >
