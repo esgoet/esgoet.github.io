@@ -9,7 +9,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <MotionConfig reducedMotion="user">
-        <div className="relative z-0 bg-black-100 ">
+        <div className="relative z-0 bg-black-100">
           <Navbar />
           <StarsCanvas />
 
