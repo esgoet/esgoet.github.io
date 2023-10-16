@@ -111,7 +111,7 @@ const Contact = () => {
         <h2 className={styles.sectionHeadText}>Contact.</h2>
       </motion.div>
       {/* </div> */}
-      <div className="flex lg:flex-row flex-col-reverse justify-between items-start gap-10">
+      <div className="flex lg:flex-row flex-col-reverse justify-between items-start">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
           className="lg:max-w-[70vw] w-full min-w-[35vw] lg:w-1/2"
@@ -155,7 +155,7 @@ const Contact = () => {
         {/* <div className="md:h-[550px] h-[350px] w-full"> */}
         <motion.div
           // variants={slideIn("right", "tween", 0.2, 1)}
-          className="md:h-[550px] h-[350px] lg:w-1/2"
+          className="flex-auto md:h-[550px] h-[350px] lg:w-1/2"
         >
           <SatelliteCanvas />
         </motion.div>

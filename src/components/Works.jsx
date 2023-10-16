@@ -90,31 +90,33 @@ const ProjectCard = (
         options={{ max: 5, scale: 1, speed: 450 }}
         className="sm:flex-none  sm:w-[320px] flex flex-col justify-between snap-center sm:snap-align-none"
       >
-        <div className="p-5 bg-primary rounded-t-2xl h-full">
+        <div className="p-6 bg-primary rounded-t-2xl h-full">
           <div className="relative w-full h-[150px] ">
             <img
               src={image}
               alt={name}
               className="w-full h-full object-cover rounded-2xl"
             />
-            <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-              <div
+            <div className="absolute inset-0 flex justify-end m-2 card-img_hover">
+              <a
+                href={source_code_link}
+                target="_blank"
+                rel="external"
+                className='w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/80 hover:bg-black-200 font-bold text-[18px] align-middle text-center'
+              >{`</>`}</a>
+              {/* <div
                 onClick={() => window.open(source_code_link, "_blank")}
                 className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/50 hover:bg-black-200"
               >
-                {/* <img
-                src={codesymbol}
-                alt="code"
-                className="w-full h-full object-contain"
-              /> */}
+                
                 <p className="font-bold text-[18px]">{`</>`}</p>
-              </div>
+              </div> */}
             </div>
           </div>
 
           <div className="mt-3">
             <h3 className="text-white font-bold text-[20px]">{name}</h3>
-            <p className="text-black-100 text-[14px] text-justify">
+            <p className="text-black-200 leading-[20px] text-[14px] text-justify">
               {description}
             </p>
           </div>
@@ -238,7 +240,7 @@ const Works = () => {
           <div className="flex flex-row items-center px-2">
             <img
               src={filtersymbol}
-              alt={"filter"}
+              alt=""
               className="w-[26px] h-[26px] object-contain cursor-pointer z-20"
             ></img>
             <h3 className="px-2 text-[18px]">Filter Projects</h3>

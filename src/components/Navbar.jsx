@@ -110,7 +110,7 @@ const Navbar = () => {
               window.scrollTo(0, 0);
             }}
           >
-            <img src={logo} alt="logo" className="w-9 h-9 object-contain" />
+            <img src={logo} alt="" className="w-9 h-9 object-contain" />
             <p className="text-white text-[18px] font-bold cursor-pointer flex z-20">
               Eva Goetzke &nbsp;{" "}
               <span className="sm:block hidden">
@@ -118,7 +118,7 @@ const Navbar = () => {
               </span>
             </p>
           </Link>
-          <ul className="list-none hidden sm:flex flex-row gap-10">
+          <ol className="list-none hidden sm:flex flex-row gap-10">
             {navLinks.map((link) => (
               <li
                 key={link.id}
@@ -131,7 +131,7 @@ const Navbar = () => {
                 <a href={`#${link.id}`}>{link.title}</a>
               </li>
             ))}
-          </ul>
+          </ol>
           <div className="sm:hidden flex flex-none justify-end items-center">
             <img
               src={toggle ? close : menu}
@@ -148,7 +148,7 @@ const Navbar = () => {
             transition={{ duration: 0.5, ease: easeIn }}
             className={`hidden py-3 px-6 mt-1 bg-black-100 absolute top-[78px] z-10 border-primary border-2 border-r-0 rounded-l-full overflow-x-hidden`}
           >
-            <ul className="list-none flex flex-row items-end justify-end w-full gap-8">
+            <ol className="list-none flex flex-row items-end justify-end w-full gap-8">
               {navLinks.map((link) => (
                 <li
                   key={link.id}
@@ -163,7 +163,7 @@ const Navbar = () => {
                   <a href={`#${link.id}`}>{link.title}</a>
                 </li>
               ))}
-            </ul>
+            </ol>
           </motion.div>
         </div>
       </nav>

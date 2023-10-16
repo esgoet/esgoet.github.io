@@ -23,9 +23,9 @@ html {
   scroll-snap-stop: always;
 } */
 
-body {
+/* body {
   overflow-x: hidden;
-}
+} */
 
 h1, h2 {
   font-family: "Lobster", cursive;
