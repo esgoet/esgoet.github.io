@@ -24,6 +24,7 @@ import hobbies from "./hand-w-heart.svg";
 
 import linkedin from "./socialmedia/linkedin-white.svg"
 import github from "./socialmedia/github-mark-white.svg"
+import email from "./socialmedia/email.svg"
 
 
 import webvr from "./InteractiveWebVR.png";
@@ -59,6 +60,7 @@ export {
   codesymbol,
   linkedin,
   github,
+  email,
   portrait,
   filtersymbol,
   interests,

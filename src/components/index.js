@@ -7,6 +7,8 @@ import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import Footer from './Footer';
+import SocialLinks from './SocialLinks';
+
 
 export {
   Hero,
@@ -19,5 +21,6 @@ export {
   SatelliteCanvas, 
   StarsCanvas,
   MoonCanvas,
-  Footer
+  Footer,
+  SocialLinks
 }

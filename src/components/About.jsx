@@ -8,6 +8,7 @@ import { fadeIn, textVariant, slideIn } from '../utils/motion';
 
 import { SectionWrapper } from '../hoc';
 import { portrait, interests, hobbies } from '../assets';
+import SocialLinks from './SocialLinks';
 
 const ServiceCard = ({index, title, icon}) => {
   return (
@@ -75,14 +76,19 @@ const Profile = () => {
         <div
           className={` ${
             toggle ? "hidden" : "flex"
-          } m-3 flex-col gap-2 justify-start items-center w-full`}
+          } m-4 flex-col gap-2 justify-start items-center w-full`}
         >
           <div className="flex flex-row gap-3 items-center">
-            <p className="pb-1">
+            <p>
               <span className="font-bold">Eva Goetzke</span> ({age})
             </p>
+            <div className="flex flex-col drop-shadow-sm w-[25px] h-[15px] items-stretch justify-center">
+            <div className="h-1/3 bg-black m-0" />
+            <div className="h-1/3  bg-red-700 m-0" />
+            <div className="h-1/3 bg-amber-500 m-0" />
           </div>
-          <div className="flex flex-col gap-1 px-2 w-full text-[14px] ">
+          </div>
+          <div className="flex flex-col gap-1 px-2.5 py-1 pb-4 w-full text-[14px] ">
             <div className="py-1 flex flex-row gap-2 items-center justify-stretch bg-black-100/50 p-1 rounded-2xl">
               <p className="ml-1 font-bold bg-black-100/50 p-2 rounded-2xl">
                 2023
@@ -108,11 +114,8 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="mt-5 flex flex-col drop-shadow-sm w-[30px] h-[20px] items-stretch justify-center">
-            <div className="h-1/3 bg-black m-0" />
-            <div className="h-1/3  bg-red-700 m-0" />
-            <div className="h-1/3 bg-amber-500 m-0" />
-          </div>
+
+          <SocialLinks />
         </div>
         <div
           className={` ${
@@ -188,7 +191,7 @@ const About = () => {
       </motion.div>
       {/* </div> */}
       <div className="mt-4 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-4">
-        <div className="text-white text-[17px] max-w-prose leading-[30px] p-6 sm:p-2 rounded-2xl snap-center">
+        <div className="text-white text-[17px] max-w-prose leading-[30px] p-6 sm:p-2 rounded-2xl snap-center sm:snap-align-none">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl"
@@ -229,7 +232,7 @@ const About = () => {
             <Profile />
           </motion.div>
         ) : (
-          <div className='snap-center'>
+          <div className="snap-center">
             <Profile />
           </div>
         )}

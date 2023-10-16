@@ -82,50 +82,64 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
 const ProjectCard = (
     {index, name, description, tags, image, source_code_link}
 ) => {
+  const [tasksToggled, setTasksToggled] = useState(false)
   return (
     <>
       {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
       <Tilt
         options={{ max: 5, scale: 1, speed: 450 }}
-        className="sm:flex-none bg-primary p-5 rounded-2xl sm:w-[360px] flex flex-col snap-center sm:snap-none"
+        className="sm:flex-none  sm:w-[320px] flex flex-col justify-between snap-center sm:snap-align-none"
       >
-        <div className="relative w-full h-[150px]">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover rounded-2xl"
-          />
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/50 hover:bg-black-200"
-            >
-              {/* <img
+        <div className="p-5 bg-primary rounded-t-2xl h-full">
+          <div className="relative w-full h-[150px] ">
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-full object-cover rounded-2xl"
+            />
+            <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
+              <div
+                onClick={() => window.open(source_code_link, "_blank")}
+                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/50 hover:bg-black-200"
+              >
+                {/* <img
                 src={codesymbol}
                 alt="code"
                 className="w-full h-full object-contain"
               /> */}
-              <p className="font-bold text-[18px]">{`</>`}</p>
+                <p className="font-bold text-[18px]">{`</>`}</p>
+              </div>
             </div>
+          </div>
+
+          <div className="mt-3">
+            <h3 className="text-white font-bold text-[20px]">{name}</h3>
+            <p className="text-black-100 text-[14px] text-justify">
+              {description}
+            </p>
           </div>
         </div>
 
-        <div className="mt-5">
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
-          <p className="text-black-100 text-[14px]">{description}</p>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-2 self-end justify-self-end justify-end contend-end">
+        <div
+          className={`flex flex-wrap justify-end gap-1 w-full bg-black-200/50 p-3 rounded-b-2xl`}
+        >
           {tags.map((tag) => (
             <p
               key={tag.name}
-              className={`text-[12px] bg-black-100 px-2 text-white rounded-full`}
+              className={`text-[12px] px-2 text-white rounded-full`}
             >
               #{tag.name}
             </p>
-
-            // <ProjectTag key={tag.name} {...tag} size={12} onClick={""} />
           ))}
         </div>
+
+        {/* 
+        <div
+          onClick={() => setTasksToggled(!tasksToggled)}
+          className="w-5 h-5 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/90 hover:bg-black-100"
+        >
+          <p className="text-center align-center">{tasksToggled ? "-" : "+"}</p>
+        </div> */}
       </Tilt>
       {/* </motion.div> */}
     </>
@@ -215,18 +229,7 @@ const Works = () => {
         <h2 className={styles.sectionHeadText}>Projects.</h2>
         {/* </div> */}
       </motion.div>
-      <div className="w-full flex">
-        {/* <motion.p
-          variants={fadeIn("", "", 0.1, 0.1)}
-          className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
-        > */}
-        {/* <p>
-          Following projects showcases my skills and experiences through
-          real-world examples of my work.
-        </p> */}
-
-        {/* </motion.p> */}
-      </div>
+ 
       <form
         id="filterTagsForm"
         className="my-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
@@ -275,7 +278,7 @@ const Works = () => {
         </div>
       </form>
       <div
-        className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto sm:overflow-y-hidden gap-7 justify-start sm:snap-end xl:snap-none"
+        className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto gap-7 justify-start sm:snap-end xl:snap-none"
         id="projectGallery"
       >
         {currentProjects.map((project) => (
