@@ -87,9 +87,9 @@ const ProjectCard = (
       {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
       <Tilt
         options={{ max: 5, scale: 1, speed: 450 }}
-        className="bg-primary p-5 rounded-2xl sm:w-[360px] flex flex-col snap-center"
+        className="sm:flex-none bg-primary p-5 rounded-2xl sm:w-[360px] flex flex-col snap-center sm:snap-none"
       >
-        <div className="relative w-full h-[230px]">
+        <div className="relative w-full h-[150px]">
           <img
             src={image}
             alt={name}
@@ -275,7 +275,7 @@ const Works = () => {
         </div>
       </form>
       <div
-        className="flex flex-wrap gap-7 justify-start"
+        className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto sm:overflow-y-hidden gap-7 justify-start sm:snap-end xl:snap-none"
         id="projectGallery"
       >
         {currentProjects.map((project) => (

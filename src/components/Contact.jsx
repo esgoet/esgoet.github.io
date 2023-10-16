@@ -154,7 +154,7 @@ const Contact = () => {
 
         {/* <div className="md:h-[550px] h-[350px] w-full"> */}
         <motion.div
-          variants={slideIn("right", "tween", 0.2, 1)}
+          // variants={slideIn("right", "tween", 0.2, 1)}
           className="md:h-[550px] h-[350px] lg:w-1/2"
         >
           <SatelliteCanvas />

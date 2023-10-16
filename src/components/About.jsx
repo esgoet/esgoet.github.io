@@ -46,7 +46,10 @@ const Profile = () => {
   }
   
   return (
-    <Tilt options={{ max: 10, perspective: 700, axis: "x", scale: 1, speed: 450 }}>
+    <Tilt
+      className="sm:-mt-24"
+      options={{ max: 10, perspective: 700, axis: "x", scale: 1, speed: 450 }}
+    >
       <div
         className={` w-[300px] h-[600px] rounded-full bg-primary flex ${
           !toggle ? "flex-col" : "flex-col-reverse"
@@ -185,7 +188,7 @@ const About = () => {
       </motion.div>
       {/* </div> */}
       <div className="mt-4 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-4">
-        <div className="text-white text-[17px] max-w-prose leading-[30px] p-6 sm:p-2 rounded-2xl">
+        <div className="text-white text-[17px] max-w-prose leading-[30px] p-6 sm:p-2 rounded-2xl snap-center">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-white text-[17px] max-w-3xl leading-[30px] bg-black-200/50 p-8 rounded-2xl"
@@ -221,12 +224,12 @@ const About = () => {
         {!isMobile ? (
           <motion.div
             variants={slideIn("right", "tween", 0.1, 1)}
-            className="-mt-24"
+            // className="-mt-24"
           >
             <Profile />
           </motion.div>
         ) : (
-          <div>
+          <div className='snap-center'>
             <Profile />
           </div>
         )}
