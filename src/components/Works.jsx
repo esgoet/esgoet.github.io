@@ -231,61 +231,62 @@ const Works = () => {
         <h2 className={styles.sectionHeadText}>Projects.</h2>
         {/* </div> */}
       </motion.div>
- 
-      <form
-        id="filterTagsForm"
-        className="my-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
-      >
-        <div className="flex justify-between items-center">
-          <div className="flex flex-row items-center px-2">
-            <img
-              src={filtersymbol}
-              alt=""
-              className="w-[26px] h-[26px] object-contain cursor-pointer z-20"
-            ></img>
-            <h3 className="px-2 text-[18px]">Filter Projects</h3>
+      <div className='sm:snap-center xl:snap-none'> 
+        <form
+          id="filterTagsForm"
+          className="my-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
+        >
+          <div className="flex justify-between items-center">
+            <div className="flex flex-row items-center px-2">
+              <img
+                src={filtersymbol}
+                alt=""
+                className="w-[26px] h-[26px] object-contain cursor-pointer z-20"
+              ></img>
+              <h3 className="px-2 text-[18px]">Filter Projects</h3>
+            </div>
+
+            <button
+              className="bg-black-200/30 px-3 text-white rounded-full"
+              type="button"
+              onClick={resetFilter}
+            >
+              RESET
+            </button>
           </div>
 
-          <button
-            className="bg-black-200/30 px-3 text-white rounded-full"
-            type="button"
-            onClick={resetFilter}
-          >
-            RESET
-          </button>
-        </div>
-
-        <div className="flex sm:flex-row flex-col gap-2">
-          {tagTypes.map((type) => (
-            <fieldset
-              className="flex flex-wrap items-start justify-start gap-1 rounded-2xl bg-black-200/30 p-2"
-              id={type}
-              key={type}
-            >
-              <legend className="text-center text-tertiary text-[14px]">
-                {type.toUpperCase()}
-              </legend>
-              {tags.map((tag) => (
-                <ProjectTag
-                  key={tag.name}
-                  {...tag}
-                  size={14}
-                  onClick={checkTag}
-                  filterType={type}
-                  weight={tag.weight}
-                />
-              ))}
-            </fieldset>
+          <div className="flex sm:flex-row flex-col gap-2">
+            {tagTypes.map((type) => (
+              <fieldset
+                className="flex flex-wrap items-start justify-start gap-1 rounded-2xl bg-black-200/30 p-2"
+                id={type}
+                key={type}
+              >
+                <legend className="text-center text-tertiary text-[14px]">
+                  {type.toUpperCase()}
+                </legend>
+                {tags.map((tag) => (
+                  <ProjectTag
+                    key={tag.name}
+                    {...tag}
+                    size={14}
+                    onClick={checkTag}
+                    filterType={type}
+                    weight={tag.weight}
+                  />
+                ))}
+              </fieldset>
+            ))}
+          </div>
+        </form>
+        <div
+          className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto gap-7 justify-start"
+          id="projectGallery"
+        >
+          {currentProjects.map((project) => (
+            <ProjectCard key={project.name} {...project} />
           ))}
         </div>
-      </form>
-      <div
-        className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto gap-7 justify-start sm:snap-end xl:snap-none"
-        id="projectGallery"
-      >
-        {currentProjects.map((project) => (
-          <ProjectCard key={project.name} {...project} />
-        ))}
       </div>
     </>
   );
