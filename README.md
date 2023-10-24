@@ -9,11 +9,10 @@ This repository hosts the code for my personal portfolio webpage, showcasing my 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [License](#license)
 
 ## Introduction
 
-This portfolio webpage serves as a hub for presenting my professional background, projects, and skills. It is designed to make a lasting impression on visitors and provide an interactive and engaging experience.
+This portfolio webpage serves as a hub for presenting my professional background, projects, and skills. It is designed to  provide an interactive and engaging experience.
 
 ## Features
 
