@@ -181,7 +181,7 @@ const projects = [
       "Web portfolio that enables users to interact with a 3D environment.",
     tags: [
       {
-        name: "react",
+        name: "React",
         type: "library",
       },
       {
