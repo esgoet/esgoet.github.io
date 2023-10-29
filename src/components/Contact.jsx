@@ -33,7 +33,7 @@ const ContactFormElement = (
  props
 ) => {
   const elementClasses =
-    "bg-primary py-3 sm:py-4 px-3 sm:px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium z-30";
+    "bg-primary py-3 sm:py-4 px-3 sm:px-6 placeholder:text-secondary text-white-100 rounded-lg outlined-none border-none font-medium z-30";
 
   return (
     <label htmlFor={props.name} className="flex flex-col">
@@ -119,7 +119,7 @@ const Contact = () => {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 bg-black-200/50 p-8 rounded-2xl border-none"
+            className="flex flex-col gap-4 bg-black-100/50 p-8 rounded-2xl border-none"
           >
             <ContactFormElement
               label={"Your Name"}
@@ -144,7 +144,7 @@ const Contact = () => {
             />
             <button
               type="submit"
-              className="bg-tertiary hover:text-primary hover:bg-black-200 py-2 px-6 sm:py-3 sm:px-10 outline-none w-fit text-black-100 font-bold
+              className="bg-tertiary hover:text-primary hover:bg-black-300 py-2 px-6 sm:py-3 sm:px-10 outline-none w-fit text-black-200 font-bold
             shadow-mg shadow-primary rounded-xl self-end"
             >
               {loading ? "Sending..." : "Send"}

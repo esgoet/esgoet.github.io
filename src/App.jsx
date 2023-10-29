@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <MotionConfig reducedMotion="user">
         <div
-          className="relative z-0 bg-black-100"
+          className="relative z-0 bg-black-200"
         >
           <Navbar />
           <StarsCanvas />

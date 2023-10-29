@@ -30,16 +30,16 @@ const Hero = () => {
             <div className="w-1 sm:h-80 h-40 violet-gradient" />
           </div>
           <div className="flex flex-col gap-3 items-start">
-            <h1 className={`${styles.heroHeadText} text-white-100`}>
+            <h1 className={`${styles.heroHeadText} text-white-100-10 drop-shadow-text`}>
               Hi, I'm{" "}
-              <span className="text-primary font-['Lobster']  drop-shadow-lg">
+              <span className="text-primary font-['Lobster']">
                 Eva
               </span>
             </h1>
             <p className="font-light sm:text-[18px] text-[14px] text-tertiary -mt-4">
               MSc Interactive Media | MSc Clinical Psychology
             </p>
-            <p className={`${styles.heroSubText} text-white-100 max-w-sm`}>
+            <p className={`${styles.heroSubText} text-white-100-100 max-w-sm`}>
               I love creating interactive digital tools{" "}
               {/* <br className="sm:block hidden" /> */}
               that are beautiful, accessible and{" "}
@@ -48,7 +48,7 @@ const Hero = () => {
             </p>
             <a
               href="#contact"
-              className="p-4 rounded-full bg-black-200/50 font-bold mt-3 mb-6"
+              className="p-4 rounded-full bg-black-100/50 font-medium text-tertiary mt-3 mb-6 tracking-wider"
             >
               GET IN TOUCH
             </a>

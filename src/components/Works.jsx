@@ -3,7 +3,7 @@ import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
-import { codesymbol, filtersymbol } from '../assets';
+import { codesymbol, filtersymbol, leftarrow, rightarrow } from '../assets';
 import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
@@ -47,7 +47,7 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
 
   const Weight = () => (
     <span
-      className={`ml-1 -mr-1 py-0.5 px-1.5 rounded-full bg-black-200/50 ${smallerFont}`}
+      className={`ml-1 -mr-1 py-0.5 px-1.5 rounded-full bg-black-100 ${smallerFont}`}
     >
       {weight}
     </span>
@@ -57,7 +57,7 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
        <>
          <label
            htmlFor={name}
-           className={`${fontSize} bg-black-100 px-2 text-white rounded-full`}
+           className={`${fontSize} bg-black-300 px-2 text-white-100 rounded-full`}
          >
            <input
              type={"checkbox"}
@@ -65,7 +65,7 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
              id={name}
              onClick={onClick}
            />
-           <span className="hover:text-white">#</span>
+           <span className="hover:text-white-100">#</span>
            <span className="hover:text-secondary">{name}</span>
            {weight > 1 ? <Weight/> : null}
          </label>
@@ -90,23 +90,23 @@ const ProjectCard = (
         options={{ max: 5, scale: 1, speed: 450 }}
         className="sm:flex-none  sm:w-[320px] flex flex-col justify-between snap-center sm:snap-align-none"
       >
-        <div className="p-6 bg-primary rounded-t-2xl h-full">
+        <div className="p-5 bg-primary border-2 border-black-100/80 rounded-t-2xl h-full">
           <div className="relative w-full h-[150px] ">
             <img
               src={image}
               alt={name}
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-full object-cover rounded-2xl border-2 border-black-100/80"
             />
             <div className="absolute inset-0 flex justify-end m-2 card-img_hover">
               <a
                 href={source_code_link}
                 target="_blank"
                 rel="external"
-                className='w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/80 hover:bg-black-200 font-bold text-[18px] align-middle text-center'
+                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 font-bold text-[18px] align-middle text-center"
               >{`</>`}</a>
               {/* <div
                 onClick={() => window.open(source_code_link, "_blank")}
-                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/50 hover:bg-black-200"
+                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-300/50 hover:bg-black-300"
               >
                 
                 <p className="font-bold text-[18px]">{`</>`}</p>
@@ -115,7 +115,7 @@ const ProjectCard = (
           </div>
 
           <div className="mt-3">
-            <h3 className="text-white font-bold text-[20px]">{name}</h3>
+            <h3 className="text-black-100 font-bold text-[20px]">{name}</h3>
             <p className="text-black-200 leading-[20px] text-[14px] text-justify">
               {description}
             </p>
@@ -123,12 +123,12 @@ const ProjectCard = (
         </div>
 
         <div
-          className={`flex flex-wrap justify-end gap-1 w-full bg-black-200/50 p-3 rounded-b-2xl`}
+          className={`flex flex-wrap justify-end gap-1 w-full bg-black-100/50 p-3 rounded-b-2xl`}
         >
           {tags.map((tag) => (
             <p
               key={tag.name}
-              className={`text-[12px] px-2 text-white rounded-full`}
+              className={`text-[12px] px-2 text-white-100 rounded-full`}
             >
               #{tag.name}
             </p>
@@ -138,7 +138,7 @@ const ProjectCard = (
         {/* 
         <div
           onClick={() => setTasksToggled(!tasksToggled)}
-          className="w-5 h-5 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-200/90 hover:bg-black-100"
+          className="w-5 h-5 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-300/90 hover:bg-black-200"
         >
           <p className="text-center align-center">{tasksToggled ? "-" : "+"}</p>
         </div> */}
@@ -223,6 +223,11 @@ const Works = () => {
     }
   };
 
+  const scrollGallery = (direction) => {
+    const gallery = document.getElementById('projectGallery');
+    const currentScroll = gallery.scrollLeft;
+  }
+
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -231,10 +236,10 @@ const Works = () => {
         <h2 className={styles.sectionHeadText}>Projects.</h2>
         {/* </div> */}
       </motion.div>
-      <div className='sm:snap-center xl:snap-none'> 
+      <div className="sm:snap-center xl:snap-none">
         <form
           id="filterTagsForm"
-          className="my-4 bg-black-200/50 p-4 rounded-2xl flex flex-col gap-2"
+          className="my-4 bg-black-100/50 p-4 rounded-2xl flex flex-col gap-2"
         >
           <div className="flex justify-between items-center">
             <div className="flex flex-row items-center px-2">
@@ -247,7 +252,7 @@ const Works = () => {
             </div>
 
             <button
-              className="bg-black-200/30 px-3 text-white rounded-full"
+              className="bg-black-100 px-3 text-white-100 rounded-full"
               type="button"
               onClick={resetFilter}
             >
@@ -258,7 +263,7 @@ const Works = () => {
           <div className="flex sm:flex-row flex-col gap-2">
             {tagTypes.map((type) => (
               <fieldset
-                className="flex flex-wrap items-start justify-start gap-1 rounded-2xl bg-black-200/30 p-2"
+                className="flex flex-wrap items-start justify-start gap-1 rounded-2xl bg-black-100 p-2"
                 id={type}
                 key={type}
               >
@@ -279,13 +284,31 @@ const Works = () => {
             ))}
           </div>
         </form>
-        <div
-          className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto gap-7 justify-start"
-          id="projectGallery"
-        >
-          {currentProjects.map((project) => (
-            <ProjectCard key={project.name} {...project} />
-          ))}
+        <div className="flex sm:flex-row">
+          {/* <div className="hidden sm:flex justify-center items-center m-3">
+            <img
+              src={leftarrow}
+              alt=""
+              className="w-[70px] h-[70px] object-contain cursor-pointer"
+              onClick={() => console.log("test")}
+            />
+          </div> */}
+          <div
+            className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto gap-7 justify-start opacity-100"
+            id="projectGallery"
+          >
+            {currentProjects.map((project) => (
+              <ProjectCard key={project.name} {...project} />
+            ))}
+          </div>
+          {/* <div className="hidden sm:flex justify-center items-center m-3">
+            <img
+              src={rightarrow}
+              alt=""
+              className="w-[70px] h-[70px] object-contain cursor-pointer"
+              onClick={() => console.log("test")}
+            />
+          </div> */}
         </div>
       </div>
     </>

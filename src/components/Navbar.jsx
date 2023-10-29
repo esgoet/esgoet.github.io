@@ -111,21 +111,21 @@ const Navbar = () => {
             }}
           >
             <img src={logo} alt="" className="w-9 h-9 object-contain" />
-            <p className="text-white text-[18px] font-bold cursor-pointer flex z-20">
-              Eva Goetzke &nbsp;{" "}
-              <span className="sm:block hidden">
-                | &nbsp;Creative Developer
-              </span>
-            </p>
+            <div className="text-white-100 text-[18px] font-semibold cursor-pointer flex items-center justify-center z-20 gap-2 tracking-wide">
+              <p>Eva Goetzke</p>
+              <p className="sm:block hidden">|</p>
+              <p className="sm:block hidden">Creative Developer</p>
+            </div>
           </Link>
           <ol className="list-none hidden sm:flex flex-row gap-10">
             {navLinks.map((link) => (
               <li
                 key={link.id}
                 className={`${
-                  active === link.id ? "text-white" : "text-secondary"
+                  active === link.id ? "text-white-100" : "text-black-200"
+                  
                 }
-              hover:text-white text-[18px] font-medium cursor-pointer`}
+              hover:text-white-100 text-[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(link.id)}
               >
                 <a href={`#${link.id}`}>{link.title}</a>
@@ -146,14 +146,14 @@ const Navbar = () => {
               display: toggle ? "hidden" : "flex",
             }}
             transition={{ duration: 0.5, ease: easeIn }}
-            className={`hidden py-3 px-6 mt-1 bg-black-100 absolute top-[78px] z-10 border-primary border-2 border-r-0 rounded-l-full overflow-x-hidden`}
+            className={`hidden py-3 px-6 mt-1 bg-black-200 absolute top-[78px] z-10 border-primary border-2 border-r-0 rounded-l-full overflow-x-hidden`}
           >
             <ol className="list-none flex flex-row items-end justify-end w-full gap-8">
               {navLinks.map((link) => (
                 <li
                   key={link.id}
                   className={`${
-                    active === link.id ? "text-white" : "text-secondary"
+                    active === link.id ? "text-black-100" : "text-white-100"
                   } font-roboto font-medium cursor-pointer text-[18px]`}
                   onClick={() => {
                     setActive(link.id);

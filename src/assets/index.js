@@ -19,6 +19,8 @@ import threejs from "./tech/threejs.svg";
 
 import codesymbol from "./code.svg";
 import filtersymbol from "./filtersymbol.svg";
+import rightarrow from "./rightarrow.svg";
+import leftarrow from "./leftarrow.svg";
 import interests from "./head-w-heart.svg";
 import hobbies from "./hand-w-heart.svg";
 
@@ -63,6 +65,8 @@ export {
   email,
   portrait,
   filtersymbol,
+  rightarrow,
+  leftarrow,
   interests,
   hobbies
 };
