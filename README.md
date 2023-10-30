@@ -1,6 +1,6 @@
 # esgoet.github.io - Portfolio Webpage
 
-![Portfolio Preview](screenshot.png)
+![Portfolio Preview](src/assets/portfolio.png)
 
 This repository hosts the code for my personal portfolio webpage, showcasing my skills, projects, and interactive 3D elements. You can access the live version of this portfolio at [esgoet.github.io](https://esgoet.github.io).
 
