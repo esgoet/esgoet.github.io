@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import { useState} from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 import { styles } from '../styles';
-import { codesymbol, filtersymbol, leftarrow, rightarrow } from '../assets';
+import { filtersymbol, leftarrow, rightarrow } from '../assets';
 import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
-import { fadeIn, textVariant } from '../utils/motion';
-import { e } from 'maath/dist/index-43782085.esm';
+import { textVariant } from '../utils/motion';
+// import { e } from 'maath/dist/index-43782085.esm';
 
 // get all tags from all projects and sort them alphabetically
 const tags = [];
