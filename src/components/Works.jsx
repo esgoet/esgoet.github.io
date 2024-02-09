@@ -155,10 +155,10 @@ const Works = () => {
 
   const checkTag = (e) => {
     if (e.target.checked) {
-      e.target.parentNode.style.backgroundColor = "#bb99ff";
+      e.target.parentNode.style.backgroundColor = "#5a65fc";
       e.target.nextSibling.innerHTML = `&#x00D7; #`;
     } else {
-      e.target.parentNode.style.backgroundColor = "#7E57C2";
+      e.target.parentNode.style.backgroundColor = "#6200EA";
       e.target.nextSibling.innerHTML = "#";
     }
     filterProjects();
@@ -169,7 +169,7 @@ const Works = () => {
     document.querySelectorAll("input[type='checkbox']:checked")
       .forEach((tag) => {
         tag.checked = false
-        tag.parentNode.style.backgroundColor = "#7E57C2";
+        tag.parentNode.style.backgroundColor = "#6200EA";
         tag.nextSibling.innerHTML = "#";
       }
         );
