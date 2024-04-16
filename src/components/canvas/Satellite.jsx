@@ -30,6 +30,8 @@ const Satellite = () => {
   );
 }
 
+useGLTF.preload('./satellite/satellite.glb');
+
 const SatelliteCanvas = () => {
   return (
     <Canvas
@@ -46,14 +48,7 @@ const SatelliteCanvas = () => {
       
       <ambientLight intensity={1} color={0xffffff}/>
       
-      <Suspense fallback={<CanvasLoader />}>
-        {/* <OrbitControls
-          autoRotate
-          enableZoom={false}
-          // maxPolarAngle={Math.PI/2}
-          // minPolarAngle={Math.PI/2}
-        /> */}
-        
+      <Suspense fallback={<CanvasLoader />}>        
           <Satellite />
           <OrbitControls autoRotate enableZoom={false} enablePan={false}/>
       </Suspense>

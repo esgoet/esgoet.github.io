@@ -86,7 +86,7 @@ const ProjectCard = (
       {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
       <Tilt
         options={{ max: 5, scale: 1, speed: 450 }}
-        className={`${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'opacity-100' : 'opacity-0'} transition duration-300 ease-in flex flex-none w-full sm:w-1/3 px-2 h-[410px] flex-col justify-between snap-center sm:snap-align-none`}
+        className={`${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'opacity-100' : 'opacity-0'} transition duration-300 ease-in flex flex-none w-full sm:w-1/3 px-2 flex-col justify-between snap-center sm:snap-align-none`}
       >
         <div className="p-5 bg-primary border-2 border-black-100/80 rounded-t-2xl h-full">
           <div className="relative w-full h-[150px] ">
@@ -177,8 +177,10 @@ const Projects = ({isMobile}) => {
         );
 
     setVisibilityIndex(0);
-    nextRef.current.parentElement.style.opacity = 1;
-    nextRef.current.style.cursor = 'pointer';
+    if (nextRef.current) {
+      nextRef.current.parentElement.style.opacity = 1;
+      nextRef.current.style.cursor = 'pointer';
+    }
 
     if (galleryRef.current) {
       galleryRef.current.scrollTo({
@@ -225,11 +227,15 @@ const Projects = ({isMobile}) => {
     setVisibilityIndex(0)
     setCurrentProjects(filteredProjects);
     if (filteredProjects.length <= displayCount) {
+      if (nextRef.current) {
         nextRef.current.parentElement.style.opacity = 0.2;
         nextRef.current.style.cursor = 'not-allowed';
+      }
     } else {
-      nextRef.current.parentElement.style.opacity = 1;
-      nextRef.current.style.cursor = 'pointer';
+      if (nextRef.current) {
+        nextRef.current.parentElement.style.opacity = 1;
+        nextRef.current.style.cursor = 'pointer';
+      }
     }
     }
   };
@@ -239,10 +245,15 @@ const Projects = ({isMobile}) => {
     if (visibilityIndex > 0) {
       setVisibilityIndex((prev) => prev - 1)
 
+      if (nextRef.current) {
+
       nextRef.current.parentElement.style.opacity = 1;
       nextRef.current.style.cursor = 'pointer';
+
+      }
+
       
-      if (visibilityIndex === 1) {
+      if (visibilityIndex === 1 && prevRef.current) {
         prevRef.current.parentElement.style.opacity = 0.2;
         prevRef.current.style.cursor = 'not-allowed';
       } 
@@ -261,10 +272,15 @@ const Projects = ({isMobile}) => {
     if (visibilityIndex + displayCount < currentProjects.length) {
       setVisibilityIndex((prev) => prev +1)
 
+      if (prevRef.current) {
+
       prevRef.current.parentElement.style.opacity = 1;
       prevRef.current.style.cursor = 'pointer';
+
+      }
+
       
-      if (visibilityIndex + displayCount + 1 === currentProjects.length) {
+      if (visibilityIndex + displayCount + 1 === currentProjects.length && nextRef.current) {
         nextRef.current.parentElement.style.opacity = 0.2;
         nextRef.current.style.cursor = 'not-allowed';
       } 
@@ -277,29 +293,6 @@ const Projects = ({isMobile}) => {
       }
     }
   }
-
-  const LeftArrow = () => (
-    <div className={`flex place-items-center w-[5%] opacity-20`}>
-    <img
-      src={leftarrow}
-      ref={prevRef}
-      className="w-full h-full object-contain cursor-pointer p-1"
-      onClick={handlePrev}
-    />
-  </div>
-  )
-
-  const RightArrow = () => (
-    <div className={`flex place-items-center w-[5%]`}>
-    <img
-      src={rightarrow}
-      ref={nextRef}
-      className="w-full h-full object-contain cursor-pointer p-1"
-      onClick={handleNext}
-    />
-  </div>
-  )
-
 
   
 
@@ -314,7 +307,7 @@ const Projects = ({isMobile}) => {
       <div className="sm:snap-center 2xl:snap-align-none">
         <form
           id="filterTagsForm"
-          className="my-4 bg-black-100/50 p-4 rounded-2xl flex flex-col gap-2"
+          className="my-4 bg-black-100/50  p-4 rounded-2xl flex flex-col gap-2"
         >
           <div className="flex justify-between items-center">
             <div className="flex flex-row items-center px-2">
@@ -359,60 +352,46 @@ const Projects = ({isMobile}) => {
             ))}
           </div>
         </form>
-        <div className="flex sm:flex-row items-center justify-center gap-2">
-        <div className={`hidden sm:flex place-items-center w-[5%] opacity-20`}>
-    <img
-      src={leftarrow}
-      ref={prevRef}
-      className="w-full h-full object-contain cursor-pointer p-1"
-      onClick={handlePrev}
-    />
-  </div>
+        <div className="flex flex-wrap sm:flex-nowrap sm:flex-row items-center justify-center gap-2">
+        <div className={`flex place-items-center size-10 sm:size-14 opacity-20`}>
+            <img
+              src={leftarrow}
+              ref={prevRef}
+              className="w-full h-full object-contain cursor-pointer p-1"
+              onClick={handlePrev}
+            />
+          </div>
 
           <div
             ref={galleryRef}
-            className={`flex overflow-hidden w-full sm:w-[90%] snap-center`}
+            className={`flex overflow-hidden w-full order-first sm:-order-none sm:w-[90%] snap-center`}
             id="projectGallery"
           >
             {currentProjects.map((project, index) => (      
               <ProjectCard key={project.name} index={index} visibilityIndex={visibilityIndex} displayCount={displayCount} {...project} />        
             ))
             }
-            {currentProjects.length < displayCount && <div className='w-[320px] h-[410px]'/>}
+            {currentProjects.length < displayCount && <div className='w-1/3'/>}
           </div>
-          <div className={`hidden sm:flex place-items-center w-[5%]`}>
-    <img
-      src={rightarrow}
-      ref={nextRef}
-      className="w-full h-full object-contain cursor-pointer p-1"
-      onClick={handleNext}
-    />
-  </div>
+          <div className={`flex place-items-center size-10 sm:size-14 `}>
+            <img
+              src={rightarrow}
+              ref={nextRef}
+              className="w-full h-full object-contain cursor-pointer p-1"
+              onClick={handleNext}
+            />
+          </div>
 
          
         </div>
         
         <div className='flex place-items-center place-content-center gap-2 mt-4'>
-        {isMobile && <div className={`place-items-center w-10`}>
-    <img
-      src={leftarrow}
-      ref={prevRef}
-      className="w-full h-full object-contain cursor-pointer p-1"
-      onClick={handlePrev}
-    />
-  </div> }
+
             {currentProjects.map((project, index) => (
               <span key={`dot_${project.name}`} className={`w-2 h-2 rounded-full ${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'bg-white' : 'bg-secondary/40'}`}/>
             ))}
 
-          {isMobile && <div className={`place-items-center w-10`}>
-    <img
-      src={rightarrow}
-      ref={nextRef}
-      className="w-full h-full object-contain cursor-pointer p-1"
-      onClick={handleNext}
-    />
-  </div>  }
+
           </div>
       </div>
     </>

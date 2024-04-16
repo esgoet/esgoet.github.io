@@ -265,7 +265,7 @@ const projects = [
         type: "library",
       },
       {
-        name: "tailwind",
+        name: "tailwindcss",
         type: "library",
       },
       {

@@ -23,7 +23,22 @@ module.exports = {
       screens: {
         xs: "450px",
       },
+      keyframes: {
+        starsMoving: {
+          '100%': {transform: 'translateX(-4000px) translateY(-3000px)'},
+        },
+      },
+      animation: {
+        'spin-slow': 'spin 5s ease-in 1s 10' ,
+        'spin-slower': 'spin 6s ease-in 1s 9 reverse',
+        'starsAnim-1': 'starsMoving 50s linear infinite',
+        'starsAnim-1-delayed': 'starsMoving 50s linear -25s infinite',
+        'starsAnim-2': 'starsMoving 70s linear infinite',
+        'starsAnim-2-delayed': 'starsMoving 70s linear -35s infinite',
+        'starsAnim-3': 'starsMoving 120s linear infinite',
+        'starsAnim-3-delayed': 'starsMoving 120s linear -60s infinite',
+      },
     },
-  },
+    },
   plugins: [],
 };

@@ -110,7 +110,7 @@ const Contact = ({isMobile}) => {
         <h2 className="sectionHeadText">Contact.</h2>
       </motion.div>
       {/* </div> */}
-      <div className="flex lg:flex-row flex-col-reverse justify-between items-start 2xl:place-self-start">
+      <div className="flex lg:flex-row flex-col-reverse justify-between w-full items-center 2xl:place-self-start">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
           className="lg:max-w-[70vw] w-full min-w-[35vw] lg:w-1/2"
@@ -154,7 +154,7 @@ const Contact = ({isMobile}) => {
         {/* <div className="md:h-[550px] h-[350px] w-full"> */}
         <motion.div
           // variants={slideIn("right", "tween", 0.2, 1)}
-          className="flex-auto md:h-[550px] h-[350px] lg:w-1/2"
+          className="w-full lg:w-1/2 h-[300px] sm:h-[500px] mx-auto sm:m-0"
         >
           <SatelliteCanvas />
         </motion.div>

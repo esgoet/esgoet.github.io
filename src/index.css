@@ -16,6 +16,7 @@
 
 html {
   scroll-snap-type: y mandatory;
+  overflow-x: hidden;
 }
 
 h1, h2 {
@@ -90,6 +91,7 @@ h3 {
   }
 
 }
+
 
 /* canvas- styles */
 .canvas-loader {
