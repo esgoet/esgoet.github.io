@@ -249,7 +249,7 @@ const Works = () => {
 
       if (galleryRef.current) {
         galleryRef.current.scrollTo({
-          left: galleryRef.current.scrollLeft - galleryRef.current.clientWidth,
+          left: galleryRef.current.scrollLeft - galleryRef.current.clientWidth/3,
           behavior: 'smooth',
         });
       }
