@@ -4,6 +4,7 @@ import { useGLTF, useAnimations, Stats, PerspectiveCamera} from "@react-three/dr
 import { useScroll, animated, useSpring, config } from "@react-spring/three";
 
 import CanvasLoader from "../Loader";
+import { LoopPingPong } from "three";
 
 
 const Moon = ({ isMobile }) =>  {
@@ -48,12 +49,14 @@ const Moon = ({ isMobile }) =>  {
 
   // Extract animation actions
   const { mixer, actions, names } = useAnimations(animations, group);
-  const astronautActionNames = ['Walking','Waving','MoonWalk']
-
 
   // Hover and animation-index states
   const [hovered, setHovered] = useState(false);
-  const [action, setAction] = useState('Walking')
+  const [action, setAction] = useState('Waving')
+
+  useEffect(( ) => {
+    actions['WavingLoop'].setLoop(LoopPingPong);
+  }, [actions])
 
   const onWaving = () => {
     console.log("Waving anim has looped once");
@@ -70,13 +73,12 @@ const Moon = ({ isMobile }) =>  {
   useEffect(() => {
     // Reset and fade in animation after an index has been changed
     actions[action].reset().fadeIn(0.5).play();
-    // action === 'Waving' && setTimeout(() => mixer.addEventListener("loop", onWaving), 500)
+    action === 'Waving' && mixer.addEventListener("loop", onWaving)
     
     // In the clean-up phase, fade it out
     return () => { 
         actions[action].fadeOut(0.5);
-        // action === 'Waving' && mixer.removeEventListener("loop", onWaving);
-        // setAction("Walking");
+        action === 'Waving' && mixer.removeEventListener("loop", onWaving);
     }
   }, [action, actions]);
 
@@ -88,8 +90,6 @@ const Moon = ({ isMobile }) =>  {
     } else if (action === 'Waving') {
 
     }
-
-
 
     rocket.current.rotation.x += delta/2;
     // rocket.current.rotation.y += delta / 20;
@@ -121,7 +121,7 @@ const Moon = ({ isMobile }) =>  {
         position={isMobile ? [-1, -0.7, 0] : [-0.5, -0.7, 0]}
         onPointerEnter={() => {
           // setHovered(true)
-          setAction('Waving')}}
+          setAction('WavingLoop')}}
         onPointerOut={() => {
           // setHovered(false)
           setAction('Walking')
