@@ -1,13 +1,13 @@
 import {motion } from 'framer-motion';
 import { slideIn } from "../utils/motion";
-import { styles } from '../styles';
+
 import { Canvas } from '@react-three/fiber';
 import { useScroll, animated } from "@react-spring/web";
 
 import { MoonCanvas } from './canvas';
 
 
-const Hero = () => {
+const Hero = ({isMobile}) => {
   const { scrollYProgress } = useScroll(); 
  
 
@@ -57,7 +57,7 @@ const Hero = () => {
         {/* </motion.div> */}
 
         <div className="flex-1 lg:max-w-[50vw] min-w-[50wh] 2xl:h-min-[820px] xl:h-[820px] md:h-[550px] h-[350px]">
-          <MoonCanvas />
+          <MoonCanvas isMobile={isMobile} />
         </div>
 
         <div className="invisible lg:visible absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center drop-shadow-md z-20">

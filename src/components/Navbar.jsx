@@ -2,7 +2,6 @@ import React, {useEffect, useState, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useSpring, useMotionValueEvent, easeIn, easeOut } from 'framer-motion';
 
-import {styles} from '../styles';
 import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
 import { slideIn, textVariant } from '../utils/motion';

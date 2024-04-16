@@ -2,28 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
-import { styles } from '../styles';
+
 import { education } from '../constants';
-import { fadeIn, textVariant, slideIn } from '../utils/motion';
+import { textVariant, slideIn } from '../utils/motion';
 
 import { SectionWrapper } from '../hoc';
 import { portrait, interests, hobbies } from '../assets';
 import SocialLinks from './SocialLinks';
 
-const ServiceCard = ({index, title, icon}) => {
-  return (
-    <Tilt className='xs:w-[250px] w-full'>
-      <motion.div variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}
-      className='w-full green-pink-gradient p-[1pc] rounded-[20px] shadow-card'>
-        <div options={{max: 45, scale: 1, speed: 450}}
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'>
-          <img src={icon} alt={title} className='w-166 h-16 object-contain'/>
-          <h3 className='text-white-100 text-[20px] font-bold text-center'>{title}</h3>
-        </div>
-      </motion.div>
-    </Tilt>
-  )
-}
 
 const Profile = () => {
   const [toggle, setToggle] = useState(false);
@@ -158,29 +144,7 @@ const Profile = () => {
 }
 
 
-const About = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
+const About = ({isMobile}) => {
 
   return (
     <>

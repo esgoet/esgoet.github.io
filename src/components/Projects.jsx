@@ -2,12 +2,11 @@ import { useState, useRef, useEffect} from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
-import { styles } from '../styles';
+
 import { filtersymbol, leftarrow, rightarrow } from '../assets';
 import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
 import { textVariant } from '../utils/motion';
-// import { e } from 'maath/dist/index-43782085.esm';
 
 // get all tags from all projects and sort them alphabetically
 const tags = [];
@@ -87,7 +86,7 @@ const ProjectCard = (
       {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
       <Tilt
         options={{ max: 5, scale: 1, speed: 450 }}
-        className={`${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'opacity-100' : 'opacity-0'} transition duration-300 ease-in flex sm:flex-none sm:w-1/3 px-2 h-[410px] flex-col justify-between snap-center sm:snap-align-none projectCard`}
+        className={`${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'opacity-100' : 'opacity-0'} transition duration-300 ease-in flex flex-none w-full sm:w-1/3 px-2 h-[410px] flex-col justify-between snap-center sm:snap-align-none`}
       >
         <div className="p-5 bg-primary border-2 border-black-100/80 rounded-t-2xl h-full">
           <div className="relative w-full h-[150px] ">
@@ -140,13 +139,14 @@ const ProjectCard = (
 }
 
 
-const Projects = () => {
+const Projects = ({isMobile}) => {
   const [currentProjects, setCurrentProjects] = useState(projects);
   const [visibilityIndex, setVisibilityIndex] = useState(0);
   const galleryRef = useRef(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);  
-  const displayCount = 3
+  const displayCount = isMobile ? 1 : 3;
+
 
   useEffect(() => {
     if (galleryRef.current) {
@@ -249,7 +249,7 @@ const Projects = () => {
 
       if (galleryRef.current) {
         galleryRef.current.scrollTo({
-          left: galleryRef.current.scrollLeft - galleryRef.current.clientWidth/3,
+          left: galleryRef.current.scrollLeft - galleryRef.current.clientWidth/displayCount,
           behavior: 'smooth',
         });
       }
@@ -257,7 +257,8 @@ const Projects = () => {
   }
 
   const handleNext = () => {
-    if (visibilityIndex + 3 < currentProjects.length) {
+    console.log(displayCount)
+    if (visibilityIndex + displayCount < currentProjects.length) {
       setVisibilityIndex((prev) => prev +1)
 
       prevRef.current.parentElement.style.opacity = 1;
@@ -270,12 +271,35 @@ const Projects = () => {
 
       if (galleryRef.current) {
         galleryRef.current.scrollTo({
-          left: galleryRef.current.scrollLeft + galleryRef.current.clientWidth/3,
+          left: galleryRef.current.scrollLeft + galleryRef.current.clientWidth/displayCount,
           behavior: 'smooth',
         });
       }
     }
   }
+
+  const LeftArrow = () => (
+    <div className={`flex place-items-center w-[5%] opacity-20`}>
+    <img
+      src={leftarrow}
+      ref={prevRef}
+      className="w-full h-full object-contain cursor-pointer p-1"
+      onClick={handlePrev}
+    />
+  </div>
+  )
+
+  const RightArrow = () => (
+    <div className={`flex place-items-center w-[5%]`}>
+    <img
+      src={rightarrow}
+      ref={nextRef}
+      className="w-full h-full object-contain cursor-pointer p-1"
+      onClick={handleNext}
+    />
+  </div>
+  )
+
 
   
 
@@ -336,20 +360,18 @@ const Projects = () => {
           </div>
         </form>
         <div className="flex sm:flex-row items-center justify-center gap-2">
-          <div className="hidden sm:flex justify-center items-center w-[5%] opacity-20">
-            <img
-              src={leftarrow}
-              ref={prevRef}
-              alt=""
-              className="w-full h-full object-contain cursor-pointer p-1"
-              id="left"
-              onClick={handlePrev}
-            />
-          </div>
+        <div className={`hidden sm:flex place-items-center w-[5%] opacity-20`}>
+    <img
+      src={leftarrow}
+      ref={prevRef}
+      className="w-full h-full object-contain cursor-pointer p-1"
+      onClick={handlePrev}
+    />
+  </div>
 
           <div
             ref={galleryRef}
-            className={`flex flex-wrap sm:flex-nowrap sm:overflow-hidden w-full sm:w-[90%]`}
+            className={`flex overflow-hidden w-full sm:w-[90%] snap-center`}
             id="projectGallery"
           >
             {currentProjects.map((project, index) => (      
@@ -358,22 +380,39 @@ const Projects = () => {
             }
             {currentProjects.length < displayCount && <div className='w-[320px] h-[410px]'/>}
           </div>
-          <div className="hidden sm:flex justify-center items-center w-[5%] opacity-100">
-            <img
-              src={rightarrow}
-              ref={nextRef}
-              alt=""
-              className="w-full h-full object-contain cursor-pointer p-1"
-              onClick={handleNext}
-              id="right"
-            />
-          </div>
+          <div className={`hidden sm:flex place-items-center w-[5%]`}>
+    <img
+      src={rightarrow}
+      ref={nextRef}
+      className="w-full h-full object-contain cursor-pointer p-1"
+      onClick={handleNext}
+    />
+  </div>
+
          
         </div>
+        
         <div className='flex place-items-center place-content-center gap-2 mt-4'>
+        {isMobile && <div className={`place-items-center w-10`}>
+    <img
+      src={leftarrow}
+      ref={prevRef}
+      className="w-full h-full object-contain cursor-pointer p-1"
+      onClick={handlePrev}
+    />
+  </div> }
             {currentProjects.map((project, index) => (
               <span key={`dot_${project.name}`} className={`w-2 h-2 rounded-full ${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'bg-white' : 'bg-secondary/40'}`}/>
             ))}
+
+          {isMobile && <div className={`place-items-center w-10`}>
+    <img
+      src={rightarrow}
+      ref={nextRef}
+      className="w-full h-full object-contain cursor-pointer p-1"
+      onClick={handleNext}
+    />
+  </div>  }
           </div>
       </div>
     </>

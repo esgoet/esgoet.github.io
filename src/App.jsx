@@ -5,7 +5,6 @@ import { MotionConfig } from "framer-motion";
 
 const App = () => {
 
-
   return (
     <BrowserRouter>
       <MotionConfig reducedMotion="user">

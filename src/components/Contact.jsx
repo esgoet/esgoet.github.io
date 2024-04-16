@@ -2,7 +2,6 @@ import React, {useState, useRef} from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
-import { styles } from '../styles';
 import { SatelliteCanvas } from './canvas';
 import { SectionWrapper } from '../hoc';
 import { slideIn, textVariant } from '../utils/motion';
@@ -48,7 +47,7 @@ const ContactFormElement = (
 };
 
 
-const Contact = () => {
+const Contact = ({isMobile}) => {
   const formRef = useRef();
   const [form, setForm] = useState({
     name: '',

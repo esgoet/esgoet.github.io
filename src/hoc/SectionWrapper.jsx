@@ -1,13 +1,12 @@
 import {useState, useEffect, useRef, useContext} from "react";
 import { motion } from "framer-motion";
 
-import { styles } from "../styles";
+
 import { staggerContainer } from "../utils/motion";
 
 
 const SectionWrapper = (Component, idName) => function HOC() {
-  const [isMobile, setIsMobile] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(true);
 
 
   useEffect(() => {
@@ -46,7 +45,7 @@ const SectionWrapper = (Component, idName) => function HOC() {
    
         <div className="2xl:snap-center 2xl:flex flex-col place-items-center place-content-center 2xl:h-screen">
 
-        <Component />
+        <Component isMobile={isMobile}/>
           
         </div>
 
