@@ -140,7 +140,7 @@ const ProjectCard = (
 }
 
 
-const Works = () => {
+const Projects = () => {
   const [currentProjects, setCurrentProjects] = useState(projects);
   const [visibilityIndex, setVisibilityIndex] = useState(0);
   const galleryRef = useRef(null);
@@ -380,4 +380,4 @@ const Works = () => {
   );
 }
 
-export default SectionWrapper(Works,'work')
+export default SectionWrapper(Projects,'projects')

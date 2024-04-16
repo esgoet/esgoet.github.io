@@ -5,20 +5,15 @@ import { OrbitControls, Preload, useGLTF, PresentationControls} from '@react-thr
 import CanvasLoader from '../Loader';
 
 const Satellite = () => {
-  const satellite = useGLTF('./moon/satellite.glb');
+  const satellite = useGLTF('./satellite/satellite.glb');
 
-  const satelliteRef = useRef();
+  // const satelliteRef = useRef();
 
-  useFrame((state, delta)=> {
-    satelliteRef.current.rotation.x += delta/30;
-    satelliteRef.current.rotation.z += delta/10;
-    satelliteRef.current.rotation.y += delta/80;
-  })
 
   return (
     <>
-      <primitive
-        object={satellite.scene.children[0]}
+      {/* <primitive
+        object={satellite.scene}
         scale={0.25}
         position-y={0}
         rotation-y={0.2}
@@ -26,9 +21,10 @@ const Satellite = () => {
         rotation-x={0.1}
         ref={satelliteRef}
       
-        castShadow
-        receiveShadow
-      />
+      /> */}
+         <primitive object={satellite.scene} position={[0,0,0]} rotation={[1.2,0.4, 1.1]} scale={0.25}/>
+
+
 
     </>
   );
@@ -47,18 +43,9 @@ const SatelliteCanvas = () => {
         // position: [-4, 3, 6],
       }}
     >
-      {/* <ambientLight intensity={2} />
-      <hemisphereLight intensity={3} />
-      <directionalLight position={[-1, 7, 6]} color={0xffeeee} intensity={2} /> */}
-      <ambientLight intensity={0.6} color={0x7e57e8} />
-      <hemisphereLight intensity={0.2} skyColor={0x6200ea} />
-      <directionalLight
-        position={[0, -0.5, 20]}
-        color={0xffffff}
-        intensity={1}
-        castShadow
-        shadow-mapSize={[1024, 1024]}
-      />
+      
+      <ambientLight intensity={1} color={0xffffff}/>
+      
       <Suspense fallback={<CanvasLoader />}>
         {/* <OrbitControls
           autoRotate
@@ -68,6 +55,7 @@ const SatelliteCanvas = () => {
         /> */}
         
           <Satellite />
+          <OrbitControls autoRotate enableZoom={false} enablePan={false}/>
       </Suspense>
     </Canvas>
   );
