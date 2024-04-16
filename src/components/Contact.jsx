@@ -106,12 +106,12 @@ const Contact = () => {
   return (
     <>
       {/* <div> */}
-      <motion.div variants={textVariant()} className="mt-8">
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h2 className={styles.sectionHeadText}>Contact.</h2>
+      <motion.div variants={textVariant()} className="mt-8 2xl:mt-0 2xl:place-self-start">
+        <p className="sectionSubText">Get in touch</p>
+        <h2 className="sectionHeadText">Contact.</h2>
       </motion.div>
       {/* </div> */}
-      <div className="flex lg:flex-row flex-col-reverse justify-between items-start">
+      <div className="flex lg:flex-row flex-col-reverse justify-between items-start 2xl:place-self-start">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
           className="lg:max-w-[70vw] w-full min-w-[35vw] lg:w-1/2"

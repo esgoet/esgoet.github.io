@@ -185,12 +185,12 @@ const About = () => {
   return (
     <>
       {/* <div> */}
-      <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Who I Am</p>
-        <h2 className={styles.sectionHeadText}>About Me.</h2>
+      <motion.div variants={textVariant()} className='2xl:place-self-start'>
+        <p className="sectionSubText">Who I Am</p>
+        <h2 className="sectionHeadText">About Me.</h2>
       </motion.div>
       {/* </div> */}
-      <div className="mt-4 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-4">
+      <div className="mt-4 flex flex-col-reverse sm:flex-row items-center sm:items-start gap-4 2xl:gap-20 2xl:place-self-start">
         <div className="text-white-100 text-[17px] max-w-prose leading-[30px] p-6 sm:p-2 rounded-2xl snap-center sm:snap-align-none">
           {/* <motion.div
           variants={fadeIn("", "", 0.1, 1)}

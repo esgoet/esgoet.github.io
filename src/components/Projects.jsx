@@ -281,13 +281,13 @@ const Projects = () => {
 
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant()} className='2xl:place-self-start'>
         {/* <div> */}
-        <p className={styles.sectionSubText}>My portfolio</p>
-        <h2 className={styles.sectionHeadText}>Projects.</h2>
+        <p className="sectionSubText">My portfolio</p>
+        <h2 className="sectionHeadText">Projects.</h2>
         {/* </div> */}
       </motion.div>
-      <div className="sm:snap-center xl:snap-none">
+      <div className="sm:snap-center 2xl:snap-align-none">
         <form
           id="filterTagsForm"
           className="my-4 bg-black-100/50 p-4 rounded-2xl flex flex-col gap-2"

@@ -24,13 +24,13 @@ const Hero = () => {
         <span className="hash-span" id="hero"></span>
         <div className="flex-initial lg:max-w-[50vw] lg:min-w-[50vw] max-w-[90vw] flex flex-row flex-nowrap sm:items-center pb-6 sm:pb-0 -ml-5 sm:ml-0 items-start justify-start xl:justify-center">
           <div
-            className={`flex flex-col justify-center items-center mt-5 ${styles.paddingX}`}
+            className={`flex flex-col justify-center items-center mt-5 paddingX`}
           >
             <div className="w-5 h-5 rounded-full bg-primary" />
             <div className="w-1 sm:h-80 h-40 violet-gradient" />
           </div>
           <div className="flex flex-col gap-3 items-start">
-            <h1 className={`${styles.heroHeadText} text-white-100-10 drop-shadow-text`}>
+            <h1 className={`heroHeadText text-white-100-10 drop-shadow-text`}>
               Hi, I'm{" "}
               <span className="text-primary font-['Lobster']">
                 Eva
@@ -39,7 +39,7 @@ const Hero = () => {
             <p className="font-light sm:text-[18px] text-[14px] text-tertiary -mt-4">
               MSc Interactive Media | MSc Clinical Psychology
             </p>
-            <p className={`${styles.heroSubText} text-white-100-100 max-w-sm`}>
+            <p className={`heroSubText text-white-100-100 max-w-sm`}>
               I love creating interactive digital tools{" "}
               {/* <br className="sm:block hidden" /> */}
               that are beautiful, accessible and{" "}

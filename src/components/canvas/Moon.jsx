@@ -12,13 +12,15 @@ const Moon = ({ isMobile }) =>  {
   const moon = useRef();
   const rocket = useRef();
 
-const [scale, setScale] = useState(1);
-const [positionY, setPositionY ] = useState(0);
-const [rotationY, setRotationY] = useState(0);
-const [scrolling, setScrolling] = useState(false);
+  const [clicked, setClicked] = useState();
 
-const mapNumber = (number, inMin, inMax, outMin, outMax) =>
-    ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+  const [scale, setScale] = useState(1);
+  const [positionY, setPositionY ] = useState(0);
+  // const [rotationY, setRotationY] = useState(0);
+  const [scrolling, setScrolling] = useState(false);
+
+  const mapNumber = (number, inMin, inMax, outMin, outMax) =>
+      ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 
 // const { scrollYProgress } = useScroll({
 //     container: window,
@@ -39,6 +41,7 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
 // const { scale } = useSpring({ scale: scrolling ? 1 : 1 })
 
 // const { positionY } = useSpring({ positionY: scrolling ? -3 : 0 });
+  const { rotationScene } = useSpring({rotationScene: clicked ? [-0.1, 0.5,-0.2] : [0,0,0], config: config.molasses})
 
 
   const { nodes, materials, animations } = useGLTF("/moon/space_assets.glb");
@@ -53,10 +56,8 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
   const [action, setAction] = useState('Walking')
 
   const onWaving = () => {
-    console.log("is looping");
+    console.log("Waving anim has looped once");
     setAction("Walking");
-    
-
   }
 
   // Change cursor on hover-state
@@ -69,14 +70,12 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
   useEffect(() => {
     // Reset and fade in animation after an index has been changed
     actions[action].reset().fadeIn(0.5).play();
-    if (action === 'Waving') {
-        mixer.addEventListener("loop", onWaving);
-        }
+    // action === 'Waving' && setTimeout(() => mixer.addEventListener("loop", onWaving), 500)
     
     // In the clean-up phase, fade it out
     return () => { 
         actions[action].fadeOut(0.5);
-        mixer.removeEventListener("loop", onWaving);
+        // action === 'Waving' && mixer.removeEventListener("loop", onWaving);
         // setAction("Walking");
     }
   }, [action, actions]);
@@ -97,12 +96,22 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
     // rocket.current.rotation.z += delta / 30;
     });
 
+    const handleClick = () => {
+      if (!clicked) {
+        setAction('MoonWalk');
+        setClicked(true);
+      } else {
+        setAction('Waving');
+        setClicked(false);
+      }
+    }
+
   return (
     <animated.group
       ref={group}
       // {...props}
       dispose={null}
-      rotation={[0, rotationY, 0]}
+      rotation={rotationScene}
       scale={scale}
       position={[1, positionY, 0]}
     >
@@ -110,6 +119,15 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
         name="Scene"
         scale={isMobile ? 0.27 : 0.3}
         position={isMobile ? [-1, -0.7, 0] : [-0.5, -0.7, 0]}
+        onPointerEnter={() => {
+          // setHovered(true)
+          setAction('Waving')}}
+        onPointerOut={() => {
+          // setHovered(false)
+          setAction('Walking')
+          setClicked(false)
+        }}
+        // onPointerDown={handleClick}
       >
         <group
           name="Armature"
@@ -124,9 +142,9 @@ const mapNumber = (number, inMin, inMax, outMin, outMax) =>
               geometry={nodes.Astronautmesh007.geometry}
               material={materials.Suit}
               skeleton={nodes.Astronautmesh007.skeleton}
-              onPointerOver={() => setHovered(true)}
-              onPointerOut={() => setHovered(false)}
-              onClick={() => setAction("Waving")}
+              // onPointerEnter={() => setHovered(true)}
+              // onPointerOut={() => setHovered(false)}
+              // onClick={() => setAction('Waving')}
               receiveShadow
             />
             <skinnedMesh

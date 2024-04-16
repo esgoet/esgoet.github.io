@@ -40,10 +40,16 @@ const SectionWrapper = (Component, idName) => function HOC() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: !isMobile ? 0.25 : 0.1 }}
-        className={`${styles.paddingX} max-w-7xl mx-auto lg:min-h-screen 2xl:min-h-0 my-8 `}
+        className={`paddingX max-w-7xl mx-auto lg:min-h-screen my-8 xl:my-8`}
       >
-        <span className="hash-span snap-start sm:snap-always" id={idName}></span>
+        <span className="hash-span snap-start 2xl:snap-align-none sm:snap-always" id={idName}></span>
+   
+        <div className="2xl:snap-center 2xl:flex flex-col place-items-center place-content-center 2xl:h-screen">
+
         <Component />
+          
+        </div>
+
       </motion.section>
     );
 }
