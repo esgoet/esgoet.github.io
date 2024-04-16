@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState, useRef, useEffect} from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
@@ -80,21 +80,21 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
 
 
 const ProjectCard = (
-    {index, name, description, tags, image, source_code_link}
+    {index, visibilityIndex, displayCount, name, description, tags, image, source_code_link}
 ) => {
   return (
     <>
       {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
       <Tilt
         options={{ max: 5, scale: 1, speed: 450 }}
-        className="sm:flex-none  sm:w-[320px] flex flex-col justify-between snap-center sm:snap-align-none projectCard"
+        className={`${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'opacity-100' : 'opacity-0'} transition duration-300 ease-in flex sm:flex-none sm:w-1/3 px-2 h-[410px] flex-col justify-between snap-center sm:snap-align-none projectCard`}
       >
         <div className="p-5 bg-primary border-2 border-black-100/80 rounded-t-2xl h-full">
           <div className="relative w-full h-[150px] ">
             <img
               src={image}
               alt={name}
-              className="w-full h-full object-cover rounded-2xl border-2 border-black-100/80"
+              className="w-full h-full object-cover rounded-lg border-2 border-black-100/80"
             />
             <div className="absolute inset-0 flex justify-end m-2 card-img_hover">
               <a
@@ -142,8 +142,17 @@ const ProjectCard = (
 
 const Works = () => {
   const [currentProjects, setCurrentProjects] = useState(projects);
-  
+  const [visibilityIndex, setVisibilityIndex] = useState(0);
+  const galleryRef = useRef(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);  
+  const displayCount = 3
 
+  useEffect(() => {
+    if (galleryRef.current) {
+      galleryRef.current.scrollLeft = 0;
+    }
+  }, [currentProjects]);
 
   const checkTag = (e) => {
     if (e.target.checked) {
@@ -166,6 +175,17 @@ const Works = () => {
         tag.nextSibling.innerHTML = "#";
       }
         );
+
+    setVisibilityIndex(0);
+    nextRef.current.parentElement.style.opacity = 1;
+    nextRef.current.style.cursor = 'pointer';
+
+    if (galleryRef.current) {
+      galleryRef.current.scrollTo({
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
   }
 
   const filterProjects = () => {
@@ -180,6 +200,8 @@ const Works = () => {
     // if none of input type checkbox are checked, reset filter
     if (checkedTags.length === 0) {
       setCurrentProjects(projects);
+      nextRef.current.parentElement.style.opacity = 1;
+      nextRef.current.style.cursor = 'pointer';
     } else {
       // copy a project from projects into new list
       // clear filtered project list
@@ -199,87 +221,63 @@ const Works = () => {
         });
         
       });
-    
+
+    setVisibilityIndex(0)
     setCurrentProjects(filteredProjects);
+    if (filteredProjects.length <= displayCount) {
+        nextRef.current.parentElement.style.opacity = 0.2;
+        nextRef.current.style.cursor = 'not-allowed';
+    } else {
+      nextRef.current.parentElement.style.opacity = 1;
+      nextRef.current.style.cursor = 'pointer';
+    }
     }
   };
 
-  //hard-coded scroll rn, should be automated based on number of projects
 
-  const scrollGallery = (e) => {
-    const gallery = document.getElementById("projectGallery");
+  const handlePrev = () => {
+    if (visibilityIndex > 0) {
+      setVisibilityIndex((prev) => prev - 1)
 
-    if (gallery != null) {
-      const galleryRect = document
-        .getElementById("projectGallery")
-        .getBoundingClientRect();
+      nextRef.current.parentElement.style.opacity = 1;
+      nextRef.current.style.cursor = 'pointer';
+      
+      if (visibilityIndex === 1) {
+        prevRef.current.parentElement.style.opacity = 0.2;
+        prevRef.current.style.cursor = 'not-allowed';
+      } 
 
-      const displayedProjects = document.querySelectorAll(".projectCard");
-
-      const visibleProjects = [];
-
-      //check if project is currently visible
-
-      displayedProjects.forEach((project) => {
-        var rect = project.getBoundingClientRect();
-
-        // Only completely visible elements return true:
-        if (rect.left >= galleryRect.left && rect.right <= galleryRect.right) {
-          // if yes, add to visibleProjects
-          visibleProjects.push(project);
-        }
-      });
-      // currently lags behind one render, check our effect hooks?
+      if (galleryRef.current) {
+        galleryRef.current.scrollTo({
+          left: galleryRef.current.scrollLeft - galleryRef.current.clientWidth,
+          behavior: 'smooth',
+        });
+      }
     }
-
-    
-    //compare if currentPorjects is longer than visibleProjects
-    // if yes, make scrolling possible
-    // each scroll should advance one project, til no more projects can be selected based on amount of currentprojects
-    // if not, grey out arrows
-
-    const direction = e.target.id;
-    if (gallery != null) {
-      const currentScroll = gallery.scrollLeft;
-      console.log(currentScroll)
-
-
-      if (direction === 'right') {
-          gallery.scrollTo(currentScroll + 350, 0);
-          if (currentScroll === 0 ){
-                    document.getElementById(
-                      "left"
-                    ).parentElement.style.opacity = 1;
-                        document.getElementById("left").style.cursor = "pointer";
-
-          } else if (currentScroll + 350 === 700) {
-                    document.getElementById(
-                      "right"
-                    ).parentElement.style.opacity = 0.2;
-                        document.getElementById("right").style.cursor = "not-allowed";
-          }
-      } else {
-           if (currentScroll === 340) {
-             document.getElementById("left").parentElement.style.opacity = 0.2;
-                 document.getElementById("left").style.cursor = "not-allowed";
-           } else if (currentScroll === 690) {
-            document.getElementById("right").parentElement.style.opacity = 1;
-              document.getElementById(
-                "right"
-              ).style.cursor = 'pointer';
-            
-           }
-          gallery.scrollTo(currentScroll - 350, 0);
-
-     
-
-      }    
-
-    }
-    
-
-    console.log('scrolling ' + direction)
   }
+
+  const handleNext = () => {
+    if (visibilityIndex + 3 < currentProjects.length) {
+      setVisibilityIndex((prev) => prev +1)
+
+      prevRef.current.parentElement.style.opacity = 1;
+      prevRef.current.style.cursor = 'pointer';
+      
+      if (visibilityIndex + displayCount + 1 === currentProjects.length) {
+        nextRef.current.parentElement.style.opacity = 0.2;
+        nextRef.current.style.cursor = 'not-allowed';
+      } 
+
+      if (galleryRef.current) {
+        galleryRef.current.scrollTo({
+          left: galleryRef.current.scrollLeft + galleryRef.current.clientWidth/3,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }
+
+  
 
   return (
     <>
@@ -313,7 +311,7 @@ const Works = () => {
             </button>
           </div>
 
-          <div className="flex sm:flex-row flex-col gap-2 max-w-full overflow-x-scroll">
+          <div className="flex sm:flex-row flex-col gap-2 max-w-full overflow-x-auto">
             {tagTypes.map((type) => (
               <fieldset
                 className="flex flex-wrap items-start justify-start  content-start gap-1 rounded-2xl bg-black-100 p-2"
@@ -341,31 +339,42 @@ const Works = () => {
           <div className="hidden sm:flex justify-center items-center w-[5%] opacity-20">
             <img
               src={leftarrow}
+              ref={prevRef}
               alt=""
-              className="w-full h-full  object-contain cursor-pointer"
+              className="w-full h-full object-contain cursor-pointer p-1"
               id="left"
-              onClick={scrollGallery}
+              onClick={handlePrev}
             />
           </div>
 
           <div
-            className="flex flex-wrap sm:flex-nowrap sm:overflow-hidden gap-7 justify-start w-full sm:w-[90%]"
+            ref={galleryRef}
+            className={`flex flex-wrap sm:flex-nowrap sm:overflow-hidden w-full sm:w-[90%]`}
             id="projectGallery"
           >
-            {currentProjects.map((project) => (
-              <ProjectCard key={project.name} {...project} />
-            ))}
+            {currentProjects.map((project, index) => (      
+              <ProjectCard key={project.name} index={index} visibilityIndex={visibilityIndex} displayCount={displayCount} {...project} />        
+            ))
+            }
+            {currentProjects.length < displayCount && <div className='w-[320px] h-[410px]'/>}
           </div>
           <div className="hidden sm:flex justify-center items-center w-[5%] opacity-100">
             <img
               src={rightarrow}
+              ref={nextRef}
               alt=""
-              className="w-full h-full object-contain cursor-pointer"
-              onClick={scrollGallery}
+              className="w-full h-full object-contain cursor-pointer p-1"
+              onClick={handleNext}
               id="right"
             />
           </div>
+         
         </div>
+        <div className='flex place-items-center place-content-center gap-2 mt-4'>
+            {currentProjects.map((project, index) => (
+              <span key={`dot_${project.name}`} className={`w-2 h-2 rounded-full ${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'bg-white' : 'bg-secondary/40'}`}/>
+            ))}
+          </div>
       </div>
     </>
   );

@@ -17,7 +17,9 @@ import {
   portfolio,
   threejs,
   bearopedia,
-  turtlefractalgenerator
+  turtlefractalgenerator,
+  hangman, 
+  menuApp
 } from "../assets";
 
 export const navLinks = [
@@ -144,6 +146,80 @@ const experiences = [
 ];
 
 const projects = [
+  {
+    name: "Web Menu for Food Delivery",
+    description: "A prototype with TheMealDB API for a delivery app using React, Typescript and Redux with persistent local storage",
+    tags: [
+      {
+        name: "TypeScript",
+        type: "language",
+      },
+      {
+        name: "React",
+        type: "library",
+      },
+      {
+        name: "Redux",
+        type: "library",
+      },
+      {
+        name: "CSS",
+        type: "language",
+      },
+      {
+        name: "HTML5",
+        type: "language",
+      },
+      {
+        name: "Web",
+        type: "platform",
+      },
+      {
+        name: "Desktop",
+        type: "device",
+      },
+    ],
+    image: menuApp,
+    source_code_link: "https://github.com/esgoet/menu-app",
+    filtered: false,
+  },
+  {
+    name: "The Hangman Game as a ReactJS App",
+    description: "A web application to play word-guessing game Hangman",
+    tags: [
+      {
+        name: "TypeScript",
+        type: "language",
+      },
+      {
+        name: "React",
+        type: "library",
+      },
+      {
+        name: "tailwindcss",
+        type: "library",
+      },
+      {
+        name: "CSS",
+        type: "language",
+      },
+      {
+        name: "HTML5",
+        type: "language",
+      },
+      {
+        name: "Web",
+        type: "platform",
+      },
+      {
+        name: "Desktop",
+        type: "device",
+      },
+    ], 
+    image: hangman,
+    source_code_link: "https://github.com/esgoet/hangman",
+    filtered: false,
+  },
   {
     name: "VR as an Autism Awareness Tool",
     description:

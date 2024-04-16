@@ -29,11 +29,13 @@ import github from "./socialmedia/github-mark-white.svg"
 import email from "./socialmedia/email.svg"
 
 
-import webvr from "./InteractiveWebVR.png";
-import vrautism from "./VRautism.png";
-import portfolio from "./3Dportfolio.png";
-import bearopedia from "./bearopedia.png";
-import turtlefractalgenerator from "./turtlefractalgenerator.png";
+import webvr from "./projects/InteractiveWebVR.png";
+import vrautism from "./projects/VRautism.png";
+import portfolio from "./projects/3Dportfolio.png";
+import bearopedia from "./projects/bearopedia.png";
+import turtlefractalgenerator from "./projects/turtlefractalgenerator.png";
+import hangman from "./projects/hangman.png";
+import menuApp from './projects/menu-app.png'
 
 import portrait from "./portrait.jpg";
 
@@ -59,6 +61,8 @@ export {
   portfolio,
   bearopedia,
   turtlefractalgenerator,
+  hangman,
+  menuApp,
   codesymbol,
   linkedin,
   github,
