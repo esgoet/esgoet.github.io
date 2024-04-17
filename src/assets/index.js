@@ -1,7 +1,6 @@
-import logo from "./my_logo.svg";
-// import github from "./github.png";
-import menu from "./menu.svg";
-import close from "./close.svg";
+import logo from "./icons/favicon.svg";
+import menu from "./icons/menu.svg";
+import close from "./icons/close.svg";
 
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
@@ -17,16 +16,17 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 
-import codesymbol from "./code.svg";
-import filtersymbol from "./filtersymbol.svg";
-import rightarrow from "./rightarrow.svg";
-import leftarrow from "./leftarrow.svg";
-import interests from "./head-w-heart.svg";
-import hobbies from "./hand-w-heart.svg";
+import codesymbol from "./icons/code.svg";
+import filtersymbol from "./icons/filtersymbol.svg";
+import rightarrow from "./icons/rightarrow.svg";
+import leftarrow from "./icons/leftarrow.svg";
+import interests from "./icons/head-w-heart.svg";
+import hobbies from "./icons/hand-w-heart.svg";
 
 import linkedin from "./socialmedia/linkedin-white.svg"
 import github from "./socialmedia/github-mark-white.svg"
 import email from "./socialmedia/email.svg"
+// import github from "./socialmedia/github.png";
 
 
 import webvr from "./projects/InteractiveWebVR.png";

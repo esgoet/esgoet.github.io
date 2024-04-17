@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Projects, MoonCanvas, StarsCanvas, Footer } from './components';
+import { About, Contact, Hero, Navbar, Projects, MoonCanvas, StarsCanvas, Footer } from './components';
 import { MotionConfig } from "framer-motion";
 
 const App = () => {
@@ -41,7 +41,6 @@ const App = () => {
           {/* <div className="relative snap-y snap-mandatory"> */}
           <About isMobile={isMobile} />
           {/* <MoonCanvas /> */}
-          {/* <Experience/> */}
           <Projects   isMobile={isMobile}/>
           <Contact  isMobile={isMobile} />
           {/* </div> */}

@@ -216,7 +216,7 @@ const MoonCanvas = ({isMobile}) => {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [0, 1, 5],
+          position: [0, 0.9, 5],
         }}
       >
         {/* <PerspectiveCamera makeDefault position={[0,1,6]}/> */}
