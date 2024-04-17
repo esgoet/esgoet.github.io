@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, useAnimations, Stats, PerspectiveCamera} from "@react-three/drei";
+import { useGLTF, useAnimations, Stats, PerspectiveCamera, PresentationControls} from "@react-three/drei";
 import { useScroll, animated, useSpring, config } from "@react-spring/three";
 
 import CanvasLoader from "../Loader";
@@ -15,34 +15,11 @@ const Moon = ({ isMobile }) =>  {
 
   const [clicked, setClicked] = useState();
 
-  const [scale, setScale] = useState(1);
-  const [positionY, setPositionY ] = useState(0);
   // const [rotationY, setRotationY] = useState(0);
   const [scrolling, setScrolling] = useState(false);
 
   const mapNumber = (number, inMin, inMax, outMin, outMax) =>
       ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
-
-// const { scrollYProgress } = useScroll({
-//     container: window,
-//     onChange: ({ value: { scrollYProgress } }) => {
-//         console.log(scrollYProgress)
-//         setScrolling(true)
-//     setScale(mapNumber(scrollYProgress, 0.0, 1.0, 1.0, 4));
-//     setPositionY(mapNumber(scrollYProgress, 0, 1, 0, -8))
-//     setRotationY(mapNumber(scrollYProgress, 0, 1, 0, 3));
-//     if (scrollYProgress > 0.2) {
-//         setAction('MoonWalk')
-//     } else {
-//         setAction('Walking')
-//     }
-//     },
-// });
-
-// const { scale } = useSpring({ scale: scrolling ? 1 : 1 })
-
-// const { positionY } = useSpring({ positionY: scrolling ? -3 : 0 });
-  const { rotationScene } = useSpring({rotationScene: clicked ? [-0.1, 0.5,-0.2] : [0,0,0], config: config.molasses})
 
 
   const { nodes, materials, animations } = useGLTF("/moon/space_assets.glb");
@@ -74,6 +51,7 @@ const Moon = ({ isMobile }) =>  {
     // Reset and fade in animation after an index has been changed
     actions[action].reset().fadeIn(0.5).play();
     action === 'Waving' && mixer.addEventListener("loop", onWaving)
+    console.log(isMobile)
     
     // In the clean-up phase, fade it out
     return () => { 
@@ -107,29 +85,31 @@ const Moon = ({ isMobile }) =>  {
     }
 
   return (
-    <animated.group
+    <group
       ref={group}
       // {...props}
       dispose={null}
-      rotation={rotationScene}
-      scale={scale}
-      position={[1, positionY, 0]}
+      position={[0,0,0]}
+      rotation={[0.4,0.4,0]}
     >
-      <group
+      {/* <group
         name="Scene"
         scale={isMobile ? 0.27 : 0.3}
-        position={isMobile ? [-1, -0.7, 0] : [-0.5, -0.7, 0]}
-        onPointerEnter={() => {
-          // setHovered(true)
-          setAction('WavingLoop')}}
-        onPointerOut={() => {
-          // setHovered(false)
-          setAction('Walking')
-          setClicked(false)
-        }}
-        // onPointerDown={handleClick}
-      >
-        <group
+        // position={isMobile ? [-1, -0.7, 0] : [-0.5, -0.7, 0]}
+ 
+      > */}
+      <group
+            scale={0.2}
+            onPointerEnter={() => {
+              // setHovered(true)
+              setAction('WavingLoop')}}
+            onPointerOut={() => {
+              // setHovered(false)
+              setAction('Walking')
+              // setClicked(false)
+            }}
+            >
+            <group
           name="Armature"
           position={[0, 0.249, 0]}
           scale={0.959}
@@ -175,6 +155,15 @@ const Moon = ({ isMobile }) =>  {
           //
         />
 
+        </group>
+        <PresentationControls
+       
+        >
+        <group
+        scale={0.2}
+        rotation={[0,0.5,0.2]}
+        >
+
         <group name="Rocket" scale={0.65} ref={rocket}>
           <mesh
             name="Cube"
@@ -203,8 +192,12 @@ const Moon = ({ isMobile }) =>  {
             castShadow
           />
         </group>
-      </group>
-    </animated.group>
+
+        </group>
+
+        </PresentationControls>
+        
+    </group>
   );
 }
 
@@ -212,7 +205,7 @@ useGLTF.preload("/moon/space_assets.glb");
 
 
 const MoonCanvas = ({isMobile}) => {
-   
+  
   return (
 
       <Canvas
@@ -223,7 +216,7 @@ const MoonCanvas = ({isMobile}) => {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [-4, 3, 6],
+          position: [0, 1, 5],
         }}
       >
         {/* <PerspectiveCamera makeDefault position={[0,1,6]}/> */}
@@ -238,7 +231,11 @@ const MoonCanvas = ({isMobile}) => {
           shadow-mapSize={[1024, 1024]}
         />
         <Suspense fallback={<CanvasLoader />}>
+    
+   
+          
           <Moon isMobile={isMobile} />
+    
         </Suspense>
         {/* <Stats showPanel={0} /> */}
       </Canvas>

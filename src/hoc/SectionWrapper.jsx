@@ -30,8 +30,6 @@ const SectionWrapper = (Component, idName) => function HOC() {
     };
   }, []);
 
-  
-
     return (
       <motion.section
         data-section
@@ -45,7 +43,7 @@ const SectionWrapper = (Component, idName) => function HOC() {
    
         <div className="2xl:snap-center 2xl:flex flex-col place-items-center place-content-center 2xl:h-screen">
 
-        <Component isMobile={isMobile}/>
+        <Component/>
           
         </div>
 

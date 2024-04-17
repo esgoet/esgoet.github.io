@@ -1,4 +1,4 @@
-import React, {Suspense, useRef} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF, PresentationControls} from '@react-three/drei';
 
@@ -7,25 +7,9 @@ import CanvasLoader from '../Loader';
 const Satellite = () => {
   const satellite = useGLTF('./satellite/satellite.glb');
 
-  // const satelliteRef = useRef();
-
-
   return (
     <>
-      {/* <primitive
-        object={satellite.scene}
-        scale={0.25}
-        position-y={0}
-        rotation-y={0.2}
-        rotation-z={0.3}
-        rotation-x={0.1}
-        ref={satelliteRef}
-      
-      /> */}
-         <primitive object={satellite.scene} position={[0,0,0]} rotation={[1.2,0.4, 1.1]} scale={0.25}/>
-
-
-
+      <primitive  object={satellite.scene} position={[0,0,0]} rotation={[1.2,0.4, 1.1]} scale={0.25}/>
     </>
   );
 }
@@ -33,8 +17,23 @@ const Satellite = () => {
 useGLTF.preload('./satellite/satellite.glb');
 
 const SatelliteCanvas = () => {
+  const [hovered, setHovered] = useState(false)
+  const [grabbing, setGrabbing] = useState(false)
+
+  useEffect(() => {
+    document.body.style.cursor = hovered && !grabbing ? 'grab' : grabbing ? 'grabbing' : 'auto';
+    
+    document.body.addEventListener('mouseup', ()=> setGrabbing(false))
+
+    return (
+      document.body.removeEventListener('mouseup', ()=> setGrabbing(false))
+    )
+  }, [hovered, grabbing])
+  
   return (
     <Canvas
+    onPointerUp={() => setGrabbing(false)}
+   
       shadows
       // frameloop="demand"
       gl={{ preserveDrawingBuffer: true }}
@@ -48,8 +47,15 @@ const SatelliteCanvas = () => {
       
       <ambientLight intensity={1} color={0xffffff}/>
       
-      <Suspense fallback={<CanvasLoader />}>        
+      <Suspense fallback={<CanvasLoader />}>  
+      <group
+        onPointerEnter={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}  
+        onPointerDown={() => setGrabbing(true)}
+      >
+          
           <Satellite />
+          </group>    
           <OrbitControls autoRotate enableZoom={false} enablePan={false}/>
       </Suspense>
     </Canvas>
