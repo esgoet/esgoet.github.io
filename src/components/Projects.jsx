@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect} from 'react';
-import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
 
@@ -7,6 +6,8 @@ import { filtersymbol, leftarrow, rightarrow } from '../assets';
 import { SectionWrapper } from '../hoc';
 import { projects } from '../constants';
 import { textVariant } from '../utils/motion';
+import ProjectCard from './ProjectCard';
+import ProjectTag from './ProjectTag';
 
 // get all tags from all projects and sort them alphabetically
 const tags = [];
@@ -28,115 +29,8 @@ tags.sort((a,b)=>(a.name > b.name));
 tags.sort((a, b) => a.weight - b.weight);
 tags.reverse();
 
-
-// tags.map((tag)=> {
-//   if (!tagTypes.find((el) => el === tag.type)) {
-//     tagTypes.push(tag.type);
-//   }
-// })
-
-// tagTypes.sort((a, b) => a.name > b.name);
-
 tagTypes.push("device", "platform", "language", "library", "software")
 
-
-const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
-  const fontSize = `text-[${size}px]`;
-  const smallerFont = `text-[${size-2}px]`;
-
-  const Weight = () => (
-    <span
-      className={`ml-1 -mr-1 py-0.5 px-1.5 rounded-full bg-black-100 ${smallerFont}`}
-    >
-      {weight}
-    </span>
-  );
-  if (type === filterType) {
-     return (
-       <>
-         <label
-           htmlFor={name}
-           className={`${fontSize} bg-black-300 px-2 text-white-100 rounded-full`}
-         >
-           <input
-             type={"checkbox"}
-             className="hidden"
-             id={name}
-             onClick={onClick}
-           />
-           <span className="hover:text-white-100">#</span>
-           <span className="hover:text-secondary">{name}</span>
-           {weight > 1 ? <Weight/> : null}
-         </label>
-       </>
-     );
-
-  }
-  return
- 
-}
-
-
-
-const ProjectCard = (
-    {index, visibilityIndex, displayCount, name, description, tags, image, source_code_link}
-) => {
-  return (
-    <>
-      {/* <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}> */}
-      <Tilt
-        options={{ max: 5, scale: 1, speed: 450 }}
-        className={`${index >= visibilityIndex && index < visibilityIndex + displayCount ? 'opacity-100' : 'opacity-0'} transition duration-300 ease-in flex flex-none w-full sm:w-1/3 px-2 flex-col justify-between snap-center sm:snap-align-none`}
-      >
-        <div className="p-5 bg-primary border-2 border-black-100/80 rounded-t-2xl h-full">
-          <div className="relative w-full h-[150px] ">
-            <img
-              src={image}
-              alt={name}
-              className="w-full h-full object-cover rounded-lg border-2 border-black-100/80"
-            />
-            <div className="absolute inset-0 flex justify-end m-2 card-img_hover">
-              <a
-                href={source_code_link}
-                target="_blank"
-                rel="external"
-                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 font-bold text-[18px] align-middle text-center"
-              >{`</>`}</a>
-              {/* <div
-                onClick={() => window.open(source_code_link, "_blank")}
-                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-300/50 hover:bg-black-300"
-              >
-                
-                <p className="font-bold text-[18px]">{`</>`}</p>
-              </div> */}
-            </div>
-          </div>
-
-          <div className="mt-3">
-            <h3 className="text-black-100 font-bold text-[20px]">{name}</h3>
-            <p className="text-black-200 leading-[20px] text-[14px] text-justify">
-              {description}
-            </p>
-          </div>
-        </div>
-
-        <div
-          className={`flex flex-wrap justify-end gap-1 w-full bg-black-100/50 p-3 rounded-b-2xl`}
-        >
-          {tags.map((tag) => (
-            <p
-              key={tag.name}
-              className={`text-[12px] px-2 text-white-100 rounded-full`}
-            >
-              #{tag.name}
-            </p>
-          ))}
-        </div>
-      </Tilt>
-      {/* </motion.div> */}
-    </>
-  );
-}
 
 
 const Projects = ({isMobile}) => {
@@ -314,7 +208,7 @@ const Projects = ({isMobile}) => {
               <img
                 src={filtersymbol}
                 alt=""
-                className="w-[26px] h-[26px] object-contain cursor-pointer z-20"
+                className="w-[26px] h-[26px] object-contain"
               ></img>
               <h3 className="px-2 text-[18px]">Filter Projects</h3>
             </div>
