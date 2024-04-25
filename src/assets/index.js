@@ -31,6 +31,8 @@ import email from "./socialmedia/email.svg"
 
 import webvr from "./projects/InteractiveWebVR.png";
 import vrautism from "./projects/VRautism.png";
+import vrautism_mp4_10mb from "./projects/VR_prototype_autism_recording-10MB.mp4"
+import vrautism_mp4_47mb from "./projects/VR_prototype_autism_recording-47MB.mp4"
 import portfolio from "./projects/3Dportfolio.png";
 import bearopedia from "./projects/bearopedia.png";
 import turtlefractalgenerator from "./projects/turtlefractalgenerator.png";
@@ -58,6 +60,8 @@ export {
   threejs,
   webvr,
   vrautism,
+  vrautism_mp4_10mb,
+  vrautism_mp4_47mb,
   portfolio,
   bearopedia,
   turtlefractalgenerator,

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Tilt } from 'react-tilt';
 
 const ProjectCard = (
-    {index, visibilityIndex, displayCount, name, description, tags, image, source_code_link}
+    {index, visibilityIndex, displayCount, name, hasVideo, video, description, tags, image, source_code_link}
 ) => {
     const [showFullSizeImg, setShowFullSizeImg ] = useState(false);
+    const [showVideo, setShowVideo] = useState(false);
+    const videoRef = useRef();
 
   return (
     <>
@@ -19,8 +21,8 @@ const ProjectCard = (
             <img
               src={image}
               alt={name}
-              className="w-full h-full object-cover rounded-lg border-2 border-black-100/80 cursor-pointer"
-              onClick={()=>setShowFullSizeImg(!showFullSizeImg)}
+              className={`w-full h-full object-cover rounded-lg border-2 border-black-100/80 ${hasVideo ? 'cursor-auto' : 'cursor-pointer'}`}
+              onClick={()=> !hasVideo && setShowFullSizeImg(!showFullSizeImg)}
             />
             {/* project code on github */}
             <div className="absolute top-0 right-0 flex justify-end m-2">
@@ -28,9 +30,17 @@ const ProjectCard = (
                 href={source_code_link}
                 target="_blank"
                 rel="external"
-                className="w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 font-bold text-[18px] align-middle text-center"
+                className="w-10 h-10 rounded-full flex place-items-center place-content-center  cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 text-center"
               >{`</>`}</a>
             </div>
+            {/* button for video or live-version if it exists */}
+            <div className={`${hasVideo ? 'flex' : 'hidden'} absolute top-0 right-12 justify-end m-2`}>
+              <div
+                onClick={() => setShowVideo(!showVideo)}
+                className="size-10 rounded-full flex place-items-center place-content-center cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 text-center"
+              >{`▶︎`}</div>
+            </div>
+            
           </div>
 
           <div className="mt-3">
@@ -59,16 +69,43 @@ const ProjectCard = (
       </Tilt>
       {/* full size project img with modal pop up when clicking on thumbnail img */}
       <div 
-        className={`${showFullSizeImg ? 'flex z-50' : 'hidden'}  fixed cursor-pointer top-0 left-0 place-items-center place-content-center w-screen h-screen backdrop-blur-md`}
+        className={`${showFullSizeImg ? 'flex z-30' : 'hidden'}  fixed cursor-pointer top-0 left-0 place-items-center place-content-center w-screen h-screen backdrop-blur-md`}
         onClick={() => setShowFullSizeImg(!showFullSizeImg)}
       >
         <div className='relative flex place-content-center w-5/6'>
-        <img src={image} alt={name} className='w-full rounded-2xl drop-shadow-md cursor-auto'/>
+        <img src={image} alt={name} className='w-full z-40 rounded-2xl drop-shadow-md cursor-auto' onClick={(e) => e.stopPropagation()} />
        
 
               <div
               onClick={() => setShowFullSizeImg(!showFullSizeImg)}
-                 className="absolute top-4 right-4 w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 font-bold text-[18px] align-middle text-center"
+                 className="z-50 absolute top-4 right-4 w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 font-bold text-[18px] align-middle text-center"
+              >{`X`}</div>
+
+        </div>
+        
+      </div>
+      {/* show full size video with modal pop up when clicking in play button */}
+      <div 
+        className={`${showVideo ? 'flex z-30' : 'hidden'}  fixed cursor-pointer top-0 left-0 place-items-center place-content-center w-screen h-screen backdrop-blur-md`}
+        onClick={() => {
+          videoRef.current.pause();
+          setShowVideo(!showVideo)
+        }}
+      >
+        <div className='relative flex place-content-center w-5/6'>
+        <video ref={videoRef} src={video} className='w-full z-40 rounded-2xl drop-shadow-md cursor-auto'      
+        onClick={(e) => e.stopPropagation()} controls>
+          Sorry, your browser doesn't support embedded videos.
+          </video>
+       
+
+              <div
+              onClick={() => {
+                videoRef.current.pause();
+                setShowVideo(!showVideo)
+              }
+              }
+                 className=" z-50 absolute top-4 right-4 w-10 h-10 rounded-full flex justify-center items-center cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 font-bold text-[18px] align-middle text-center"
               >{`X`}</div>
 
         </div>

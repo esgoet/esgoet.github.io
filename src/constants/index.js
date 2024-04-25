@@ -19,7 +19,8 @@ import {
   bearopedia,
   turtlefractalgenerator,
   hangman, 
-  menuApp
+  menuApp,
+  vrautism_mp4_47mb
 } from "../assets";
 
 export const navLinks = [
@@ -180,6 +181,8 @@ const projects = [
       },
     ],
     image: menuApp,
+    hasVideo: false,
+    video: '',
     source_code_link: "https://github.com/esgoet/menu-app",
     filtered: false,
   },
@@ -217,6 +220,8 @@ const projects = [
       },
     ], 
     image: hangman,
+    hasVideo: false,
+    video: '',
     source_code_link: "https://github.com/esgoet/hangman",
     filtered: false,
   },
@@ -247,6 +252,8 @@ const projects = [
       },
     ],
     image: vrautism,
+    hasVideo: true,
+    video: vrautism_mp4_47mb,
     source_code_link:
       "https://github.com/esgoet/VR-autism-pov-in-psychiatry_openXR",
     filtered: false,
@@ -302,6 +309,8 @@ const projects = [
       },
     ],
     image: portfolio,
+    hasVideo: false,
+    video: '',
     source_code_link: "https://github.com/esgoet/esgoet.github.io",
     filtered: false,
   },
@@ -340,6 +349,8 @@ const projects = [
       },
     ],
     image: webvr,
+    hasVideo: false,
+    video: '',
     source_code_link: "https://github.com/esgoet/threejs-vr-app",
     filtered: false,
   },
@@ -374,6 +385,8 @@ const projects = [
       },
     ],
     image: bearopedia,
+    hasVideo: false,
+    video: '',
     source_code_link: "https://github.com/esgoet/bearopedia",
     filtered: false,
   },
@@ -396,6 +409,8 @@ const projects = [
       },
     ],
     image: turtlefractalgenerator,
+    hasVideo: false,
+    video: '',
     source_code_link: "https://github.com/esgoet/turtle-fractal-generator",
     filtered: false,
   },
