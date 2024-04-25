@@ -13,14 +13,7 @@ const Moon = ({ isMobile }) =>  {
   const moon = useRef();
   const rocket = useRef();
 
-  const [clicked, setClicked] = useState();
-
-  // const [rotationY, setRotationY] = useState(0);
-  const [scrolling, setScrolling] = useState(false);
-
-  const mapNumber = (number, inMin, inMax, outMin, outMax) =>
-      ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
-
+  // const [clicked, setClicked] = useState();
 
   const { nodes, materials, animations } = useGLTF("/moon/space_assets.glb");
 
@@ -28,7 +21,7 @@ const Moon = ({ isMobile }) =>  {
   const { mixer, actions, names } = useAnimations(animations, group);
 
   // Hover and animation-index states
-  const [hovered, setHovered] = useState(false);
+  // const [hovered, setHovered] = useState(false);
   const [action, setAction] = useState('Waving')
 
   useEffect(( ) => {
@@ -40,18 +33,11 @@ const Moon = ({ isMobile }) =>  {
     setAction("Walking");
   }
 
-  // Change cursor on hover-state
-  useEffect(
-    () => void (document.body.style.cursor = hovered ? "pointer" : "auto"),
-    [hovered]
-  );
-
   // Change animation when the index changes
   useEffect(() => {
     // Reset and fade in animation after an index has been changed
     actions[action].reset().fadeIn(0.5).play();
     action === 'Waving' && mixer.addEventListener("loop", onWaving)
-    console.log(isMobile)
     
     // In the clean-up phase, fade it out
     return () => { 
@@ -61,28 +47,25 @@ const Moon = ({ isMobile }) =>  {
   }, [action, actions]);
 
   useFrame((state, delta) => {
+    // rotate the moon based on astronaut animation
     if (action === "Walking") {
       moon.current.rotation.x -= delta / 20;
     } else if (action === "MoonWalk") {
         moon.current.rotation.x += delta / 20;
     } else if (action === 'Waving') {
-
     }
-
     rocket.current.rotation.x += delta/2;
-    // rocket.current.rotation.y += delta / 20;
-    // rocket.current.rotation.z += delta / 30;
     });
 
-    const handleClick = () => {
-      if (!clicked) {
-        setAction('MoonWalk');
-        setClicked(true);
-      } else {
-        setAction('Waving');
-        setClicked(false);
-      }
-    }
+    // const handleClick = () => {
+    //   if (!clicked) {
+    //     setAction('MoonWalk');
+    //     setClicked(true);
+    //   } else {
+    //     setAction('Waving');
+    //     setClicked(false);
+    //   }
+    // }
 
   return (
     <group

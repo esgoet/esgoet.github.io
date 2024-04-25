@@ -4,8 +4,7 @@ import { About, Contact, Hero, Navbar, Projects, MoonCanvas, StarsCanvas, Footer
 import { MotionConfig } from "framer-motion";
 
 const App = () => {
-  const [isMobile, setIsMobile] = useState(true);
-
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Add a listener for changes to the screen size
@@ -16,7 +15,9 @@ const App = () => {
 
     // Define a callback function to handle changes to the media query
     const handleMediaQueryChange = (event) => {
+ 
       setIsMobile(event.matches);
+      
     };
 
     // Add the callback function as a listener for changes to the media query
