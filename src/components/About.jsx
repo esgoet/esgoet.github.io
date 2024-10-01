@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState} from 'react';
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 
@@ -75,9 +75,9 @@ const Profile = () => {
             </div>
           </div>
           <div className="flex flex-col gap-1 px-2.5 py-1 pb-4 w-full text-[14px] ">
-            <div className="flex flex-row gap-2 justify-stretch items-center bg-black-200/50 rounded-2xl">
-              <div className="font-bold bg-black-200/50 p-2 pl-3 rounded-l-2xl h-full flex items-center">
-                <p>2023</p>
+            <div className="flex flex-row gap-2 justify-stretch items-stretch bg-black-200/50 rounded-2xl h-full">
+              <div className="font-bold bg-black-200/50 p-2 pl-3 rounded-l-2xl h-full flex place-items-center">
+                2023
               </div>
               <div className="p-2 pr-3 w-full">
                 {education.map((entry) =>
