@@ -19,11 +19,13 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
              <span className="hover:text-white-100">#</span>
              <span className="hover:text-secondary">{name}</span>
              {/* how many projects use this tech? = weight */}
-             {weight > 1 ? <span
-                    className={`ml-1 -mr-1 py-0.5 px-1.5 rounded-full bg-black-100 ${smallerFont}`}
+             {weight > 1 &&
+                 <span
+                    className={`ml-1 -mr-1 mb-0.5 px-1.5 rounded-full bg-black-100 ${smallerFont}`}
                 >
                     {weight}
-                </span>: null}
+                </span>
+             }
            </label>
          </div>
        );
