@@ -26,8 +26,6 @@ import hobbies from "./icons/hand-w-heart.svg";
 import linkedin from "./socialmedia/linkedin-white.svg"
 import github from "./socialmedia/github-mark-white.svg"
 import email from "./socialmedia/email.svg"
-// import github from "./socialmedia/github.png";
-
 
 import webvr from "./projects/InteractiveWebVR.png";
 import vrautism from "./projects/VRautism.png";
@@ -69,8 +67,8 @@ export {
   turtlefractalgenerator,
   hangman,
   menuApp,
-    taletrail,
-    courseva,
+  taletrail,
+  courseva,
   codesymbol,
   linkedin,
   github,

@@ -20,8 +20,8 @@ import {
   turtlefractalgenerator,
   hangman, 
   menuApp,
-    taletrail,
-    courseva,
+  taletrail,
+  courseva,
   vrautism_mp4_47mb
 } from "../assets";
 
@@ -77,13 +77,21 @@ const technologies = [
     name: "JavaScript",
     icon: javascript,
   },
-  // {
-  //   name: "TypeScript",
-  //   icon: typescript,
-  // },
+  {
+    name: "TypeScript",
+    icon: typescript,
+  },
   {
     name: "React JS",
     icon: reactjs,
+  },
+  {
+    name: "MongoDB",
+    icon: mongodb
+  },
+  {
+    name: "Redux",
+    icon: redux
   },
   {
     name: "Tailwind CSS",
@@ -101,10 +109,10 @@ const technologies = [
     name: "git",
     icon: git,
   },
-  // {
-  //   name: "figma",
-  //   icon: figma,
-  // },
+  {
+    name: "figma",
+    icon: figma,
+  },
   {
     name: "Swift",
     icon: docker,
