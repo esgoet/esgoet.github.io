@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect} from 'react';
+import { useState, useRef} from 'react';
 import { motion } from 'framer-motion';
 
 
@@ -10,7 +10,7 @@ import ProjectCard from './ProjectCard';
 import ProjectTag from './ProjectTag';
 
 
-const Projects = ({ isMobile }) => {
+const Projects = () => {
   const [currentProjects, setCurrentProjects] = useState(projects);
   // hooks and variables to track and handle scrolling
   const [visibilityIndex, setVisibilityIndex] = useState(0);
@@ -33,7 +33,6 @@ const Projects = ({ isMobile }) => {
       } else {
         // add weight to them if they are already in the list to indicate there is more than one project using that technology
         tags.find((el) => el.name === tag.name).weight +=1;
-
       }
     })
   );
@@ -269,16 +268,21 @@ const Projects = ({ isMobile }) => {
         <div className="flex flex-wrap sm:flex-nowrap sm:flex-row items-center justify-center gap-2">
           {/* arrow to scroll left through projects on click */}
         <div className={`flex place-items-center size-10 sm:size-14 opacity-20`}>
-            <img
-              src={leftarrow}
-              ref={prevRef}
-              className="w-full h-full object-contain cursor-pointer p-1"
+          <button
               onClick={handlePrev}
+              ref={prevRef}
+              className="w-full h-full"
+          >
+            <img
+                src={leftarrow}
+                className="w-full h-full object-contain p-1"
+
             />
-          </div>
+          </button>
+        </div>
           {/* display all or the currently filtered projects with arrows left and right on the side or below (mobile) to scroll through projects */}
           <div
-            ref={galleryRef}
+              ref={galleryRef}
             className={`flex overflow-hidden w-full order-first sm:-order-none sm:w-[90%] snap-center`}
             id="projectGallery"
           >
@@ -291,12 +295,16 @@ const Projects = ({ isMobile }) => {
           </div>
            {/* arrow to scroll right through projects on click */}
           <div className={`flex place-items-center size-10 sm:size-14 `}>
-            <img
-              src={rightarrow}
-              ref={nextRef}
-              className="w-full h-full object-contain cursor-pointer p-1"
-              onClick={handleNext}
-            />
+            <button
+                ref={nextRef}
+                onClick={handleNext}
+                className="w-full h-full"
+            >
+              <img
+                  src={rightarrow}
+                  className="w-full h-full object-contain p-1"
+              />
+            </button>
           </div>
         </div>
         {/* dot indicators to show many projects there are and which are visible */}
