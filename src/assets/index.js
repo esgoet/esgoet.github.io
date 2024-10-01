@@ -37,7 +37,9 @@ import portfolio from "./projects/3Dportfolio.png";
 import bearopedia from "./projects/bearopedia.png";
 import turtlefractalgenerator from "./projects/turtlefractalgenerator.png";
 import hangman from "./projects/hangman.png";
-import menuApp from './projects/menu-app.png'
+import menuApp from './projects/menu-app.png';
+import taletrail from "./projects/taletrail.png";
+import courseva from "./projects/courseva.png";
 
 import portrait from "./portrait.jpg";
 
@@ -67,6 +69,8 @@ export {
   turtlefractalgenerator,
   hangman,
   menuApp,
+    taletrail,
+    courseva,
   codesymbol,
   linkedin,
   github,

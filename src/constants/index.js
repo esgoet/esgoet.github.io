@@ -20,6 +20,8 @@ import {
   turtlefractalgenerator,
   hangman, 
   menuApp,
+    taletrail,
+    courseva,
   vrautism_mp4_47mb
 } from "../assets";
 
@@ -147,6 +149,120 @@ const experiences = [
 ];
 
 const projects = [
+  {
+    name: "Courseva (Learning Management System)",
+    description: "A comprehensive full stack web application tailored for managing, providing and partaking in educational courses, including lessons and assignments. The project integrates a React frontend with a Spring Boot backend, utilizing MongoDB for persistent storage.",
+    tags: [
+      {
+        name: "Java",
+        type: "language"
+      },
+      {
+        name: "Spring",
+        type: "library"
+      },
+      {
+        name: "TypeScript",
+        type: "language",
+      },
+      {
+        name: "React",
+        type: "library",
+      },
+      {
+        name: "React Router",
+        type: "library",
+      },
+      {
+        name: "CSS",
+        type: "language",
+      },
+      {
+        name: "Material UI",
+        type: "library"
+      },
+      {
+        name: "HTML5",
+        type: "language",
+      },
+      {
+        name: "Web",
+        type: "platform",
+      },
+      {
+        name: "Desktop",
+        type: "device",
+      },
+      {
+        name: "Mobile",
+        type: "device"
+      },
+      {
+        name: "git",
+        type: "language",
+      },
+    ],
+    image: courseva,
+    hasVideo: false,
+    video: '',
+    source_code_link: "https://github.com/esgoet/courseva",
+    filtered: false,
+  },
+  {
+    name: "TaleTrail - A Reading Tracker",
+    description: "A full stack web application to track read books and follow your reading goal, using a MongoDB database. Created collaboratively as part of the neuefische Java Development bootcamp.",
+    tags: [
+      {
+        name: "Java",
+        type: "language"
+      },
+      {
+        name: "Spring",
+        type: "library"
+      },
+      {
+        name: "TypeScript",
+        type: "language",
+      },
+      {
+        name: "React",
+        type: "library",
+      },
+      {
+        name: "React Router",
+        type: "library",
+      },
+      {
+        name: "CSS",
+        type: "language",
+      },
+      {
+        name: "HTML5",
+        type: "language",
+      },
+      {
+        name: "Web",
+        type: "platform",
+      },
+      {
+        name: "Desktop",
+        type: "device",
+      },
+      {
+        name: "Mobile",
+        type: "device"
+      },
+      {
+        name: "git",
+        type: "language",
+      },
+    ],
+    image: taletrail,
+    hasVideo: false,
+    video: '',
+    source_code_link: "https://github.com/esgoet/taletrail",
+    filtered: false,
+  },
   {
     name: "Web Menu for Food Delivery",
     description: "A prototype with TheMealDB API for a delivery app using React, Typescript and Redux with persistent local storage",
