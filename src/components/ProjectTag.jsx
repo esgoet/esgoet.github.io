@@ -5,10 +5,10 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
 
     if (type === filterType) {
        return (
-         <>
+         <div className={`${fontSize} flex flex-nowrap flex-row bg-black-300 px-2 py-1 text-white-100 rounded-full`}>
            <label
              htmlFor={name}
-             className={`${fontSize} bg-black-300 px-2 text-white-100 rounded-full`}
+             className={` contents`}
            >
              <input
                type={"checkbox"}
@@ -25,7 +25,7 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
                     {weight}
                 </span>: null}
            </label>
-         </>
+         </div>
        );
   
     }
