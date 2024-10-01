@@ -1,6 +1,6 @@
-import React, {Suspense, useEffect, useState} from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Preload, useGLTF, PresentationControls} from '@react-three/drei';
+import {Suspense, useEffect, useState} from 'react';
+import { Canvas} from '@react-three/fiber';
+import { OrbitControls, useGLTF} from '@react-three/drei';
 
 import CanvasLoader from '../Loader';
 
@@ -45,7 +45,7 @@ const SatelliteCanvas = () => {
       }}
     >
       
-      <ambientLight intensity={1} color={0xffffff}/>
+      <ambientLight intensity={2.5} color={0xffffff}/>
       
       <Suspense fallback={<CanvasLoader />}>  
       <group

@@ -1,27 +1,23 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, useAnimations, Stats, PerspectiveCamera, PresentationControls} from "@react-three/drei";
-import { useScroll, animated, useSpring, config } from "@react-spring/three";
+import { useGLTF, useAnimations, PresentationControls} from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 import { LoopPingPong } from "three";
 
 
-const Moon = ({ isMobile }) =>  {
+const Moon = () =>  {
   const group = useRef();
   const astronaut = useRef();
   const moon = useRef();
   const rocket = useRef();
 
-  // const [clicked, setClicked] = useState();
-
   const { nodes, materials, animations } = useGLTF("/moon/space_assets.glb");
 
   // Extract animation actions
-  const { mixer, actions, names } = useAnimations(animations, group);
+  const { mixer, actions } = useAnimations(animations, group);
 
   // Hover and animation-index states
-  // const [hovered, setHovered] = useState(false);
   const [action, setAction] = useState('Waving')
 
   useEffect(( ) => {
@@ -57,15 +53,6 @@ const Moon = ({ isMobile }) =>  {
     rocket.current.rotation.x += delta/2;
     });
 
-    // const handleClick = () => {
-    //   if (!clicked) {
-    //     setAction('MoonWalk');
-    //     setClicked(true);
-    //   } else {
-    //     setAction('Waving');
-    //     setClicked(false);
-    //   }
-    // }
 
   return (
     <group
@@ -203,8 +190,8 @@ const MoonCanvas = ({isMobile}) => {
         }}
       >
         {/* <PerspectiveCamera makeDefault position={[0,1,6]}/> */}
-        <ambientLight intensity={0.6} color={0x7e57e8} />
-        <hemisphereLight intensity={0.2} skyColor={0x6200ea} />
+        <ambientLight intensity={1} color={0x7e57e8} />
+        <hemisphereLight intensity={1} skyColor={0x6200ea} />
         {/* <directionalLight position={[-10, -2, 6]} /> */}
         <directionalLight
           position={[0, -0.5, 20]}
