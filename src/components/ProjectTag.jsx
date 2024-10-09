@@ -8,7 +8,7 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
          <div className={`${fontSize} flex flex-nowrap flex-row bg-black-300 px-2 py-1 text-white-100 rounded-full`}>
            <label
              htmlFor={name}
-             className={` contents`}
+             className={` contents cursor-pointer`}
            >
              <input
                type={"checkbox"}
