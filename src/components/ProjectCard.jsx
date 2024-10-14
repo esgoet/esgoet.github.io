@@ -2,9 +2,18 @@ import {useState} from 'react';
 import { Tilt } from 'react-tilt';
 import ProjectDetailsModalDialog from "./ProjectDetailsModalDialog.jsx";
 
-const ProjectCard = (
-    {index, visibilityIndex, displayCount, name, hasVideo, video, description, tags, image, source_code_link}
-) => {
+const ProjectCard = ({
+                         index,
+                         visibilityIndex,
+                         displayCount,
+                         name,
+                         hasVideo,
+                         video,
+                         description,
+                         tags,
+                         image,
+                         source_code_link
+}) => {
     const [modal, setModal] = useState(false);
 
     return (
@@ -22,14 +31,14 @@ const ProjectCard = (
                           <img
                               src={image}
                               alt={name}
-                              className={`w-full h-full object-cover rounded-lg`}
+                              className={`w-full h-full object-cover rounded-md`}
                           />
                       </button>
                       <div className="absolute top-0 right-0 flex justify-end m-2">
                           <a
                               href={source_code_link}
                               target="_blank"
-                              rel="external"
+                              rel="external noreferrer"
                               className="w-10 h-10 rounded-full flex place-items-center place-content-center  cursor-pointer drop-shadow-md bg-black-100/70 hover:bg-black-300 text-center"
                           >
                               {`</>`}
@@ -63,7 +72,14 @@ const ProjectCard = (
                   ))}
                 </div>
             </Tilt>
-            <ProjectDetailsModalDialog modal={modal} setModal={setModal} image={image} name={name} video={video} hasVideo={hasVideo}/>
+            <ProjectDetailsModalDialog
+                modal={modal}
+                setModal={setModal}
+                image={image}
+                name={name}
+                video={video}
+                hasVideo={hasVideo}
+            />
         </>
   );
 }
