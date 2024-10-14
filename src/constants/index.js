@@ -114,17 +114,9 @@ const technologies = [
     icon: figma,
   },
   {
-    name: "Swift",
-    icon: docker,
-  },
-  {
-    name: "Python",
-    icon: docker,
-  },
-  {
-    name: "C#",
-    icon: docker,
-  },
+    name: "docker",
+    icon: docker
+  }
 ];
 
 const experiences = [
