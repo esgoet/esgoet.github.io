@@ -29,11 +29,8 @@ const ProjectTag = ({name, type, size, onClick, filterType, weight}) => {
            </label>
          </div>
        );
-  
     }
-    return
-   
-  }
+}
 
-  export default ProjectTag;
+export default ProjectTag;
   
