@@ -11,7 +11,6 @@ const GalleryArrow = forwardRef(function GalleryArrow({svg, onClick, disabled}, 
                 <img
                     src={svg}
                     className="w-full h-full object-contain p-1"
-
                 />
             </button>
         </div>
