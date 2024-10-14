@@ -85,9 +85,9 @@ const Projects = () => {
       <div className="sm:snap-center 2xl:snap-align-none">
         <ProjectsFilterForm resetGalleryScroll={resetGalleryScroll} setCurrentProjects={setCurrentProjects}/>
         <div className="flex flex-wrap sm:flex-nowrap sm:flex-row items-center justify-center gap-2">
-          <GalleryArrow ref={prevRef} onClick={handlePrev} svg={leftarrow} disabled={true}/>
+          <GalleryArrow ref={prevRef} onClick={handlePrev} svg={leftarrow} direction={"left"} disabled={true}/>
           <ProjectGallery ref={galleryRef} currentProjects={currentProjects} displayCount={displayCount} visibilityIndex={visibilityIndex}/>
-          <GalleryArrow ref={nextRef} onClick={handleNext} svg={rightarrow}/>
+          <GalleryArrow ref={nextRef} onClick={handleNext} svg={rightarrow} direction={"right"}/>
         </div>
         <GalleryScrollIndicator currentProjects={currentProjects} displayCount={displayCount} visibilityIndex={visibilityIndex}/>
       </div>
