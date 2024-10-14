@@ -171,7 +171,7 @@ const About = ({isMobile}) => {
           <p className="pt-4">
             I bring a versatile skill set to the table, ranging from web
             development to game design and VR applications. Explore my portfolio{" "}
-            <a href="#work" className="underline pointer-cursor">
+            <a href="#projects" className="underline pointer-cursor">
               below
             </a>{" "}
             to see my work in action.
