@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import {useState, useRef} from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
@@ -47,7 +47,7 @@ const ContactFormElement = (
 };
 
 
-const Contact = ({isMobile}) => {
+const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
     name: '',
@@ -66,10 +66,6 @@ const Contact = ({isMobile}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-
-    //template id from email js: template_hn5qowi
-    //service id from email.js: service_28abtbq
-    //api key from email.js: qbyhQVnAB6vPZ1ifL qbyhQVnAB6vPZ1ifL
 
     emailjs
       .send(
@@ -151,9 +147,7 @@ const Contact = ({isMobile}) => {
           </form>
         </motion.div>
 
-        {/* <div className="md:h-[550px] h-[350px] w-full"> */}
         <motion.div
-          // variants={slideIn("right", "tween", 0.2, 1)}
           className="w-full lg:w-1/2 h-[300px] sm:h-[500px] mx-auto sm:m-0"
         >
           <SatelliteCanvas />
