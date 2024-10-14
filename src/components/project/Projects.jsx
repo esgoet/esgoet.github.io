@@ -1,9 +1,9 @@
 import { useState, useRef} from 'react';
 import { motion } from 'framer-motion';
-import { leftarrow, rightarrow } from '../assets';
-import { SectionWrapper } from '../hoc';
-import { projects } from '../constants';
-import { textVariant } from '../utils/motion';
+import { leftarrow, rightarrow } from '../../assets/index.js';
+import { SectionWrapper } from '../../hoc/index.js';
+import { projects } from '../../constants/index.js';
+import { textVariant } from '../../utils/motion.js';
 import ProjectsFilterForm from "./ProjectsFilterForm.jsx";
 import GalleryArrow from "./GalleryArrow.jsx";
 import ProjectGallery from "./ProjectGallery.jsx";

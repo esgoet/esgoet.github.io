@@ -1,58 +1,14 @@
-import React, {useEffect, useState, useContext, useRef } from 'react';
+import {useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useSpring, useMotionValueEvent, easeIn, easeOut } from 'framer-motion';
+import { motion, useScroll, useSpring, easeIn} from 'framer-motion';
 
 import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
-import { slideIn, textVariant } from '../utils/motion';
-// import { useSpring, animated } from '@react-spring/web';
-
-// import { SectionContext } from '../hoc';
-
 
 const Navbar = () => {
   const [active, setActive] = useState('')
   const [toggle, setToggle] = useState(false)
-  const { scrollY, scrollYProgress } = useScroll();
-
-  // // get and set current active section when scrolling
-  // const sections = useRef([]);
-
-  // const handleScroll = () => {
-  //   const pageYOffset = scrollY.current;
-  //   let newActiveSection = null;
-
-  //   console.log(pageYOffset)
-
-  //   sections.current.forEach((section) => {
-  //     const sectionOffsetTop = section.offsetTop;
-  //     const sectionHeight = section.offsetHeight;
-
-  //     console.log(
-  //       section.children[0].id +
-  //         ": top-" +
-  //         sectionOffsetTop +
-  //         ", height-" +
-  //         sectionHeight
-  //     );
-
-  //     if (pageYOffset >= sectionOffsetTop && pageYOffset < sectionOffsetTop + sectionHeight) {
-  //       //get id from .hash-span element
-  //       newActiveSection = section.children[0].id;
-  //     }
-  //   });
-
-  //   setActive(newActiveSection);
-  // };
-
-  // useEffect(() => {
-  //   sections.current = document.querySelectorAll('[data-section]');
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
+  const { scrollYProgress } = useScroll();
 
   //establish InteractionObserver for signaling when each section is in view
   const observer = useRef(null);
@@ -67,7 +23,6 @@ const Navbar = () => {
 
       //Update state with the visible section ID
       if (visibleSection) {
-        // setActiveSection(visibleSection.id);
         setActive(visibleSection.children[0].id)
         
       }
@@ -120,31 +75,31 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <li
                 key={link.id}
-                className={`${
-                  active === link.id ? "text-white-100" : "text-black-200"
-                  
-                }
+                className={`${active === link.id ? "text-white-100" : "text-black-200"}
               hover:text-white-100 text-[18px] font-medium cursor-pointer`}
-                onClick={() => setActive(link.id)}
               >
-                <a href={`#${link.id}`}>{link.title}</a>
+                <a href={`#${link.id}`}  onClick={() => setActive(link.id)}>{link.title}</a>
               </li>
             ))}
           </ol>
           <div className="sm:hidden flex flex-none justify-end items-center">
-            <img
-              src={toggle ? close : menu}
-              alt="menu"
-              className="w-[28px] h-[28px] object-contain cursor-pointer z-20"
-              onClick={() => setToggle(!toggle)}
-            />
+            <button
+                className="w-[28px] h-[28px] z-20"
+                onClick={() => setToggle(!toggle)}
+            >
+              <img
+                  src={toggle ? close : menu}
+                  alt="menu"
+                  className="w-[28px] h-[28px] object-contain cursor-pointer z-20"
+              />
+            </button>
           </div>
           <motion.div
-            animate={{
-              right: toggle ? 0 : -500,
-              display: toggle ? "hidden" : "flex",
-            }}
-            transition={{ duration: 0.5, ease: easeIn }}
+              animate={{
+                right: toggle ? 0 : -500,
+                display: toggle ? "hidden" : "flex",
+              }}
+              transition={{duration: 0.5, ease: easeIn }}
             className={`hidden py-3 px-6 mt-1 bg-black-200 absolute top-[78px] z-10 border-primary border-2 border-r-0 rounded-l-full overflow-x-hidden`}
           >
             <ol className="list-none flex flex-row items-end justify-end w-full gap-8">
@@ -154,12 +109,14 @@ const Navbar = () => {
                   className={`${
                     active === link.id ? "text-black-100" : "text-white-100"
                   } font-roboto font-medium cursor-pointer text-[18px]`}
-                  onClick={() => {
-                    setActive(link.id);
-                    setToggle(!toggle);
-                  }}
+
                 >
-                  <a href={`#${link.id}`}>{link.title}</a>
+                  <a
+                      href={`#${link.id}`}
+                      onClick={() => {
+                        setActive(link.id);
+                        setToggle(!toggle);}}
+                  >{link.title}</a>
                 </li>
               ))}
             </ol>

@@ -1,5 +1,5 @@
-import {projects} from "../constants/index.js";
-import {filtersymbol} from "../assets/index.js";
+import {projects} from "../../constants/index.js";
+import {filtersymbol} from "../../assets/index.js";
 import ProjectTag from "./ProjectTag.jsx";
 
 export default function ProjectsFilterForm({setCurrentProjects, resetGalleryScroll}) {
