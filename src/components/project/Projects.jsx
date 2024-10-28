@@ -1,4 +1,4 @@
-import { useState, useRef} from 'react';
+import {useState, useRef, useCallback} from 'react';
 import { motion } from 'framer-motion';
 import { leftarrow, rightarrow } from '../../assets/index.js';
 import { SectionWrapper } from '../../hoc/index.js';
@@ -20,7 +20,7 @@ const Projects = () => {
 
   const displayCount = window.matchMedia("(max-width: 500px)").matches ? 1 : 3;
 
-  const toggleArrow = (arrow, enable) => {
+  const toggleArrow = useCallback((arrow, enable) => {
     if (arrow) {
       if (enable) {
         arrow.parentElement.style.opacity = 1;
@@ -30,16 +30,16 @@ const Projects = () => {
         arrow.style.cursor = 'not-allowed';
       }
     }
-  }
+  },[]);
 
-  const scrollGallery = (scrollLeft) => {
+  const scrollGallery = useCallback((scrollLeft) => {
     if (galleryRef.current) {
       galleryRef.current.scrollTo({
         left: scrollLeft,
         behavior: 'smooth',
       });
     }
-  }
+  },[]);
 
 
   const handlePrev = () => {
@@ -65,7 +65,7 @@ const Projects = () => {
     }
   }
 
-  const resetGalleryScroll = (filteredProjects) => {
+  const resetGalleryScroll = useCallback((filteredProjects) => {
     setVisibilityIndex(0)
     if (filteredProjects.length <= displayCount) {
       toggleArrow(nextRef.current, false)
@@ -74,7 +74,7 @@ const Projects = () => {
     }
     toggleArrow(prevRef.current, false)
     scrollGallery(0);
-  }
+  }, [setVisibilityIndex, scrollGallery, toggleArrow]);
 
   return (
     <>

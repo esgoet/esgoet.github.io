@@ -1,70 +1,61 @@
 import {projects} from "../../constants/index.js";
 import {filtersymbol} from "../../assets/index.js";
 import ProjectTag from "./ProjectTag.jsx";
+import {useCallback, useEffect, useMemo, useState} from "react";
 
 export default function ProjectsFilterForm({setCurrentProjects, resetGalleryScroll}) {
     const tagTypes = ["device", "platform", "language", "library", "software"];
-    const tags = [];
+    const [selectedTags, setSelectedTags] = useState(new Set());
 
-    projects.forEach((project) =>
-        project.tags.forEach((tag) => {
-            if (!tags.find((el) => el.name === tag.name)) {
-                tags.push({...tag, weight: 1} );
-            } else {
-                tags.find((el) => el.name === tag.name).weight +=1;
-            }
-        })
-    );
-    tags.sort((a,b)=>(a.name > b.name));
-    tags.sort((a, b) => a.weight - b.weight);
-    tags.reverse();
+    const tags = useMemo(() => {
+        const tagMap = new Map();
 
-    const checkTag = (e) => {
-        if (e.target.checked) {
-            e.target.parentNode.style.backgroundColor = "#5a65fc";
-            e.target.nextSibling.innerHTML = `&#x00D7; #`;
-        } else {
-            e.target.parentNode.style.backgroundColor = "#6200EA";
-            e.target.nextSibling.innerHTML = "#";
-        }
-        filterProjects();
-    };
-
-    const filterProjects = () => {
-        const checkedTags = [];
-        document
-            .querySelectorAll("input[type='checkbox']:checked")
-            .forEach((tag) => checkedTags.push(tag.id));
-
-        if (checkedTags.length === 0) {
-            resetFilter();
-        } else {
-            const filteredProjects = projects
-                .filter((project) =>
-                    project.tags.some((tag) =>
-                        checkedTags.includes(tag.name)));
-            setCurrentProjects(filteredProjects);
-            resetGalleryScroll(filteredProjects);
-        }
-    };
-
-    const resetFilter = () => {
-        setCurrentProjects(projects);
-        document.querySelectorAll("input[type='checkbox']:checked")
-            .forEach((tag) => {
-                    tag.checked = false
-                    tag.parentNode.style.backgroundColor = "#6200EA";
-                    tag.nextSibling.innerHTML = "#";
+        projects.forEach(project => {
+            project.tags.forEach(tag => {
+                if (!tagMap.has(tag.name)) {
+                    tagMap.set(tag.name, { ...tag, weight: 1 });
+                } else {
+                    tagMap.get(tag.name).weight += 1;
                 }
-            );
+            });
+        });
+        return Array.from(tagMap.values()).sort((a, b) => b.weight - a.weight || a.name.localeCompare(b.name));
+    }, [projects]);
 
-        resetGalleryScroll(projects);
-    }
+    const toggleTag = useCallback((tagName) => {
+        setSelectedTags(prevSelected => {
+            const updatedTags = new Set(prevSelected);
+            updatedTags.has(tagName) ? updatedTags.delete(tagName) : updatedTags.add(tagName);
+            return updatedTags;
+        });
+    }, []);
+
+    const filteredProjects = useMemo(() => {
+        if (selectedTags.size === 0) return projects;
+        return projects.filter(project =>
+            project.tags.some(tag => selectedTags.has(tag.name))
+        );
+    }, [selectedTags, projects]);
+
+
+    const applyFilter = useCallback(() => {
+        setCurrentProjects(filteredProjects);
+        resetGalleryScroll(filteredProjects);
+    }, [filteredProjects, setCurrentProjects, resetGalleryScroll]);
+
+    const resetFilter = useCallback(() => {
+        setSelectedTags(new Set());
+    }, [setSelectedTags]);
+
+
+    useEffect(() => {
+        applyFilter();
+    }, [selectedTags, applyFilter]);
 
     return (
         <form
             id="filterTagsForm"
-            className="my-4 bg-black-100/50  p-4 rounded-2xl flex flex-col gap-2"
+            className="my-4 bg-black-100/50 p-4 rounded-2xl flex flex-col gap-2"
         >
             <div className="flex justify-between items-center">
                 <div className="flex flex-row items-center px-2">
@@ -86,21 +77,20 @@ export default function ProjectsFilterForm({setCurrentProjects, resetGalleryScro
             <div className="flex sm:flex-row flex-col gap-2 max-w-full overflow-x-auto">
                 {tagTypes.map((type) => (
                     <fieldset
-                        className="flex flex-wrap items-start justify-start  content-start gap-1 rounded-2xl bg-black-100 p-2"
+                        className="flex flex-wrap items-start justify-start content-start gap-1 rounded-2xl bg-black-100 p-2"
                         id={type}
                         key={type}
                     >
-                        <legend className="text-center text-tertiary text-[14px]">
+                        <legend className="text-center text-tertiary text-[14px] w-full">
                             {type.toUpperCase()}
                         </legend>
-                        {tags.map((tag) => (
+                        {tags.filter(tag => tag.type === type).map((tag) => (
                             <ProjectTag
                                 key={tag.name}
                                 {...tag}
                                 size={14}
-                                onClick={checkTag}
-                                filterType={type}
-                                weight={tag.weight}
+                                onClick={()=> toggleTag(tag.name)}
+                                isSelected={selectedTags.has(tag.name)}
                             />
                         ))}
                     </fieldset>
